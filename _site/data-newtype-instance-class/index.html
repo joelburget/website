@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/media/css/base.css" />
+	<title>data, type, newtype, instance, class
+</title>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  <link rel="stylesheet" type="text/css" href="/media/css/how-series-pygments_scr_pro.css" media="screen, projection" />
+<link rel='stylesheet' type='text/css' href='/media/css/data-type-newtype-instance-class.css'>
+
+</head>
+<body>
+	<div id="all-but-nav">
+  <h1>data, type, newtype, instance, class</h1>
+<p>One of the first things to confuse me about Haskell was the number of keywords related to types. The five (I know, 5 isn't <i>that</i> many) I've counted in Haskell 98 are <code>data</code>, <code>type</code>, <code>newtype</code>, <code>instance</code>, and <code>class</code>. I was unable to find a comprehensive discussion of what each of them means and how they are related to each other. I'll break these keywords up linto 2 related sets. <code>data</code>, <code>type</code>, and <code>newtype</code> are all ways to declare a new type. <code>instance</code> and <code>class</code> are slightly different. Let's take a closer look at them.</p>
+<h2>data, type, newtype</h2>
+<p><code>data</code> is used to declare a new algebraic data type. We can use it to create a boolean or, in this case, the maybe monad:</p>
+<div class="haskell">
+<div class="highlight"><pre><code class="haskell"><span class="lineno">1</span> <span class="kr">data</span> <span class="kt">Bool</span> <span class="ow">=</span> <span class="kt">True</span> <span class="o">|</span> <span class="kt">False</span>
+<span class="lineno">2</span> <span class="kr">data</span> <span class="kt">Maybe</span> <span class="n">a</span> <span class="ow">=</span> <span class="kt">Nothing</span> <span class="o">|</span> <span class="kt">Just</span> <span class="n">a</span>
+</code></pre>
+</div>
+</div>
+<p><code>type</code> is used to create an alias for an algebraic data type. A good example of this is included in the Prelude:</p>
+<div class="haskell">
+<div class="highlight"><pre><code class="haskell"><span class="lineno">1</span> <span class="kr">type</span> <span class="kt">String</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">Char</span><span class="p">]</span>
+</code></pre>
+</div>
+</div>
+<p><code>newtype</code> acts similarly to <code>type</code> with a syntax akin to <code>data</code>. Thus we can write the following:</p>
+<div class="haskell">
+<div class="highlight"><pre><code class="haskell"><span class="lineno">1</span> <span class="kr">newtype</span> <span class="kt">Radius</span> <span class="ow">=</span> <span class="kt">Radius</span> <span class="kt">Double</span>
+<span class="lineno">2</span> <span class="kr">data</span> <span class="kt">Diameter</span> <span class="ow">=</span> <span class="kt">Diameter</span> <span class="kt">Double</span>
+</code></pre>
+</div>
+</div>
+<p>Okay, so what's the difference between newtype and data? Three things (that I'm aware of):</p>
+<ol>
+  <li><code>newtype</code> can only have a single constructor taking a single argument.</li>
+  <li><code>newtype</code> creates a strict value constructor and <code>type</code> creates a lazy one (see <a href="#ref1">[1]</a>).</li>
+  <li><code>newtype</code> introduces no runtime overhead.</code></li>
+</ol>
+<h2>class, instance</h2>
+<p>A typeclass is a way to guarantee that a type implements certain functions (or data). A type is declared to implement the functions using the keyword <code>instance</code>. An example will be helpful:</p>
+<div class="haskell">
+<div class="highlight"><pre><code class="haskell"><span class="lineno"> 1</span> <span class="c1">--Normally I would use Double, but Int&#39;s will be easier to read</span>
+<span class="lineno"> 2</span> <span class="kr">type</span> <span class="kt">Point</span> <span class="ow">=</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span>
+<span class="lineno"> 3</span> <span class="kr">data</span> <span class="kt">Triangle</span> <span class="ow">=</span> <span class="kt">Triangle</span> <span class="kt">Point</span> <span class="kt">Point</span> <span class="kt">Point</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Show</span><span class="p">)</span>
+<span class="lineno"> 4</span> <span class="kr">data</span> <span class="kt">Square</span> <span class="ow">=</span> <span class="kt">Square</span> <span class="kt">Point</span> <span class="kt">Point</span> <span class="kt">Point</span> <span class="kt">Point</span> <span class="kr">deriving</span> <span class="p">(</span><span class="kt">Show</span><span class="p">)</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span> <span class="kr">class</span> <span class="kt">Shape</span> <span class="n">a</span> <span class="kr">where</span>
+<span class="lineno"> 7</span>   <span class="n">rotate</span> <span class="ow">::</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">a</span>
+<span class="lineno"> 8</span>   <span class="n">simple</span> <span class="ow">::</span> <span class="n">a</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="kr">instance</span> <span class="kt">Shape</span> <span class="kt">Triangle</span> <span class="kr">where</span>
+<span class="lineno">11</span>   <span class="n">rotate</span> <span class="p">(</span><span class="kt">Triangle</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">Triangle</span> <span class="n">z</span> <span class="n">x</span> <span class="n">y</span>
+<span class="lineno">12</span>   <span class="n">simple</span> <span class="ow">=</span> <span class="kt">Triangle</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span> <span class="kr">instance</span> <span class="kt">Shape</span> <span class="kt">Square</span> <span class="kr">where</span>
+<span class="lineno">15</span>   <span class="n">rotate</span> <span class="p">(</span><span class="kt">Square</span> <span class="n">w</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span><span class="p">)</span> <span class="ow">=</span> <span class="kt">Square</span> <span class="n">z</span> <span class="n">w</span> <span class="n">x</span> <span class="n">y</span>
+<span class="lineno">16</span>   <span class="n">simple</span> <span class="ow">=</span> <span class="kt">Square</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
+</code></pre>
+</div>
+</div>
+<p>As you can see, we first define 3 simple types. Next, the "<code>class Shape ...</code>" bit, that's the typeclass definition. All we're doing is telling the compiler what must be defined for an instance of <code>Shape</code>. With the <code>instance</code> keyword, we make our classes instances of <code>Shape</code> by defining the necessary stuff (i.e. rotate and simple). Let's try it in GHCi:</p>
+<pre class="ghci">
+Prelude> :l shape.hs
+[1 of 1] Compiling Main.             ( shape.hs, interpreted )
+*Main> simple :: Square
+Square (0,0) (1,0) (1,1) (0,1)
+*Main> rotate it
+Square (0,1) (0,0) (1,0) (1,1)
+*Main> simple :: Triangle
+Triangle (0,0) (1,0) (0,1)
+*Main> rotate it
+Triangle (0,1) (0,0) (1,0)
+*Main> rotate it
+Triangle (1,0) (0,1) (0,0)
+</pre>
+<p>Cool! Because <code>Square</code> and <code>Triangle</code> instantiate <code>Shape</code>, we know that we can call rotate on them. That's all a typeclass does. I tend to think of them as an interface or a contract.</p>
+<h2>Summary</h2>
+<p>Remember, <code>data</code>, <code>type</code> and <code>newtype</code> are about making types. <code>instance</code> and <code>class</code> are about making typeclasses.</p>
+<br />
+<p>PS, there's another keyword, <code>deriving</code>, that could fit in this discussion. It seems less confusing to <em>me</em>, so I won't cover it.</p>
+<h2>Further reading</h2>
+<ul>
+  <li><a name="ref1">[1]</a> <a href="http://www.haskell.org/haskellwiki/Newtype">More on newtype, with good examples.</a></li>
+  <li><a name="ref2">[2]</a> <a href="http://www.haskell.org/haskellwiki/OOP_vs_type_classes">OOP vs typeclasses</a></li>
+</ul>
+
+
+	</div>
+  <nav>
+    <ul>
+      <h4>
+      <li><a href="../">Home</a></li>
+      </h4>
+      <h4>
+      <li><a href="../about/">About</a></li>
+      </h4>
+      <h4>
+      <li><a href="../posts/">Posts</a></li>
+      </h4>
+    </ul>
+  </nav>
+
+<script type="text/javascript">
+/*  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18977822-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();*/
+</script>
+</body>
+</html>

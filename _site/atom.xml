@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Joel Burget</title>
+ <link href="http://programsthatsmellgood.com/atom.xml" rel="self"/>
+ <link href="http://programsthatsmellgood.com/"/>
+ <updated>2011-04-09T15:42:48-04:00</updated>
+ <id>http://programsthatsmellgood.com/</id>
+ <author>
+   <name>Joel Burget</name>
+   <email>joelburget@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Slimlock: Unholy Screen Locker
+</title>
+   <link href="http://programsthatsmellgood.com/slimlock"/>
+   <updated>2011-02-26T00:00:00-05:00</updated>
+   <id>http://programsthatsmellgood.com/slimlock</id>
+   <content type="html">&lt;h1&gt;Slimlock: Unholy Screen Locker&lt;/h1&gt;
+&lt;h2&gt;What does it do?&lt;/h2&gt;
+&lt;p&gt;Slimlock is a simple screen locker that borrows the interface of &lt;a href=&quot;http://slim.berlios.de/&quot;&gt;SLiM&lt;/a&gt;. It automatically reads your SLiM configuration to lock your screen with the same theme you use to log in.&lt;/p&gt;
+&lt;h2&gt;Why would I use it?&lt;/h2&gt;
+&lt;p&gt;It's lightweight, but not too much. You could try &lt;a href=&quot;http://live.gnome.org/GnomeScreensaver&quot;&gt;gnome-screensaver&lt;/a&gt;, but that would be silly if you don't have the rest of gnome installed. There are other lighter screen lockers, for instance &lt;a href=&quot;http://tools.suckless.org/slock&quot;&gt;slock&lt;/a&gt; and &lt;a href=&quot;http://www.jwz.org/xscreensaver/&quot;&gt;xscreensaver&lt;/a&gt;. But xscreensaver is too gaudy for me and slock is too minimal. Here are screenshots comparing slock and slimlock:&lt;/p&gt;
+&lt;div class='divider'&gt;&lt;/div&gt;
+&lt;figure id='fig1'&gt;
+  &lt;img src=&quot;/media/img/slimlock/slock.png&quot; width=&quot;300px&quot; height=&quot;169px&quot; /&gt;
+  &lt;figcaption&gt;slock&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure id='fig2'&gt;
+  &lt;img src=&quot;/media/img/slimlock/slimlock.png&quot; width=&quot;300px&quot; height=&quot;169px&quot; /&gt;
+  &lt;figcaption&gt;slimlock&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;br&gt;
+&lt;div class='divider'&gt;&lt;/div&gt;
+&lt;p&gt;Yes, that's right. Slock is just a black screen that goes away if you enter the password correctly. It's kind of cool but it makes me uncomfortable. I could picture someone coming along and shutting down my computer because the screen is locked but they think it's frozen.&lt;/p&gt;
+&lt;p&gt;I also thought it would be neat to make it match the login screen I use when starting my computer, kind of like Windows... Thus slimlock was born. Enjoy!&lt;/p&gt;
+&lt;h2&gt;Get It&lt;/h2&gt;
+&lt;p&gt;You can find the code on &lt;a href=&quot;https://github.com/joelburget/slimlock&quot;&gt;github&lt;/a&gt; or if you're running Arch Linux it's &lt;a href=&quot;http://aur.archlinux.org/packages.php?ID=44769&quot;&gt;in the aur&lt;/a&gt; as well.&lt;p&gt;
+&lt;div id=&quot;attribution&quot;&gt;
+  &lt;p&gt;Color scheme stolen from the &lt;a href=&quot;http://hcalves.deviantart.com/art/Mustang-Vim-Colorscheme-98974484&quot;&gt;Mustang Color Scheme&lt;/a&gt; for vim.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Posts</title>
+   <link href="http://programsthatsmellgood.com/posts"/>
+   <updated>2011-02-26T00:00:00-05:00</updated>
+   <id>http://programsthatsmellgood.com/posts</id>
+   <content type="html">&lt;div class=&quot;content&quot;&gt;
+  &lt;h3&gt;Posts&lt;/h3&gt;
+  &lt;div id='sort' class='decorate'&gt; 
+    Sort by:
+    &lt;a href='#name'&gt;name&lt;/a&gt; &amp;nbsp;
+    &lt;a href='#published'&gt;published&lt;/a&gt; &amp;nbsp;
+  &lt;/div&gt; 
+  &lt;ul id='container'&gt;
+
+    &lt;li class='item decorate'&gt;
+      &lt;a href=&quot;/slimlock/&quot;&gt;Slimlock: Unholy Screen Locker
+&lt;/a&gt;
+      &lt;br&gt;
+      &lt;span&gt;Published: &lt;br&gt;26 Feb 2011&lt;/span&gt;
+    &lt;/li&gt;
+
+    &lt;li class='item decorate'&gt;
+      &lt;a href=&quot;/do-not-delete/&quot;&gt;Do not delete anything in this directory, ever&lt;/a&gt;
+      &lt;br&gt;
+      &lt;span&gt;Published: &lt;br&gt;26 Feb 2011&lt;/span&gt;
+    &lt;/li&gt;
+
+    &lt;li class='item decorate'&gt;
+      &lt;a href=&quot;/data-newtype-instance-class/&quot;&gt;data, type, newtype, instance, class
+&lt;/a&gt;
+      &lt;br&gt;
+      &lt;span&gt;Published: &lt;br&gt;26 Feb 2011&lt;/span&gt;
+    &lt;/li&gt;
+
+    &lt;li class='item decorate'&gt;
+      &lt;a href=&quot;/cologne/&quot;&gt;Cologne Ray Tracer&lt;/a&gt;
+      &lt;br&gt;
+      &lt;span&gt;Published: &lt;br&gt;26 Feb 2011&lt;/span&gt;
+    &lt;/li&gt;
+
+  &lt;/ul&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Do not delete anything in this directory, ever</title>
+   <link href="http://programsthatsmellgood.com/do-not-delete"/>
+   <updated>2011-02-26T00:00:00-05:00</updated>
+   <id>http://programsthatsmellgood.com/do-not-delete</id>
+   <content type="html">&lt;h1 id=&quot;bigIntro&quot;&gt;&quot;Do not delete anything in this directory, ever&quot;&lt;/h1&gt;
+&lt;p&gt;Truer words were never spoken, as I found out when I was messing around with my /usr/lib directory. I was simply trying to get &lt;a href=&quot;http://code.google.com/p/nativeclient/&quot;&gt;Native Client&lt;/a&gt; (NaCl) to work on my &lt;a href=&quot;http://www.archlinux.org/&quot;&gt;Arch&lt;/a&gt; machine. Not everything was working:&lt;/p&gt;
+&lt;pre&gt;
+[joel@archlinux startup]$ sel_ldr a.out 
+sel_ldr: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/pre&gt;
+&lt;p&gt;Ok, I said, let's see what version of libcrypto I have.&lt;/p&gt;
+&lt;pre&gt;
+[joel@arch ~]$ cd /usr/lib
+[joel@arch lib]$ ls | grep &quot;libcrypto&quot;
+libcrypto.a
+libcrypto.so
+libcrypto.so.1.0.0
+&lt;/pre&gt;
+&lt;p&gt;Cool! Maybe I can just symlink it!&lt;/p&gt;
+&lt;pre&gt;
+[joel@arch lib]$ sudo ln -s libcrypto.so.1.0.0 libcrypto.so.0.9.8 
+[joel@arch lib]$ ls | grep &quot;libcrypto&quot;
+libcrypto.a
+libcrypto.so
+libcrypto.so.0.9.8
+libcrypto.so.1.0.0
+&lt;/pre&gt;
+&lt;p&gt;Perfect, let's try NaCl again.&lt;/p&gt;
+&lt;pre&gt;
+[joel@archlinux startup]$ sel_ldr a.out 
+sel_ldr: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
+&lt;/pre&gt;
+&lt;p&gt;Well since that didn't work I should remove the symlink I made.&lt;/p&gt;
+&lt;pre&gt;
+[joel@arch lib]$ sudo rm libcrypto.so.1.0.0
+&lt;/pre&gt;
+&lt;p&gt;Wait a second... OH NO! I deleted the wrong version!&lt;/p&gt;
+&lt;p&gt;The first thing I thought was that maybe there's another version somewhere on my system that I could copy over? Nope. Maybe there's some way I can restore the old copy? Doubt it. Ok so I have get another copy from somewhere else. Let's try updating my system to see if it is restored:&lt;/p&gt;
+&lt;pre&gt;
+[joel@archlinux lib]$ sudo pacman -Syu
+pacman: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory
+&lt;/pre&gt;
+  &lt;p&gt;Ohthisisreallynotgood! I have to get that library back on my system somehow but my package manager doesn't work. Ok, check the pacman mirror list to find somewhere I can download it from... If my browser works.  I opened up &lt;a href=&quot;http://www.gtlib.gatech.edu/pub/linux/distributions/archlinux&quot;&gt;http://www.gtlib.gatech.edu/pub/linux/distributions/archlinux&lt;/a&gt; and... yes the page loads.&lt;/p&gt;
+&lt;p&gt;Luckily I found the package I needed, lib32-openssl-1.0.0.a-6-x86_64.pkg.tar.xz.tar, but I had no idea what a tar.xz.tar was. It turns out they're untarred in this way: &lt;code&gt;tar xvJf lib32-openssl-1.0.0.a-6-x86_64.pkg.tar.xz.tar&lt;/code&gt;. So I finally had the library on my system, and put in place. Time to test it out:&lt;/p&gt;
+&lt;pre&gt;
+[joel@archlinux lib]$ pacman
+pacman: error while loading shared libraries: libcrypto.so.1.0.0: wrong ELF class: ELFCLASS32
+&lt;/pre&gt;
+&lt;p&gt;Oh come on!&lt;/p&gt;
+&lt;p&gt;Luckily, though, I was able to find another version of the library, openssl-1.0.0.a-3-x86_64.pkg.tar.gz, which worked.&lt;/p&gt;
+&lt;p&gt;The moral of the story is this- don't mess with your /usr/lib directory, or any library directory, unless you really know what you're doing.&lt;/p&gt;​
+</content>
+ </entry>
+ 
+ <entry>
+   <title>data, type, newtype, instance, class
+</title>
+   <link href="http://programsthatsmellgood.com/data-newtype-instance-class"/>
+   <updated>2011-02-26T00:00:00-05:00</updated>
+   <id>http://programsthatsmellgood.com/data-newtype-instance-class</id>
+   <content type="html">&lt;h1&gt;data, type, newtype, instance, class&lt;/h1&gt;
+&lt;p&gt;One of the first things to confuse me about Haskell was the number of keywords related to types. The five (I know, 5 isn't &lt;i&gt;that&lt;/i&gt; many) I've counted in Haskell 98 are &lt;code&gt;data&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;newtype&lt;/code&gt;, &lt;code&gt;instance&lt;/code&gt;, and &lt;code&gt;class&lt;/code&gt;. I was unable to find a comprehensive discussion of what each of them means and how they are related to each other. I'll break these keywords up linto 2 related sets. &lt;code&gt;data&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, and &lt;code&gt;newtype&lt;/code&gt; are all ways to declare a new type. &lt;code&gt;instance&lt;/code&gt; and &lt;code&gt;class&lt;/code&gt; are slightly different. Let's take a closer look at them.&lt;/p&gt;
+&lt;h2&gt;data, type, newtype&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;data&lt;/code&gt; is used to declare a new algebraic data type. We can use it to create a boolean or, in this case, the maybe monad:&lt;/p&gt;
+&lt;div class=&quot;haskell&quot;&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;haskell&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;False&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Maybe&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Nothing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Just&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;type&lt;/code&gt; is used to create an alias for an algebraic data type. A good example of this is included in the Prelude:&lt;/p&gt;
+&lt;div class=&quot;haskell&quot;&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;haskell&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;newtype&lt;/code&gt; acts similarly to &lt;code&gt;type&lt;/code&gt; with a syntax akin to &lt;code&gt;data&lt;/code&gt;. Thus we can write the following:&lt;/p&gt;
+&lt;div class=&quot;haskell&quot;&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;haskell&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;newtype&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Radius&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Radius&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Double&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Diameter&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Diameter&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Double&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Okay, so what's the difference between newtype and data? Three things (that I'm aware of):&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;newtype&lt;/code&gt; can only have a single constructor taking a single argument.&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;newtype&lt;/code&gt; creates a strict value constructor and &lt;code&gt;type&lt;/code&gt; creates a lazy one (see &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;).&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;newtype&lt;/code&gt; introduces no runtime overhead.&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;class, instance&lt;/h2&gt;
+&lt;p&gt;A typeclass is a way to guarantee that a type implements certain functions (or data). A type is declared to implement the functions using the keyword &lt;code&gt;instance&lt;/code&gt;. An example will be helpful:&lt;/p&gt;
+&lt;div class=&quot;haskell&quot;&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;haskell&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;--Normally I would use Double, but Int&amp;#39;s will be easier to read&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;deriving&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;deriving&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;where&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;where&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Triangle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;where&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;rotate&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Square&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;As you can see, we first define 3 simple types. Next, the &quot;&lt;code&gt;class Shape ...&lt;/code&gt;&quot; bit, that's the typeclass definition. All we're doing is telling the compiler what must be defined for an instance of &lt;code&gt;Shape&lt;/code&gt;. With the &lt;code&gt;instance&lt;/code&gt; keyword, we make our classes instances of &lt;code&gt;Shape&lt;/code&gt; by defining the necessary stuff (i.e. rotate and simple). Let's try it in GHCi:&lt;/p&gt;
+&lt;pre class=&quot;ghci&quot;&gt;
+Prelude&gt; :l shape.hs
+[1 of 1] Compiling Main.             ( shape.hs, interpreted )
+*Main&gt; simple :: Square
+Square (0,0) (1,0) (1,1) (0,1)
+*Main&gt; rotate it
+Square (0,1) (0,0) (1,0) (1,1)
+*Main&gt; simple :: Triangle
+Triangle (0,0) (1,0) (0,1)
+*Main&gt; rotate it
+Triangle (0,1) (0,0) (1,0)
+*Main&gt; rotate it
+Triangle (1,0) (0,1) (0,0)
+&lt;/pre&gt;
+&lt;p&gt;Cool! Because &lt;code&gt;Square&lt;/code&gt; and &lt;code&gt;Triangle&lt;/code&gt; instantiate &lt;code&gt;Shape&lt;/code&gt;, we know that we can call rotate on them. That's all a typeclass does. I tend to think of them as an interface or a contract.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Remember, &lt;code&gt;data&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt; and &lt;code&gt;newtype&lt;/code&gt; are about making types. &lt;code&gt;instance&lt;/code&gt; and &lt;code&gt;class&lt;/code&gt; are about making typeclasses.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;PS, there's another keyword, &lt;code&gt;deriving&lt;/code&gt;, that could fit in this discussion. It seems less confusing to &lt;em&gt;me&lt;/em&gt;, so I won't cover it.&lt;/p&gt;
+&lt;h2&gt;Further reading&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a name=&quot;ref1&quot;&gt;[1]&lt;/a&gt; &lt;a href=&quot;http://www.haskell.org/haskellwiki/Newtype&quot;&gt;More on newtype, with good examples.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a name=&quot;ref2&quot;&gt;[2]&lt;/a&gt; &lt;a href=&quot;http://www.haskell.org/haskellwiki/OOP_vs_type_classes&quot;&gt;OOP vs typeclasses&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Cologne Ray Tracer</title>
+   <link href="http://programsthatsmellgood.com/cologne"/>
+   <updated>2011-02-26T00:00:00-05:00</updated>
+   <id>http://programsthatsmellgood.com/cologne</id>
+   <content type="html">&lt;div id=&quot;page1&quot;&gt;
+  &lt;h1&gt;Cologne: Good-Smelling Ray Tracer&lt;/h1&gt;
+  &lt;p&gt;Cologne is my attempt to write an &lt;i&gt;interesting&lt;/i&gt; ray tracer in Haskell. I hope to fulfill the following goals:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Code Quality- The code should be understandable to a ray-tracing beginner, suitable for learning and hacking.
+    &lt;li&gt;Speed- I hope to achieve speed comparable to a ray tracer written in C or C++. The current goal is 2 - 3 times slower than a C ray tracer.&lt;/li&gt;
+    &lt;li&gt;Interesting- I'm interested in algorithms like adaptive sampling and progressive photon mapping&lt;/li&gt;
+    &lt;li&gt;Fun- It should be enjoyable to write and use, for me and others.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;div id=&quot;page2&quot;&gt;
+  &lt;h2&gt;Samples&lt;/h2&gt;
+  &lt;h3&gt;Cornell Box&lt;/h3&gt;
+  &lt;a href=&quot;http://twitpic.com/3hjhpf&quot;&gt;&lt;img src=&quot;/media/img/cologne1.png&quot; width=&quot;250&quot; height=&quot;250&quot; alt=&quot;Cornell Box Scene&quot;&gt;&lt;/a&gt;
+  &lt;h3&gt;Attempted Cornell Box&lt;/h3&gt;
+  &lt;img src=&quot;/media/img/cologne2.png&quot; width=&quot;250&quot; height=&quot;250&quot;&gt;
+  &lt;img src=&quot;/media/img/image-cool.png&quot; width=&quot;250&quot; height=&quot;250&quot;&gt;
+  &lt;h2&gt;Ready to try it out?&lt;/h2&gt;
+  &lt;p&gt;&lt;a href=&quot;http://github.com/joelburget/cologne&quot;&gt;Get the code (github)&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>About</title>
+   <link href="http://programsthatsmellgood.com/about"/>
+   <updated>2011-02-26T00:00:00-05:00</updated>
+   <id>http://programsthatsmellgood.com/about</id>
+   <content type="html">&lt;div id=&quot;wrapper&quot;&gt;
+  &lt;div id=&quot;aboutMe&quot;&gt;
+    &lt;h2&gt;About Me&lt;/h2&gt;
+    &lt;p&gt;
+      My name is Joel Burget. I'm currently a student a the Ohio State University majoring in math and computer science. I'm interested in programming languages, especially declarative programming. I'm most fluent in C++, and not bad at Scheme, Haskell, and a few other languages. If you would like to contact me, i'm &lt;a href=&quot;http://twitter.com/joelburget&quot;&gt;joelburget on twitter&lt;/a&gt; or you can email me at &lt;a class=&quot;email&quot;&gt;joelburget('at' goes here)gmail.com&lt;/a&gt;.
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;pic&quot;&gt;&lt;img src=&quot;/media/img/self.jpg&quot; width=&quot;200px&quot; height=&quot;275px&quot; /&gt;&lt;/div&gt;
+
+  &lt;hr /&gt;
+  &lt;div id=&quot;aboutSite&quot;&gt;
+    &lt;h2&gt;About This Site&lt;/h2&gt;
+    &lt;p&gt;
+      This site is kindly hosted by &lt;a href=&quot;http://ambitiouslemon.com&quot;&gt;ambitiouslemon.com&lt;/a&gt; and powered by Django. What kind of site is it? Well it's not a blog, but it feels kind of like one. I post fairly infrequently, about every month or so, usually on a topic related to programming. My main focus is on writing powerful and correct programs but I am also interested in math and design.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;div style=&quot;height: 100px; clear: none;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

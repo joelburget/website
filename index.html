@@ -1,0 +1,83 @@
+---
+layout: base
+title: Programs That Smell Good
+header: |
+  <link href='http://fonts.googleapis.com/css?family=Lato:light,regular' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      background-color: #222;
+      color: white;
+      font-family: 'Lato', arial, sans-serif;
+      font-size: 13pt;
+      font-weight: 300;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Lato', arial, sans-serif;
+    }
+
+    .decorate {
+      border: 1px solid #444;
+      background-color: #555;
+      border-radius: 2px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 2px;
+      margin: 10px 10px 10px 0;
+      padding: 5px;
+    }
+
+    h3 {
+      margin-top: 10px;
+    }
+
+    @media screen and (min-width: 1050px) {
+      .content {
+        width: 800px;
+      }
+      .intro-p, .intro-h {
+        padding: 10px;
+      }
+      .programs {
+        float: left;
+        width: 380px;
+        padding: 10px;
+        margin: 0px;
+      }
+      .posts {
+        float: right;
+        width: 380px;
+        padding: 10px;
+        margin: 0px;
+      }
+    }
+    /*body {
+      background-image: url('/media/texture.jpg');
+      background-attachment: fixed;
+    }*/
+  </style>
+---
+<div class="content">
+  <h1 class="intro-h">Programs That Smell Good</h1>
+  <p class="intro-p">The personal site of Joel Burget. I write programs that smell good. So far I've only written <a href="/cologne/">Cologne</a> but expect more in the future. I can't wait to write Popcorn. I just don't know what it's going to be yet.</p>
+<div class="block">
+  <div class="programs">
+    <h2>Programs</h2>
+    <div class="decorate">
+      <h3><a href="/cologne/">Cologne</a></h3>
+      <p>A ray tracer in Haskell</p>
+    </div>
+    <div class="decorate">
+      <h3><a href="/slimlock/">Slimlock</a></h3>
+      <p>A simple screen locker. I forgot to name it after something that smells good!</p>
+    </div>
+  </div>
+  <div class="posts">
+  <h2>Last 5 posts</h2>
+{% for post in site.categories.posts limit:5 %}
+  <div class="decorate">
+    <h3><a href="{{ post.url }}/">{{ post.title }}</a></h3>
+    {{ post.content|strip_html|truncatewords:30}}
+  </div>
+{% endfor %}
+  </div>
+</div>

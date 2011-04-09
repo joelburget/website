@@ -1,0 +1,39 @@
+h2 {
+  font-family: Baskerville, Garamond, 'Hoefler Text', 'Times New Roman', Times, serif;
+  font-size: 60px;
+  line-height: 1.5em;
+}
+
+hr {
+  color: #ddd;
+  background: #ddd;
+  float: left;
+  height: 0.1em;
+  clear: both;
+  border: none;
+  width: 650px;
+}
+
+#aboutMe {
+  width: 400px;
+  float: left;
+}
+
+#aboutSite {
+  width: 650px;
+}
+
+#pic {
+  width: 250px;
+  padding-top: 150px;
+  float: left;
+}
+
+.last {
+  margin-right: 0px;
+}
+
+a {
+  color:#7389A0;
+  text-decoration:none;
+}

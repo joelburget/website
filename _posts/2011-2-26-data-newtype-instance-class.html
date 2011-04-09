@@ -1,0 +1,85 @@
+---
+layout: post
+title: |
+  data, type, newtype, instance, class
+category: posts
+header: |
+  <link rel="stylesheet" type="text/css" href="/media/css/how-series-pygments_scr_pro.css" media="screen, projection" />
+  <link rel='stylesheet' type='text/css' href='/media/css/data-type-newtype-instance-class.css'>
+---
+<h1>data, type, newtype, instance, class</h1>
+<p>One of the first things to confuse me about Haskell was the number of keywords related to types. The five (I know, 5 isn't <i>that</i> many) I've counted in Haskell 98 are <code>data</code>, <code>type</code>, <code>newtype</code>, <code>instance</code>, and <code>class</code>. I was unable to find a comprehensive discussion of what each of them means and how they are related to each other. I'll break these keywords up linto 2 related sets. <code>data</code>, <code>type</code>, and <code>newtype</code> are all ways to declare a new type. <code>instance</code> and <code>class</code> are slightly different. Let's take a closer look at them.</p>
+<h2>data, type, newtype</h2>
+<p><code>data</code> is used to declare a new algebraic data type. We can use it to create a boolean or, in this case, the maybe monad:</p>
+<div class="haskell">
+{% highlight haskell linenos %}
+data Bool = True | False
+data Maybe a = Nothing | Just a
+{% endhighlight %}
+</div>
+<p><code>type</code> is used to create an alias for an algebraic data type. A good example of this is included in the Prelude:</p>
+<div class="haskell">
+{% highlight haskell linenos %}
+type String = [Char]
+{% endhighlight %}
+</div>
+<p><code>newtype</code> acts similarly to <code>type</code> with a syntax akin to <code>data</code>. Thus we can write the following:</p>
+<div class="haskell">
+{% highlight haskell linenos %}
+newtype Radius = Radius Double
+data Diameter = Diameter Double
+{% endhighlight %}
+</div>
+<p>Okay, so what's the difference between newtype and data? Three things (that I'm aware of):</p>
+<ol>
+  <li><code>newtype</code> can only have a single constructor taking a single argument.</li>
+  <li><code>newtype</code> creates a strict value constructor and <code>type</code> creates a lazy one (see <a href="#ref1">[1]</a>).</li>
+  <li><code>newtype</code> introduces no runtime overhead.</code></li>
+</ol>
+<h2>class, instance</h2>
+<p>A typeclass is a way to guarantee that a type implements certain functions (or data). A type is declared to implement the functions using the keyword <code>instance</code>. An example will be helpful:</p>
+<div class="haskell">
+{% highlight haskell linenos %}
+--Normally I would use Double, but Int's will be easier to read
+type Point = (Int, Int)
+data Triangle = Triangle Point Point Point deriving (Show)
+data Square = Square Point Point Point Point deriving (Show)
+
+class Shape a where
+  rotate :: a -> a
+  simple :: a
+
+instance Shape Triangle where
+  rotate (Triangle x y z) = Triangle z x y
+  simple = Triangle (0, 0) (1, 0) (0, 1)
+
+instance Shape Square where
+  rotate (Square w x y z) = Square z w x y
+  simple = Square (0, 0) (1, 0) (1, 1) (0, 1) 
+{% endhighlight %}
+</div>
+<p>As you can see, we first define 3 simple types. Next, the "<code>class Shape ...</code>" bit, that's the typeclass definition. All we're doing is telling the compiler what must be defined for an instance of <code>Shape</code>. With the <code>instance</code> keyword, we make our classes instances of <code>Shape</code> by defining the necessary stuff (i.e. rotate and simple). Let's try it in GHCi:</p>
+<pre class="ghci">
+Prelude> :l shape.hs
+[1 of 1] Compiling Main.             ( shape.hs, interpreted )
+*Main> simple :: Square
+Square (0,0) (1,0) (1,1) (0,1)
+*Main> rotate it
+Square (0,1) (0,0) (1,0) (1,1)
+*Main> simple :: Triangle
+Triangle (0,0) (1,0) (0,1)
+*Main> rotate it
+Triangle (0,1) (0,0) (1,0)
+*Main> rotate it
+Triangle (1,0) (0,1) (0,0)
+</pre>
+<p>Cool! Because <code>Square</code> and <code>Triangle</code> instantiate <code>Shape</code>, we know that we can call rotate on them. That's all a typeclass does. I tend to think of them as an interface or a contract.</p>
+<h2>Summary</h2>
+<p>Remember, <code>data</code>, <code>type</code> and <code>newtype</code> are about making types. <code>instance</code> and <code>class</code> are about making typeclasses.</p>
+<br />
+<p>PS, there's another keyword, <code>deriving</code>, that could fit in this discussion. It seems less confusing to <em>me</em>, so I won't cover it.</p>
+<h2>Further reading</h2>
+<ul>
+  <li><a name="ref1">[1]</a> <a href="http://www.haskell.org/haskellwiki/Newtype">More on newtype, with good examples.</a></li>
+  <li><a name="ref2">[2]</a> <a href="http://www.haskell.org/haskellwiki/OOP_vs_type_classes">OOP vs typeclasses</a></li>
+</ul>

@@ -1,0 +1,34 @@
+---
+layout: base
+title: About
+header: |
+  <link rel='stylesheet' type='text/css' href='/media/css/about.css'>
+script: |
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script> 
+  <script> 
+  /*This is the most paranoid bit of code I've ever seen*/
+    var a = "joel";
+    var b = "et@gma";
+    var c = "bur";
+    var d = "il.com";
+    $('a.email').replaceWith("<a href=\"mailto:" + a + c + 'g' + b + d + "\">" + a + c + 'g' + b + d + "</a>");
+  </script> 
+---
+<div id="wrapper">
+  <div id="aboutMe">
+    <h2>About Me</h2>
+    <p>
+      My name is Joel Burget. I'm currently a student a the Ohio State University majoring in math and computer science. I'm interested in programming languages, especially declarative programming. I'm most fluent in C++, and not bad at Scheme, Haskell, and a few other languages. If you would like to contact me, i'm <a href="http://twitter.com/joelburget">joelburget on twitter</a> or you can email me at <a class="email">joelburget('at' goes here)gmail.com</a>.
+    </p>
+  </div>
+  <div id="pic"><img src="/media/img/self.jpg" width="200px" height="275px" /></div>
+
+  <hr />
+  <div id="aboutSite">
+    <h2>About This Site</h2>
+    <p>
+      This site is kindly hosted by <a href="http://ambitiouslemon.com">ambitiouslemon.com</a> and powered by Django. What kind of site is it? Well it's not a blog, but it feels kind of like one. I post fairly infrequently, about every month or so, usually on a topic related to programming. My main focus is on writing powerful and correct programs but I am also interested in math and design.
+    </p>
+  </div>
+<div style="height: 100px; clear: none;"></div>
+</div>

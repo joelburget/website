@@ -1,0 +1,150 @@
+/*reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*end reset*/
+
+
+
+nav {
+  position: fixed;
+  top: 25px;
+  left: 0px;
+  bottom: 0px;
+  width: 200px;
+  padding-top: 100px;
+}
+
+nav ul {
+    padding: 20px; 
+    padding-top: 0px; 
+    list-style-type: none; 
+}
+
+nav li {
+  margin: 0em;
+  padding: 5px; 
+}
+
+#all-but-nav {
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+#title, #published, #last_edited {
+  position: fixed;
+  left: 0;
+  width: 250px;
+  padding: 20px;
+}
+
+#title {
+  top: 0px;
+}
+
+#published {
+  top: 100px;
+}
+
+#last_edited {
+  top: 125px;
+}
+
+.content {
+  text-align: justify;
+  padding: 0px 20px 100px 10px;
+}
+
+.container {
+  text-align: justify;
+  padding: 75px 20px 100px 10px;
+}
+
+body {
+  font-family: Adobe Garamond, Baskerville, Garamond, Hoefler Text, Times New Roman, Times, serif;
+  font-size:14pt;
+  line-height:1.45em;
+}
+
+h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.25em;
+  font-weight: 200;
+  margin: 0.83em 0px 0.5em;
+}
+
+h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.125em;
+  font-weight: 200;
+  margin: 0.83em 0px 0.5em;
+}
+
+h3 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 2.0em;
+  font-weight: 200;
+  margin: 0.83em 0px 0.5em;
+}
+
+h4 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.75em;
+  font-weight: 200;
+  margin: 0.83em 0px 0.5em;
+}
+a {
+  text-decoration: none;
+  color: #7389A0;
+}
+.block:last-child {
+  margin-bottom: 50px;
+}
