@@ -4,8 +4,8 @@ layout: nil
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Joel Burget</title>
- <link href="http://programsthatsmellgood.com/atom.xml" rel="self"/>
+ <title>Programs That Smell Good</title>
+ <link href="http://programsthatsmellgood.com/atom.xml" rel="self" type="application/atom+xml"/>
  <link href="http://programsthatsmellgood.com/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>http://programsthatsmellgood.com/</id>
