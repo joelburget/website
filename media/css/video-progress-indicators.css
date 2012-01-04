@@ -1,0 +1,99 @@
+@media screen and (min-width: 1100px) {
+  body {
+    width: 1100px;
+  }
+}
+body {
+  color: #444;
+}
+p {
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
+}
+ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+h1, h2, h3, h4 {
+  color: #333;
+  font-family: "MuseoSans500",sans-serif;
+  font-weight: 500;
+}
+h1 {
+  font-size: 2.25em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.25em;
+}
+#all-but-nav {
+  margin-bottom: 125px;
+}
+.highlight {
+  margin-bottom: 1em;
+}
+code, pre {
+  font-size: 12px;
+  line-height: 1em;
+} 
+#comparison {
+  margin: 20px 0;
+  position: relative;
+}
+#comparison img.arrow {
+  position: absolute;
+  left: 350px;
+}
+#comparison img.after {
+  position: absolute;
+  left: 470px;
+}
+::selection {
+    background: #d9e2c1;
+}
+::-moz-selection {
+    background: #d9e2c1;
+}
+body {
+  background: -webkit-gradient(linear, left top, left 170, from(#d9e2c1), to(#fff));
+  background: -moz-linear-gradient(top, #d9e2c1, #fff 170px);
+  background: -webkit-linear-gradient(top, #d9e2c1, #fff 170px);
+  background: -ms-linear-gradient(top, #d9e2c1, #fff 170px);
+  background: -o-linear-gradient(top, #d9e2c1, #fff 170px);
+  background: linear-gradient(top, #d9e2c1, #fff 170px);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#d9e2c1', endColorstr='#fff');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13px;
+}
+a {
+  color: #005987;
+}
+pre {
+  background: url(/media/img/diagonal-noise.png) repeat;
+  color: #333;
+  border-radius: 5px;
+  padding: 8px;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap !important;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid #cfcfcf;
+}
+p code {
+  background: url(/media/img/diagonal-noise.png) repeat;
+  color: #333;
+  border-radius: 5px;
+  border: 1px solid #cfcfcf;
+}
+figcaption {
+  font-size: 80%;
+  font-family: Verdana, Arial, sans-serif;
+  text-align: center; 
+}
+.lineno {
+  color: #005987;
+}

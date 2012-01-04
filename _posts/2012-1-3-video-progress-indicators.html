@@ -1,0 +1,100 @@
+---
+layout: post
+title: Video Progress Indicators
+category: posts
+header: |
+  <link rel="stylesheet" type="text/css" href="/media/css/video-progress-indicators.css" />
+---
+<div>
+  <h1>Video Progress Indicators</h1>
+  <p>I've been done with my <a href="http://www.khanacademy.org">Khan Academy</a> internship for a few months now, so it's about time for me to write about it. This is one of the projects I did. Expect at least one more post on my internship, if i ever get around to it.</p>
+  <h2>Introduction</h2>
+  <figure>
+    <img alt="wall o' text" src="/media/img/video-progress-indicators/resize_wallotext.png" />
+    <figcaption>What videos have I watched?</figcaption>
+  </figure>
+  <p>We have this <i>huge</i> homepage that used to present this wall of text, and it gave absolutely no indication of progress. A user would have to click through to a video to see how much of it they had watched.</p>
+  <p>My goal was to give the user an indication of their progress, on the homepage and anywhere else we have video links. It's a simple idea but the implementation presents some difficulties.</p>
+  <h2>What We Did</h2>
+  <p>There are a few places we added "started" and "finished" icons next to videos. Here you can see the new icons on the homepage and two places we added them on exercise pages.</p>
+  <div id="comparison">
+    <h3>Homepage</h3>
+    <img src="/media/img/video-progress-indicators/before1.png" />
+    <img class="arrow" src="/media/img/video-progress-indicators/arrow.jpg" />
+    <img class="after" src="/media/img/video-progress-indicators/after1.png" />
+    <hr />
+
+    <h3>Exercise Page</h3>
+    <img src="/media/img/video-progress-indicators/before2.png" />
+    <img class="arrow" src="/media/img/video-progress-indicators/arrow.jpg" />
+    <img class="after" src="/media/img/video-progress-indicators/after2.png" />
+    <br />
+    <br />
+
+    <img src="/media/img/video-progress-indicators/before3.png" />
+    <img class="arrow" src="/media/img/video-progress-indicators/arrow.jpg" />
+    <img class="after" src="/media/img/video-progress-indicators/after3.png" />
+  </div>
+  <p>The difference on the homepage is huge. I think it's much more useful now, because I can see exactly what videos I've watched and where I left off.</p>
+  <img alt="much better" src="/media/img/video-progress-indicators/resize_newhomepage.png" />
+  <h2>The Implementation</h2>
+  <p>Let's go through the most important parts of the implementation. Feel free to stop reading if you're just here for the pretty pictures. If you want to follow along you can find the source in <a href="https://khanacademy.kilnhg.com/Repo/Website/Group/stable/File/models.py?rev=7e532072df487d898495c8ddb3e8ed7069ea1d44#575-657">models.py</a>, <a href="https://khanacademy.kilnhg.com/Repo/Website/Group/stable/File/main.py?rev=7e532072df487d898495c8ddb3e8ed7069ea1d44#693-706">main.py</a>, <a href="https://khanacademy.kilnhg.com/Repo/Website/Group/stable/File/templatetags.py?rev=7e532072df487d898495c8ddb3e8ed7069ea1d44#150-151">templatetags.py</a> and <a href="https://khanacademy.kilnhg.com/Repo/Website/Group/stable/File/stylesheets/shared-package/default.css?rev=7e532072df487d898495c8ddb3e8ed7069ea1d44#3736-3759">default.css</a>.</p>
+  <h2>First Steps</h2>
+  <p>Based on a study conducted by the institute of me on my computer a minute ago, the size of the Khan Academy homepage is ~650KB, and a ton of that is links to all of Sal's videos (which we want to add icons to). Because we <a href="http://bjk5.com/post/5699116854/how-much-i-enjoy-deleting-my-own-code">cache almost the entire thing</a>, we can serve it up quickly. It's important for users to not have to wait on the homepage, so it's not a good idea to generate a new version for everyone. Remember, 95% of the page will be the same for all visitors. Even though it's not immediately obvious how isolate the parts of the page that change per-user, the fact that most everything is the same hints that it would be beneficial to do so.
+  <p><a href="http://bjk5.com">Kamens</a> had the great idea to change css instead of changing the html on the page. That way we could leave the homepage as-is, and continue to cache it, but give each user a stylesheet that will change the way video links appear.</p>
+  <h2>html!</h2>
+  <p>First let's take a look at what the html looks like. Here's a sample from the homepage: <code>&lt;span class="vid-progress v7"&gt;Simple Equations&lt;/span&gt;</code>. <code>vid-progress</code> tells us we're working with a video name that may need an icon and <code>v7</code> is a unique identifier for the video. The id is stored as just a number in the database but notice we append a "v" to the front to make it a valid class name. Also, notice that we're using a class instead of an id because there could be more than one link to the same video.</p>
+  <p>Let's check out the css to make the pretty colors. It's stored at <code>/user_video_css?version=%d&id=%s</code>. Here's mine:</p>
+{% highlight css linenos %}
+.v23484,.v425003,.v370051,.v23546,.v62754978,.v13179518,.v23548,.v185730830,.v23824,.v23562,.v23566,.v13179322,.v23564,.v23798,.v7,.v23492,.v2600600,.v24957,.v183171788,.v404032{background-image:url(/images/video-indicator-started.png);padding-left:14px;}.v23552,.v23434,.v23550,.v23800,.v23828,.v23558,.v8187416,.v23540{background-image:url(/images/video-indicator-started.png);padding-left:14px;}.v23534,.v23532,.v167407359,.v23538,.v421008,.v9,.v8,.v132660407,.v23432,.v369058,.v353049{background-image:url(/images/video-indicator-complete.png);padding-left:14px;}
+{% endhighlight %}
+<p>Sorry about that... It's pretty simple when it doesn't just look like a wall of text. We have a list of id's on the page <code>.v23484, .v425003,...</code> and each of them should have the indicated image as a background image, either the started or finished icon. You might be wondering (or not) why there are two lists of icons that both have <code>video-indicator-started.png</code> as a background. Well...</p>
+  <p>When stress testing this system I tried out something like this <code>.v1, ... &lt;2500 id's here&gt; {&lt;background css&gt;}</code> and noticed that my browser was crashing about every other page load. I'm not sure if this was the fault of my css or if it was my browser just being dumb (it tended to crash often, but not usually that much). To be safe we decided to split up the rules with a maximum of 20 css selectors per rule.</p>
+  <h2>python!</h2>
+  <h3>models.py</h3>
+{% highlight python linenos %}
+    class UserVideoCss(db.Model):
+        user = db.UserProperty()
+        video_css = db.TextProperty()
+        pickled_dict = db.BlobProperty()
+        last_modified = db.DateTimeProperty(required=True, auto_now=True, indexed=False)
+        version = db.IntegerProperty(default=0, indexed=False)
+{% endhighlight %}
+<p>Here we have all the fields we store for every user. <code>user</code>, <code>last_modified</code>, and <code>version</code> all have clear meanings. <code>video_css</code> stores the text of the latest version of the user's custom css. That leaves <code>pickled_dict</code>. What could you be, <code>pickled_dict</code>? Well, we need some way to modify <code>video_css</code> when the user watches another video. It's definitely possible to do directly, but I'm lazy, as a good programmer should be, and I would rather deal directly with a dictionary like this:</p>
+{% highlight python linenos %}
+{'completed': ['.v1', ...], 'started': ['.v2','.v8', ...]}
+{% endhighlight %}
+  <p>Than a string like this:</p>
+{% highlight python linenos %}
+'.v1,...{background-image:url(/images/video-indicator-completed.png);.v2,.v8,...{background-image:url(/images/video-indicator-completed.png);'
+{% endhighlight %}
+  <p>It's significantly more work with the string based approach to remove a video from the started list and add it to the completed list, especially because we have a maximum of 20 class selectors per rule. With the dictionary approach it's as simple as:</p>
+  <h3>models.py</h3>
+{% highlight python linenos %}
+  css['started'].discard(id)
+  css['completed'].add(id)
+
+  # now regenerate the css from the dictionary
+{% endhighlight %}
+<p>In part because we're working with App Engine, but also because python provides painless serialization, we can simply keep the dict around in the datastore as a <code>db.BlobProperty</code>. Now after the user starts or completes a video load the dict with <code>css = pickle.loads(uvc.pickled_dict)</code>, update it, and do <code>uvc.pickled_dict = pickle.dumps(css)</code>.</p>
+<p>We're almost done now, we just have to get this css on the user's computer. Let's check out the code to serve this css.</p>
+  <h3>main.py</h3>
+{% highlight python linenos %}
+class ServeUserVideoCss(request_handler.RequestHandler):
+    def get(self):
+        user_data = UserData.current()
+        if user_data == None:
+            return
+
+        user_video_css = models.UserVideoCss.get_for_user_data(user_data)
+        self.response.headers['Content-Type'] = 'text/css'
+
+        if user_video_css.version == user_data.uservideocss_version:
+            # Don't cache if there's a version mismatch and update isn't finished
+            self.response.headers['Cache-Control'] = 'public,max-age=1000000'
+
+        self.response.out.write(user_video_css.video_css)
+{% endhighlight %}
+<p>If you're not familiar with App Engine, all you need to know is that <code>get()</code> is called when the url '/user_video_css' is hit, and in this context <code>self</code> represents the request and response. On lines 3-5 we get the current user and don't return anything if there isn't one because we this css shouldn't be embedded unless there is a user.</p>
+<p>There is something funny going on though, do you see it? We instruct the user's browser to cache this css for 1000000 seconds, which is practically forever. The reason that works is because we serve the user's css from a new url when it gets updated. Here's the url where my css is currently served from: <a href="http://www.khanacademy.org/user_video_css?version=38&id=http://googleid.khanacademy.org/111502194047394222444">http://www.khanacademy.org/user_video_css?version=38&id=http://googleid.khanacademy.org/111502194047394222444</a>. As you can see the query string contains both a version and an id. Every time the css changes the version number gets incremented, the url changes, and the user is greeted with a fresh new icon marking their progress. This sounds simple but it's tricky to avoid race conditions. This article is getting a bit long so I won't go into the details but the code is available in <a href="https://khanacademy.kilnhg.com/Repo/Website/Group/stable/File/models.py?rev=7e532072df487d898495c8ddb3e8ed7069ea1d44#633-657">models.py</a.</p>
+</div>
