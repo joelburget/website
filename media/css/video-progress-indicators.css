@@ -63,8 +63,6 @@ body {
   background: -ms-linear-gradient(top, #d9e2c1, #fff 170px);
   background: -o-linear-gradient(top, #d9e2c1, #fff 170px);
   background: linear-gradient(top, #d9e2c1, #fff 170px);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#d9e2c1', endColorstr='#fff');
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 13px;
 }
