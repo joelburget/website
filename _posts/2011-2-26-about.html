@@ -4,31 +4,29 @@ title: About
 header: |
   <link rel='stylesheet' type='text/css' href='/media/css/about.css'>
 script: |
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script> 
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
   <script> 
   /*This is the most paranoid bit of code I've ever seen*/
     var a = "joel";
     var b = "et@gma";
     var c = "bur";
     var d = "il.com";
-    $('a.email').replaceWith("<a href=\"mailto:" + a + c + 'g' + b + d + "\">" + a + c + 'g' + b + d + "</a>");
+    $('a.email').replaceWith('<a href="mailto:' + a + c + 'g' + b + d + '">' + a + c + 'g' + b + d + '</a>');
   </script> 
 ---
-<div id="wrapper">
-  <div id="aboutMe">
+<div id=wrapper>
+  <div id=topSection>
     <h2>About Me</h2>
-    <p>
-      My name is Joel Burget. I'm currently a student a the Ohio State University majoring in math and computer science. I'm interested in programming languages, especially declarative programming. I'm most fluent in C++, and not bad at Scheme, Haskell, and a few other languages. If you would like to contact me, i'm <a href="http://twitter.com/joelburget">joelburget on twitter</a> or you can email me at <a class="email">joelburget('at' goes here)gmail.com</a>.
-    </p>
+    <div id="aboutMe">
+      <p>I'm currently a senior at the Ohio State University where I study math and computer science. I'm interested in creating fun and useful programs, which is why I'll be joining the <a href="http://www.khanacademy.org">Khan Academy</a> after I graduate this spring. I go by <a href="http://twitter.com/dino_joel">dino_joel</a> on twitter and my email is <a class="email">joelburget('at' goes here)gmail.com</a>.</p>
+    </div>
+    <div id=pic><img src="/media/img/mecorin.jpg" width="257px" height="235px" alt="picture of me looking good"/></div>
   </div>
-  <div id="pic"><img src="/media/img/self.jpg" width="200px" height="275px" /></div>
 
   <hr />
-  <div id="aboutSite">
+  <div id=bottomSection>
     <h2>About This Site</h2>
-    <p>
-      This site is kindly hosted by <a href="http://ambitiouslemon.com">ambitiouslemon.com</a> and powered by Django. What kind of site is it? Well it's not a blog, but it feels kind of like one. I post fairly infrequently, about every month or so, usually on a topic related to programming. My main focus is on writing powerful and correct programs but I am also interested in math and design.
-    </p>
+    <p>This site is hosted by <a href="http://pages.github.com/">Github Pages</a> (thanks!). It serves as a showcase for programs I've written and ideas I find interesting. I strive to make the posts meaningful and interesting, enjoy.</p>
   </div>
 <div style="height: 100px; clear: none;"></div>
 </div>

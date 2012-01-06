@@ -148,3 +148,13 @@ a {
 .block:last-child {
   margin-bottom: 50px;
 }
+.clear:before, .clear:after {
+  content: "",
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.clear {
+  zoom: 1;
+}
