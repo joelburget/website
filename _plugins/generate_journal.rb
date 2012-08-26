@@ -7,19 +7,17 @@ module Jekyll
             @dir = 'journal'
             @name = 'index.html'
 
+            self.content = ''
             self.process(@name)
             self.read_yaml(File.join(base, '_layouts'), 'journal.html')
 
             self.content = ""
             journal_names.each do |journal_name|
-                self.content += "<p><a href='/journal/#{journal_name}'>#{journal_name}</a></p>"
+                pretty_journal_name = journal_name.gsub(/_/, ' ')
+                self.content += "<p><a href='/journal/#{journal_name}'>#{pretty_journal_name}</a></p>"
             end
 
             self.data['category'] = 'posts'
-
-            puts site.categories['posts'].length
-            site.categories['posts'] << self
-            puts site.categories['posts'].length
         end
     end
 

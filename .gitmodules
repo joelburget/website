@@ -1,6 +1,6 @@
 [submodule "_journal"]
 	path = _journal
-	url = https://github.com/joelburget/journal.git
+	url = git://github.com/joelburget/journal.git
 [submodule "media/js/tapir-jquery"]
 	path = media/js/tapir-jquery
-	url = https://github.com/TapirGo/jquery-plugin.git
+	url = git://github.com/TapirGo/jquery-plugin.git
