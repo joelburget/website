@@ -15,18 +15,22 @@ hr {
   width: 650px;
 }
 
+#topSection {
+    width: 650px;
+}
+
 #aboutMe {
-  width: 350px;
-  margin: 0 43px 40px 0;
+  width: 400px;
   float: left;
 }
 
 #bottomSection {
   width: 650px;
+  clear: both;
 }
 
 #pic {
-  float: left;
+  float: right;
 }
 
 .last {
