@@ -95,7 +95,7 @@
     padding: 0;
 }
 @media screen and (min-width: 768px) {
-    #journal_entry {
+    #journal_entry, #disqus_thread {
         width: 748px;
         margin:10px;
     }
