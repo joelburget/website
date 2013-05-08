@@ -4,15 +4,15 @@
 	<meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="/media/css/base.css" />
   <link rel="shortcut icon" href="/favicon.ico" />
-	<title>{{ page.title }}</title>
+	<title>$title$</title>
 	<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-  {{ page.header }}
+  $header$
 </head>
 <body>
 	<div id="all-but-nav">
-  {{ content }}
+  $body$
 	</div>
   <nav>
     <ul>
@@ -23,8 +23,7 @@
     </ul>
   </nav>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text'javascript" src="/media/js/tapir-jquery/jquery-tapir.min.js"></script>
-{{ page.script }}
+$script$
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-28123898-1']);

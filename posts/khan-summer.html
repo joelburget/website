@@ -2,27 +2,26 @@
 layout: post
 title: My Summer at the Khan Academy
 category: posts
-script: |
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
-  <script type="text/javascript" src="/media/js/jquery.lightbox-0.5.min.js"></script> 
-  <script type="text/javascript">
-    //http://www.marcofolio.net/webdesign/creating_a_polaroid_photo_viewer_with_css3_and_jquery.html
-    function randomXToY(minVal,maxVal,floatVal) {
-      var randVal = minVal+(Math.random()*(maxVal-minVal));
-      return typeof floatVal=='undefined'?Math.round(randVal):randVal.toFixed(floatVal);
-    }
-
-    $(document).ready(function() {
-      $('.polaroid').map(function() {
-        $(this).css('-webkit-transform', 'rotate('+randomXToY(-15, 15)+'deg)');
-      });
-
-      $('a.lightbox').lightBox();
-    });
-  </script>
-header: |
-  <link rel="stylesheet" type="text/css" href="/media/css/khan-summer.css" />
-  <link rel="stylesheet" type="text/css" href="/media/css/jquery.lightbox-0.5.css" />
+published: January 6, 2012
+description: great times as an intern at khan academy
+script: <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/media/js/jquery.lightbox-0.5.min.js"></script>
+        <script type="text/javascript">
+          /*http://www.marcofolio.net/webdesign/creating_a_polaroid_photo_viewer_with_css3_and_jquery.html*/
+          var randomXToY = function(minVal,maxVal,floatVal) {
+            var randVal = minVal+(Math.random()*(maxVal-minVal));
+            return typeof floatVal=='undefined'?Math.round(randVal):randVal.toFixed(floatVal);
+          };
+          $(document).ready(function() {
+                  debugger;
+            $('.polaroid').map(function() {
+              $(this).css('-webkit-transform', 'rotate('+randomXToY(-15, 15)+'deg)');
+            });
+            $('a.lightbox').lightBox();
+          });
+        </script>
+header: <link rel="stylesheet" type="text/css" href="/media/css/khan-summer.css" />
+        <link rel="stylesheet" type="text/css" href="/media/css/jquery.lightbox-0.5.css" />
 ---
 <div>
   <p>I spent the summer in California, at the <a href="http://www.khanacademy.org">Khan Academy</a>. This is some of what I did there.</p>

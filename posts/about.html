@@ -1,18 +1,18 @@
 ---
 layout: base
 title: About
-header: |
-  <link rel='stylesheet' type='text/css' href='/media/css/about.css'>
-script: |
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
-  <script> 
-  /*This is the most paranoid bit of code I've ever seen*/
+published: February 26, 2011
+description: about me and this site
+header: <link rel='stylesheet' type='text/css' href='/media/css/about.css'>
+script: <script>$(function(){
+    /*This is the most paranoid bit of code I've ever seen*/
     var a = "joel";
     var b = "et@gma";
     var c = "bur";
     var d = "il.com";
-    $('a.email').replaceWith('<a href="mailto:' + a + c + 'g' + b + d + '">' + a + c + 'g' + b + d + '</a>');
-  </script> 
+    var e = a + c + 'g' + b + d;
+    $('a.email').replaceWith('<a href="mailto:' + e + '">' + e + '</a>');});
+    </script>
 ---
 <div id=wrapper>
   <div id=topSection>
@@ -26,7 +26,7 @@ script: |
   <hr style="clear: both;"/>
   <div id=bottomSection>
     <h2>About This Site</h2>
-    <p>This site is hosted by <a href="http://pages.github.com/">Github Pages</a> (thanks!). It serves as a showcase for programs I've written and ideas I find interesting. I strive to make the posts meaningful and interesting, enjoy.</p>
+    <p>This site serves as a showcase for programs I've written and ideas I find interesting. I strive to make the posts meaningful and interesting, enjoy.</p>
   </div>
-<div style="height: 100px; clear: none;"></div>
+  <div style="height: 100px; clear: none;"></div>
 </div>

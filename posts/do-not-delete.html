@@ -2,15 +2,16 @@
 layout: post
 title: Do not delete anything in this directory, ever
 category: posts
-header: |
-  <link rel="stylesheet" type="text/css" href="/media/css/do-not-delete.css" />
-  <link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Crimson+Text&subset=latin' rel='stylesheet' type='text/css'>
+published: February 26, 2011
+description: me screwing up my computer again
+header: <link rel="stylesheet" type="text/css" href="/media/css/do-not-delete.css" />
+        <link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Crimson+Text&subset=latin' rel='stylesheet' type='text/css'>
 ---
 <h1 id="bigIntro">"Do not delete anything in this directory, ever"</h1>
 <p>Truer words were never spoken, as I found out when I was messing around with my /usr/lib directory. I was simply trying to get <a href="http://code.google.com/p/nativeclient/">Native Client</a> (NaCl) to work on my <a href="http://www.archlinux.org/">Arch</a> machine. Not everything was working:</p>
 <pre>
-[joel@archlinux startup]$ sel_ldr a.out 
+[joel@archlinux startup]$ sel_ldr a.out
 sel_ldr: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
 </pre>
 <p>Ok, I said, let's see what version of libcrypto I have.</p>
@@ -23,7 +24,7 @@ libcrypto.so.1.0.0
 </pre>
 <p>Cool! Maybe I can just symlink it!</p>
 <pre>
-[joel@arch lib]$ sudo ln -s libcrypto.so.1.0.0 libcrypto.so.0.9.8 
+[joel@arch lib]$ sudo ln -s libcrypto.so.1.0.0 libcrypto.so.0.9.8
 [joel@arch lib]$ ls | grep "libcrypto"
 libcrypto.a
 libcrypto.so
@@ -32,7 +33,7 @@ libcrypto.so.1.0.0
 </pre>
 <p>Perfect, let's try NaCl again.</p>
 <pre>
-[joel@archlinux startup]$ sel_ldr a.out 
+[joel@archlinux startup]$ sel_ldr a.out
 sel_ldr: error while loading shared libraries: libcrypto.so.0.9.8: cannot open shared object file: No such file or directory
 </pre>
 <p>Well since that didn't work I should remove the symlink I made.</p>
