@@ -13,7 +13,6 @@ script: <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs
             return typeof floatVal=='undefined'?Math.round(randVal):randVal.toFixed(floatVal);
           };
           $(document).ready(function() {
-                  debugger;
             $('.polaroid').map(function() {
               $(this).css('-webkit-transform', 'rotate('+randomXToY(-15, 15)+'deg)');
             });

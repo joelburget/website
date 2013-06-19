@@ -64,19 +64,21 @@ nav {
 }
 
 nav ul {
-    padding: 20px; 
-    padding-top: 0px; 
-    list-style-type: none; 
+    padding: 20px;
+    padding-top: 0px;
+    list-style-type: none;
 }
 
 nav li {
   margin: 0em;
-  padding: 5px; 
+  padding: 5px;
 }
 
 #all-but-nav {
   margin-left: 200px;
   margin-top: 50px;
+  max-width: 1000px;
+  margin-bottom: 100px;
 }
 
 #title, #published, #last_edited {

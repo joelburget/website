@@ -1,3 +1,9 @@
 [submodule "media/js/tapir-jquery"]
 	path = media/js/tapir-jquery
 	url = git://github.com/TapirGo/jquery-plugin.git
+[submodule "journal"]
+	path = journal
+	url = https://github.com/joelburget/journal.git
+[submodule "ShaderGraph.js"]
+	path = ShaderGraph.js
+	url = https://github.com/unconed/ShaderGraph.js.git

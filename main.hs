@@ -2,7 +2,6 @@
 import Data.Map as M
 import Data.Maybe (fromMaybe)
 import Data.Monoid (mconcat, mappend)
-import Prelude hiding (id)
 import System.FilePath ((</>), takeBaseName, takeFileName)
 
 import Hakyll
@@ -18,8 +17,9 @@ main = hakyll $ do
 
     match "journal/journal/*" $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler >>=
-            loadAndApplyTemplate "templates/journal_entry.html" defaultContext
+        compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/journal_entry.html" defaultContext
+            >>= loadAndApplyTemplate "templates/base.html" journalCtx
 
     match "media/css/*" $ do
         route   idRoute
@@ -35,6 +35,8 @@ main = hakyll $ do
             selectCompiler
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/base.html" postCtx
+
+    tags <- buildTags "posts/*" fromFilePath
 
     match "index.html" $ do
         route idRoute
@@ -57,7 +59,9 @@ main = hakyll $ do
     match "posts.html" $ do
         route   directoryRoute
         compile $ do
-            list <- postList "posts/*" "templates/postlistitem.html" recentFirst
+            public <- postList "posts/*" "templates/postlistitem.html" recentFirst
+            private <- postList "posts/private/*" "templates/postlistitem.html" recentFirst
+            let list = public ++ private
             getResourceBody
                 >>= applyAsTemplate (constField "posts" list `mappend` defaultContext)
                 >>= loadAndApplyTemplate "templates/base.html" defaultContext
@@ -95,6 +99,13 @@ postCtx = mconcat [
     scriptContext,
     headerContext,
     defaultContext
+    ]
+
+journalCtx :: Context String
+journalCtx = mconcat [
+      constField "script" ""
+    , constField "header" ""
+    , defaultContext
     ]
 
 postList :: Pattern -> Identifier -> ([Item String] -> Compiler [Item String])
