@@ -73,7 +73,7 @@ h3 {
 p, li {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 200;
-    color: #2B3E42;
+    color: rgb(50, 64, 82);
 }
 p {
     margin: 27px 0; /* ~ line-height */

@@ -1,0 +1,319 @@
+---
+layout: post
+title: First Reactions
+category: posts
+published: February 26, 2011
+description: Why you should consider Facebook's React
+header: <link rel="stylesheet" type="text/css" href="/media/css/react.css" media="screen, projection" />
+    <script src="//use.edgefonts.net/source-code-pro.js"></script>
+    <script src="/media/js/underscore-min.js"></script>
+    <script src="/media/js/backbone-min.js"></script>
+    <script src="/media/js/react/JSXTransformer.js"></script>
+    <script src="/media/js/react/react.js"></script>
+---
+<script type="text/jsx">
+</script>
+<h1>First Reactions</h1>
+<div id="first_reactions">
+<div class="half_col code-background">
+<h3>Wacky Syntax</h3>
+```
+render: function() {
+  return (
+    <div className="MarkdownEditor">
+      <h3>Input</h3>
+      <textarea onKeyUp={this.handleKeyUp}
+                ref="textarea">
+        {this.state.value}
+      </textarea>
+      <h3>Output</h3>
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{
+          __html: converter.makeHtml(this.state.value)
+        }}
+      />
+    </div>
+  );
+}
+```
+</div>
+<p class="half_col" id="first_reactions_p">When Facebook's <a href="http://facebook.github.io/react/">React</a> first came out, my first reaction was to dismiss it because of the weird <a href="http://facebook.github.io/react/docs/syntax.html">jsx syntax</a> (check it out over there &larr; (notice the mixed javascript and html)). A couple days later, after a coworker suggested I take a second look, I realized that React solves a very relevant problem.</p>
+<div class="clearfix"></div>
+</div>
+
+<h2>The Problem</h2>
+<div>
+<div class="half_col" id="problem_explanation">
+<p>We're going to build a basic comment application to illustrate where the Backbone/Handlebars model starts to fall apart. The finished product will look something like the thing on the right (try it!)</p>
+<p>The fundamental purpose of views is to mirror the models held in javascript. Using backbone models with handlebars templates the code might look something like the following (leaving out the view for now):</p>
+</div>
+<div class="half_col embedded" id="embedded_final">
+<!--<img src="/media/img/diagram1.png" />-->
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="code-background">
+<div class="problem__left_col">
+<h3>Models</h3>
+```javascript
+var CommentModel = Backbone.Model.extend();
+
+var CommentCollection = Backbone.Collection.extend();
+
+var comment = new CommentModel({
+    text: 'React actually works?'
+    author: '@dinojoel',
+    date: new Date().getTime()
+});
+
+var comments = new CommentCollection([comment]);
+```
+</div>
+<div class="problem__right_col">
+<div class="problem__right_col_1">
+<h3>Comment Template</h3>
+```handlebars
+<div>
+    <span class="text">{{ text }}</span>
+    by {{ author }}
+    on {{formatDate time}}
+</div>
+```
+</div>
+<div class="problem__right_col_2">
+<h3>Comment Collection Template</h3>
+```handlebars
+<div>
+    <span class="count">{{ count }} Comments</span>
+    <ul>
+    {{#each comments}}
+    {{! however you decide to render the subview}}
+    {{/each}}
+    </ul>
+</div>
+```
+</div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+<p id="problem_summary">Everything works fine for the most part, but we've already run into a bit of an issue - how to render subviews (each comment is a subview of the collection view). As I see it there are basically two options at this point - let's explore them one at a time.</p>
+
+<h2>Option 1</h2>
+
+<p>We could prerender each comment, insert the textual representation into this template, then insert the whole thing into the page. This approach is nice because everything is very pure and declarative - we just have to declare what the template should look like given the state of the model. I think this is actually fine for small templates but has one killer drawback.</p>
+<p>Let's use our comment example. Say a new comment is added, then not only do we have to re-render that comment, but we have to re-render every comment and the entire comment area. Any time something changes anywhere within our highest level view, we have to re-render everything in that view. This is prohibitively expensive, especially if you're trying to do something like a one-page app. Let's try a more realistic approach.</p>
+
+<h2>Option 2</h2>
+
+<div>
+<div class="half_col">
+<ol>
+    <li>Render just the pieces owned by the `CommentCollectionView` &nbsp;- including stubs (`<div class="stub1"></div>`) where we will inject subviews.</li>
+    <li>Match up each stub/subview pair and call `subView.setElement(stub); subView.render()`.</li>
+    <li>When things change modify the DOM by grabbing and modifying elements by hand. If need be, add and remove subviews - more on this later.</li>
+</ol>
+<p>This option updates faster - we don't have to rerender the entire collection to add or remove a comment - but has some serious issues. We have to do manual work to buy that performance, namely swapping in each subview. It can become especially unwieldy in the case of subviews, where we have to <a href="https://github.com/walmartlabs/thorax/blob/master/src/thorax.js">keep a reference</a> <a href="http://liquidmedia.org/blog/2011/02/backbone-js-part-3/">to each subview</a> <a href="http://orizens.com/wp/topics/backbone-view-patterns-rendering-a-collection/">of a view</a> <a href="http://rickquantz.com/2012/02/rendering-backbone-collections-in-a-view/">to avoid</a> <a href="http://stackoverflow.com/questions/8844345/creating-a-backbone-view-for-a-collection">re-rendering it</a> (don't actually read all those links).</p>
+</div>
+<div class="code-background half_col">
+<h3>View</h3>
+```javascript
+var CommentCollectionView = Backbone.View.extend({
+    ...
+    render: function() {
+        this.$el.html(this.template({
+            count: this.collection.models.length
+        }));
+        _(this.collection.models).each(function(model) {
+            var elem = $('<li>').appendTo(this.el),
+
+            // get the model view - usually the subviews
+            // are stored as a private property of this view
+            view = this._subviews[model.cid];
+
+            view.setElement(elem);
+            view.render();
+        }, this);
+    }
+});
+```
+<h3>Template</h3>
+```handlebars
+<div>
+    <span class="count">{{ count }} Comments</span>
+    <ul class="insert_comments_here"></ul>
+</div>
+```
+</div>
+<div class="clearfix"></div>
+</div>
+<p>A few things to note: Unlike the first option, this render method should only be called once. All modifications after that point should be done in some other way.</p>
+
+
+<div id="fundamental_problem">
+<h2>The Problem</h2>
+
+<p>The problem here is that we're trying to maniplate a tree, but there's a textual layer we have to go through. Our views are represented as a tree - the subviews are children of CommentCollectionView - and they end up as part of a tree in the DOM. But there's a Handlebars layer in the middle (which deals in flat strings), so the hierarchy must be destructed and rebuilt when we render.</p>
+<!-- TODO diagram would be hugely helpful-->
+<p>What does it take to render a collection view? In the Backbone/Handlebars view of the world you have to render the template (with stubs), render each subview which replaces a stub, and keep a reference to each subview (or anything within the view that could change in the future).</p>
+
+<p>So while our view is conceptually hierarchical, due to the fact that it has to go through a flat textual representation, we need to do a lot of extra work to reassemble that structure after rendering.</p>
+</div>
+
+<h2>React's Solution</h2>
+
+<p>React's innovation is to ignore textual templates. Even when working with jsx, we're dealing with pure javascript data structures. Try the <a href="http://facebook.github.io/react/jsx-compiler.html">live JSX compiler</a> to see how it works. Here's a simple example showing how React desugars JSX.</p>
+
+<div class="code-background">
+<div class="in_code_half_col">
+<h3>JSX</h3>
+```
+<div>
+  <Class1 x={jsExpression()} />
+  <Class2><img /></Class2>
+</div>
+```
+</div>
+<div class="in_code_half_col">
+<h3>Desugared</h3>
+```javascript
+React.DOM.div(null, [
+  Class1( {x:jsExpression()}, null ),
+  Class2(null, React.DOM.img(null, null ))
+])
+```
+</div>
+<div class="clearfix"></div>
+</div>
+
+<p>You can even do cool things like manipulate JSX fragments (if you don't get too crazy this is really useful):</p>
+<div class="code-background">
+<!-- TODO padding -->
+```javascript
+// React alternative to CommentCollectionView
+var Comments = React.createClass({
+    render: function() {
+        var onCreate = _(this.props.comments.add)
+                .bind(this.props.comments),
+            commentCount = this.props.comments.models.length,
+            comments = _(this.props.comments.models).map(function(comment) {
+                return <li><Comment model={comment} /></li>;
+            });
+
+        return <div class="comments">
+            <div>{commentCount}{' '}
+                 {commentCount === 1 ? 'comment' : 'comments'}
+            </div>
+            <ul>{comments}</ul>
+            <NewCommentBox onCreate={onCreate} />
+        </div>;
+    }
+});
+```
+</div>
+
+<p>You might be wondering what happens when you want to add or remove a comment. With backbone we did a bunch of work to make sure that we wouldn't have to re-render anything, but here it looks like we're ignoring that and re-rendering everything. Every time `render` is called (when your data changes - I skipped the mechanics of how that works in this post), React diffs the result with the previous result. That is, it gets the difference between what's in the DOM and what you want to be there, and executes the smallest set of changes that will make it happen. In that way you can write declarative interfaces that are still <a href="http://benalpert.com/2013/06/09/using-react-to-speed-up-khan-academy.html">really fast</a>.</p>
+
+<p>If, like me, you're not a big fan of too much magic behind the scenes that may set off alarms in your head. I can only say that in my experience it works well. I have also spent some time thinking about how you can get a similarly nice system with handlebars and helpers. That magic is far <a href="https://github.com/emberjs/ember.js/tree/master/packages/ember-handlebars">darker</a> and <a href="https://github.com/walmartlabs/thorax/tree/master/src/helpers">scarier</a>.</p>
+
+<h2>Conclusion</h2>
+<p>Give it a try. Let me know why I completely missed the mark or if you would prefer a more over-the-top background next time.</p>
+<script type="text/jsx">
+/** @jsx React.DOM */
+
+var CommentModel = Backbone.Model.extend();
+var CommentCollection = Backbone.Collection.extend();
+
+var formatDate = function(date) { return "some date"; };
+var newComment = function() {
+    return new CommentModel({ text: '', author: '' });
+};
+
+var Comment = React.createClass({
+    render: function() {
+        return <div class="comment">
+            <span class="text">
+                {this.props.model.get('text')}
+            </span>
+            by {this.props.model.get('author')}
+            on {formatDate(this.props.model.get('date'))}
+        </div>;
+    }
+});
+
+var NewCommentBox = React.createClass({
+    render: function() {
+        return <div class="new_comment_box">
+            <div class="first_row">
+            <textarea placeholder="enter some text here!"
+                      onKeyUp={this.textChange}
+                      ref="text">
+            </textarea>
+            </div>
+
+            <div class="second_row">
+            <label>
+                username
+                <input onChange={this.userNameChange}
+                       ref="username" />
+            </label>
+            <input type="button"
+                   value="Comment"
+                   onClick={this.createComment} />
+            </div>
+        </div>;
+    },
+    getInitialState: function() {
+        return { model: newComment() };
+    },
+    textChange: React.autoBind(function() {
+        this.state.model.set('text',
+            this.refs.text.getDOMNode().value);
+    }),
+    userNameChange: React.autoBind(function() {
+        this.state.model.set('author',
+            this.refs.username.getDOMNode().value);
+    }),
+    createComment: React.autoBind(function() {
+        var model = this.state.model;
+        this.props.onCreate(model);
+        this.refs.text.getDOMNode().value = '';
+        this.refs.username.getDOMNode().value = '';
+        this.setState({ model: newComment() });
+    })
+});
+
+var Comments = React.createClass({
+    render: function() {
+        var onCreate = _(this.props.comments.add)
+                .bind(this.props.comments),
+            commentCount = this.props.comments.models.length,
+            comments = _(this.props.comments.models).map(function(comment) {
+            return <li><Comment model={comment} /></li>;
+        });
+
+        return <div class="comments">
+            <div>{commentCount}{' '}
+                 {commentCount === 1 ? 'comment' : 'comments'}
+            </div>
+            <ul>{comments}</ul>
+            <NewCommentBox onCreate={onCreate} />
+        </div>;
+    },
+    componentWillMount: function() {
+        this.props.comments.on('add remove reset', this.forceUpdate, this);
+    }
+});
+
+var sampleComments = new CommentCollection([
+    new CommentModel({
+        text: 'React actually works?',
+        author: '@dinojoel',
+        date: new Date().getTime()
+    })
+]);
+
+React.renderComponent(<Comments comments={sampleComments} />,
+    document.getElementById('embedded_final'));
+</script>
