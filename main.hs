@@ -7,6 +7,8 @@ import System.FilePath ((</>), takeBaseName, takeFileName)
 import Hakyll
 import ParseCode
 
+import Debug.Trace
+
 main :: IO ()
 main = hakyll $ do
     match "templates/*" $ compile templateCompiler
@@ -18,7 +20,9 @@ main = hakyll $ do
     match "journal/journal/*" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/journal_entry.html" defaultContext
+            >>= loadAndApplyTemplate
+                "templates/journal_entry.html"
+                defaultContext
             >>= loadAndApplyTemplate "templates/base.html" journalCtx
 
     match "media/css/*" $ do
@@ -29,6 +33,7 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    -- Public post pages
     match "posts/*" $ do
         route   directoryRoute
         compile $
@@ -36,12 +41,19 @@ main = hakyll $ do
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/base.html" postCtx
 
-    tags <- buildTags "posts/*" fromFilePath
+    -- Private post pages
+    match "posts/private/*" $ do
+        route   directoryRoute
+        compile $
+            selectCompiler
+            >>= loadAndApplyTemplate "templates/base.html" postCtx
 
+    -- Home page
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- postList "posts/*" "templates/postitem.html" $ return . take 5
+            posts <- postList "posts/*" "templates/postitem.html" $
+                return . take 5
             let idxCtx = mconcat [
                     constField "posts" posts,
                     constField "script" "",
@@ -52,18 +64,22 @@ main = hakyll $ do
                 >>= applyAsTemplate idxCtx
                 >>= loadAndApplyTemplate "templates/base.html" idxCtx
 
-    match "templates/404.html" $ do
-        route $ customRoute $ takeFileName . toFilePath
+    -- For some reason it fails to get 404.html from templates. It's fine
+    -- toplevel
+    match "404.html" $ do
+        route $ idRoute
         compile copyFileCompiler
 
+    -- /posts/
     match "posts.html" $ do
         route   directoryRoute
         compile $ do
-            public <- postList "posts/*" "templates/postlistitem.html" recentFirst
-            private <- postList "posts/private/*" "templates/postlistitem.html" recentFirst
-            let list = public ++ private
+            public <- postList "posts/*"
+                               "templates/postlistitem.html"
+                               recentFirst
             getResourceBody
-                >>= applyAsTemplate (constField "posts" list `mappend` defaultContext)
+                >>= applyAsTemplate (constField "posts" public
+                           `mappend` defaultContext)
                 >>= loadAndApplyTemplate "templates/base.html" defaultContext
 
     create ["rss.xml"] $ feedRules renderRss
