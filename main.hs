@@ -53,7 +53,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- postList "posts/*" "templates/postitem.html" $
-                return . take 5
+                fmap (take 5) . recentFirst
             let idxCtx = mconcat [
                     constField "posts" posts,
                     constField "script" "",
