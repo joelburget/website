@@ -31,13 +31,13 @@ tail :: [a] -> [a]
 
 How does this diagram work? Constraints propagate from each parent and each
 child - the parent propagates the type it expects of its child and the child
-propagates its type. These are then unified (I used -> ^u syntax to represent
-unification). Unification results in constraints like `Int = a_1` and `a_1 =
-a_2`. It's not shown in this diagram, but all of those constraints need to
-continue to be unified until either there are no type variables left, giving us
-the final result, or an unsatisfiable constraint, like `Int = Float`{.haskell},
-is observed. In this case type inference would result in `fib =
-[Int]`{.haskell}.
+propagates its own type. These are then unified (I used -(u)-> syntax to
+represent unification). Unification results in constraints like `Int = a_1` and
+`a_1 = a_2`. It's not shown in this diagram, but all of those constraints need
+to continue to be unified until either there are no type variables left, giving
+us the final result, or an unsatisfiable constraint, like `Int =
+Float`{.haskell}, is observed. In this case type inference would result in `fib
+= [Int]`{.haskell}.
 
 Note that I skipped over the complication of typeclasses - for example, usually
 `0`{.haskell} would result in this constraint: `Num a => a`{.haskell}. I may
