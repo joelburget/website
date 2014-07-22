@@ -18,9 +18,9 @@ Aside: The *Healthy Hackathon* is like any other hackathon in that you get the c
 
 Khan Academy pays pretty close attention to engagement - there's a data science team and a (small) growth team. There have been several dashboards charting our usage numbers over the past few years.
 
-Unfortunately no amount of eye-catching buttons and calls to action will make a student genuinely interested in using a boring website that their teacher is forcing them to use.
+Unfortunately no amount of tweaks will make a student genuinely interested in using a website that their teacher is forcing them to use.
 
-And let's be honest, Khan Academy can be pretty boring. It's better than most educational material out there. Well, the content itself is, but the site itself ranges from dry and lifeless to pretty, but rarely fantastic, whimsical, or delightful.
+And let's be honest, Khan Academy can be pretty boring. It's better than most educational material out there. Well, the content itself is, but the site itself ranges from dry to pretty, but rarely fantastic, whimsical, or delightful.
 
 Our plan was to take Khan Academy's content and embed it in a game that's worth playing. The game is a fantasy rpg with gameplay similar to Final Fantasy (so I'm told). There's strategy, exploration, levelling up, interesting decisions, and *math*.
 
@@ -85,6 +85,6 @@ Even if / when we improve the game I'm going to leave this version the same. I'm
 
 Building KhanQuest was the most fun I've had at work since I can remember. It turns out building a game with a small team is a blast. So is doing work that you care about and you think might make a difference!
 
-One of the goals of KhanQuest was to provoke some thought among KA employees about our current direction. We believe the website should be as delightful as the content it surrounds - something the company needs to do a better job of. Unfortunately it's all but a sure thing we won't be able to continue to make our game at work, since KA is a serious organization serious organizational goals and priorities and serious partnerships with serious commitments to fulfill.
+One of the goals of KhanQuest was to provoke some thought among KA employees about our current direction. We believe the website should be as delightful as the content it surrounds - something the company needs to do a better job of. Unfortunately it's all but a sure thing we won't be able to continue to make our game at work, since KA is a serious organization with serious organizational goals and priorities and serious partnerships with serious commitments to fulfill.
 
 Shout out to [Zach](https://github.com/zgotsch), [Charlie](http://www.princeton.edu/~crmarsh/khanquest/), [Desmond](http://desmondbrand.com/), [Jack](https://github.com/jacktoole1), [Michelle](https://twitter.com/himichelletodd), and [Elizabeth](http://www.elizabethylin.com/about/) for making a killer temporary game studio.
