@@ -56,11 +56,13 @@ table {
 
 nav {
   position: fixed;
-  top: 25px;
-  left: 0px;
-  bottom: 0px;
-  width: 200px;
-  padding-top: 100px;
+  top: 0;
+  left: 0;
+  right: 0;
+  /*width: 200px;
+  padding-top: 100px;*/
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
 }
 
 nav ul {
@@ -70,12 +72,29 @@ nav ul {
 }
 
 nav li {
+  float: left;
   margin: 0em;
   padding: 5px;
 }
 
+nav a {
+    color: #4F5255;
+}
+
+nav a.icon {
+    display: block;
+    margin-top: 0.85em;
+}
+
+.nav2, .nav4 {
+    margin-left: 50px;
+}
+
+.nav3 {
+    margin-left: 15px;
+}
+
 #all-but-nav {
-  margin-left: 200px;
   margin-top: 50px;
   max-width: 1000px;
   margin-bottom: 100px;
@@ -139,7 +158,7 @@ h3 {
 
 h4 {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1.75em;
+  font-size: 1em;
   font-weight: 200;
   margin: 0.83em 0px 0.5em;
 }

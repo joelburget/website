@@ -1,0 +1,40 @@
+h1, h2, h3, h4, h5 {
+    color: #111;
+    font-family: 'Helvetica Neue',sans-serif;
+    font-weight: 100;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 22px;
+}
+
+p {
+    margin: 20px 0;
+}
+
+main li {
+    list-style-position: inside;
+    list-style-type: disc;
+    margin: 10px 0;
+}
+
+main li ul li {
+    list-style-type: square;
+    margin-left: 20px;
+    margin: 5px 0 5px 20px;
+}
+
+img {
+    margin-left: 50px;
+}
+
+#all-but-nav {
+    width: 900px;
+    margin-top: 100px !important;
+    margin-left: 30px;
+    border: none !important;
+    font-family: Merriweather, sans-serif;
+    font-size: 16px;
+    line-height: 1.7em;
+}

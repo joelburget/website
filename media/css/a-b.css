@@ -1,0 +1,158 @@
+.joel_kingpin {
+    height: 267px;
+    display: block;
+    background: url(/media/img/a-b-joel-kingpin.jpg) no-repeat scroll -139px -200px;
+    background-size: auto 225%;
+}
+
+.joel_kingpin:hover {
+    background-position: -6px;
+    background-size: auto 100%;
+}
+
+.section-header {
+    padding-top: 18px;
+}
+.col1, .col2 {
+    padding-top: 18px;
+}
+
+.general-contact ul {
+    margin-bottom: 18px;
+}
+.general-contact ul li {
+    margin-bottom: 10px;
+}
+.team-photo {
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+    padding: 9px;
+    background: #f7f7f7;
+}
+.team-card:nth-child(2n+1) {
+    clear: both;
+}
+.team-card {
+    width: 545px;
+    float: left;
+    margin-right: 1%;
+    padding: 10px 10px 10px 0;
+    margin-bottom: 36px;
+    min-height: 267px;
+    position: relative;
+}
+    .team-card .card-photo {
+        padding: 5px;
+        background: #eee;
+        width: 200px;
+
+        position: absolute;
+        left: 0;
+        top: 10px;
+
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+
+        z-index: -1;
+    }
+        .team-card .card-photo img {
+            height: 267px;
+            display: block;
+        }
+    .team-card .card-info {
+        margin-left: 230px;
+    }
+        .team-card .card-info h1 {
+            margin-top: 5px;
+        }
+        .team-card .card-info h3 {
+            color: #777;
+            font-family: Georgia, serif;
+            font-style: italic;
+        }
+        .team-card .card-info p {
+            font-family: sans-serif;
+            font-size: 13px;
+        }
+        .team-card .card-info .contact-links a, .general-contact a {
+            padding: 10px 9px 10px 28px;
+            text-decoration: none;
+        }
+        .team-card .card-info .contact-links a:hover, .general-contact a:hover {
+            text-decoration: underline;
+        }
+        .team-card .card-info .contact-email, .general-contact .contact-email {
+            background: url(https://www.kastatic.org/images/contact-email.png) no-repeat left center;
+        }
+        .team-card .card-info .contact-twitter {
+            background: url(https://www.kastatic.org/images/contact-twitter.png) no-repeat left center;
+        }
+        .team-card .card-info .contact-blog {
+            background: url(https://www.kastatic.org/images/contact-blog.png) no-repeat left center;
+        }
+        .team-card .card-info .contact-ka {
+            background: url(https://www.kastatic.org/images/contact-ka.png) no-repeat left center;
+        }
+
+h1, h2, h3, h4, h5 {
+    color: #111;
+    font-family: 'Helvetica Neue',sans-serif;
+}
+
+h1 {
+    font-weight: 100;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 22px;
+}
+
+.pulls {
+    margin-bottom: 9px;
+}
+
+p {
+    font-family: Merriweather, sans-serif;
+    font-size: 14px;
+}
+
+#all-but-nav {
+    /* width: 1160px !important; */
+    max-width: 2000px !important;
+    margin-top: 0 !important;
+    margin-left: 30px;
+    border: none !important;
+}
+
+.c4x4 {
+    overflow: hidden;
+}
+
+.c2x1 {
+    overflow: hidden;
+}
+
+#heading {
+    background: url(/media/img/a-b-header.jpg) no-repeat fixed center center / cover;
+    height: 500px;
+    margin-left: -30px;
+}
+
+#heading h1 {
+    width: 450px;
+    margin-left: -225px;
+}
+
+#heading div {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+}

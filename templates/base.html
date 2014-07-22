@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/media/css/base.css" />
   <link rel="shortcut icon" href="/favicon.ico" />
 	<title>$title$</title>
@@ -11,17 +12,19 @@
   $header$
 </head>
 <body>
-	<div id="all-but-nav">
-  $body$
-	</div>
   <nav>
     <ul>
-      <li><h4><a href="/">Home</a></h4></li>
-      <li><h4><a href="/about/">About</a></h4></li>
-      <li><h4><a href="/posts/">Posts</a></h4></li>
+      <li class="nav1"><h4><a href="/">Joel Burget</a></h4></li>
+      <li class="nav2"><h4><a href="/about/">About</a></h4></li>
+      <li class="nav3"><h4><a href="/posts/">Posts</a></h4></li>
+      <li class="nav4"><a class="icon" href="http://twitter.com/dino_joel"><i class="fa fa-twitter"></i></a></li>
+      <li class="nav5"><a class="icon" href="https://github.com/joelburget"><i class="fa fa-github"></i></a></li>
       <!--<div id="search_results"></div>-->
     </ul>
   </nav>
+	<main id="all-but-nav">
+  $body$
+	</main>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 $script$
 <script type="text/javascript">
