@@ -8,7 +8,7 @@ header: <link rel="stylesheet" type="text/css" href="/media/css/healthy-hackatho
 ---
 # KhanQuest and the Healthy Hackathon
 
-Over the past four days I participated in the Khan Academy 2014 Healthy Hackathon, where my team worked on a gamified version of Khan Academy called KhanQuest.
+Over the past four days I participated in the Khan Academy 2014 Healthy Hackathon, where my team worked on a gamified version of Khan Academy called [KhanQuest](https://github.com/Khan/KhanQuest).
 
 Aside: The *Healthy Hackathon* is like any other hackathon in that you get the chance to work on something you wouldn't normally get to. The big innovation in a *healthy* hackathon is that you don't stay up all night or drink even one Red Bull. "Healthy" meals are provided and hackers are kicked out between midnight and 9:30 the next morning.
 
@@ -22,7 +22,7 @@ Unfortunately no amount of eye-catching buttons and calls to action will make a 
 
 And let's be honest, Khan Academy can be pretty boring. It's better than most educational material out there. Well, the content itself is, but the site itself ranges from dry and lifeless to pretty, but rarely fantastic, whimsical, or delightful.
 
-Our plan was to take Khan Academy's content and embed it in a game that's worth playing. The game is a fantasy rpg with gameplay similar to Final Fantasy (so I'm told), called KhanQuest.
+Our plan was to take Khan Academy's content and embed it in a game that's worth playing. The game is a fantasy rpg with gameplay similar to Final Fantasy (so I'm told). There's strategy, exploration, levelling up, interesting decisions, and *math*.
 
 ## Mapping Between KA and KhanQuest
 
@@ -31,10 +31,11 @@ Our plan was to take Khan Academy's content and embed it in a game that's worth 
 A lot of thought has been poured into the content and structure of Khan Academy and its pedagogy. We wanted to create a tight mapping between the original website and the game so we could reuse as much of that work as possible.
 
 * The entire game corresponds to a mission on KA. I think we used [sixth grade math](https://www.khanacademy.org/mission/cc-sixth-grade-math).
-* Skills on KA and spells in KhanQuest are equivalent.
-    + Learning and mastering spells in the game should transfer to KA.
-    + Different subjects correspond to different types of spells. Sixth grade math includes some arithmetic (arcane spells), geometry (fire), and algebra (frost). To complete the game you need to master all of them.
+* Skills on KA (e.g. finding the area of a polygon) and spells in KhanQuest are equivalent.
+    + Learning and mastering spells in the game should transfer to progress on KA.
+    + Different subjects correspond to different types of spells. Sixth grade math includes some arithmetic (arcane spells), geometry (fire), and algebra (frost). To complete the game you need to master all of them, just like you need to learn each branch of math to complete sixth grade.
 * Practice tasks and random encounters are equivalent.
+    + They're focused on a single skill, on KA you would earn "practiced" while in the game you could learn a new spell.
     + Right now there's a 1/20 chance of a random encounter *on every step* in the levels that include them. You could encounter ten creatures on a level or none. We should find a better mechanic so the encounters are more regular (i.e. you have a random encounter every 20 +/- rand(5) steps).
 * Mastery tasks and boss battles are equivalent.
     + You need to context switch between different skills / use different spells.
@@ -52,7 +53,7 @@ I expected building the game engine to be difficult, and it was, but the surpris
 
 ## Making an Experience Anyone Would Enjoy
 
-We wanted to build a game that would be appealing to both boys and girls. I think it's fair to say that we failed by making yet another fantasy game. There's some serious work to do yet to come up with a more universally appealing premise.
+We wanted to build a game that would be appealing to both boys and girls. I think it's fair to say that we failed by making yet another fantasy game. There's some serious work left to come up with a more universally appealing premise.
 
 We were somewhat limited by the art we could find freely available online. We ended up reusing art from [Valyria Tear](https://github.com/Bertram25/ValyriaTear) and [Battle for Wesnoth](http://www.wesnoth.org/). Both projects are *awesome* and had the best art we could find. Unfortunately as a result we were more or less forced to make a fantasy game.
 
