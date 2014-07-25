@@ -1,7 +1,7 @@
 .joel_kingpin {
     height: 267px;
     display: block;
-    background: url(/media/img/a-b-joel-kingpin.jpg) no-repeat scroll -139px -200px;
+    background: url(/media/img/a-b-joel-kingpin.jpg) no-repeat scroll -139px -208px;
     background-size: auto 225%;
 }
 
@@ -74,7 +74,10 @@
         }
         .team-card .card-info p {
             font-family: sans-serif;
-            font-size: 13px;
+            font-size: 12px;
+        }
+        .team-card .card-info .contact-links {
+            margin: 22px 0;
         }
         .team-card .card-info .contact-links a, .general-contact a {
             padding: 10px 9px 10px 28px;
@@ -132,6 +135,10 @@ p {
     border: none !important;
 }
 
+#all-but-nav p {
+    max-width: 1100px;
+}
+
 .c4x4 {
     overflow: hidden;
 }
@@ -141,18 +148,49 @@ p {
 }
 
 #heading {
-    background: url(/media/img/a-b-header.jpg) no-repeat fixed center center / cover;
     height: 500px;
     margin-left: -30px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#heading {
+    background:
+        linear-gradient(
+            rgba(255, 255, 255, 0.5),
+            rgba(255, 255, 255, 0.5)
+        ),
+        url(/media/img/a-b-header.jpg)
+        no-repeat
+        fixed
+        center center
+        / cover;
 }
 
 #heading h1 {
-    width: 450px;
-    margin-left: -225px;
+    position: absolute;
+    top: 150px;
+    left: 350px;
 }
 
-#heading div {
-    position: absolute;
-    top: 100px;
-    left: 50%;
+.bump-top {
+    margin-top: 50px;
+}
+
+p {
+    margin: 20px 0;
+}
+
+.card-info p {
+    margin: 0;
+}
+
+.business-cards {
+    padding: 5px;
+    background: #eee;
+    width: 500px;
+    height: 545px;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
