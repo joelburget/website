@@ -37,3 +37,8 @@ img {
     font-size: 16px;
     line-height: 1.7em;
 }
+
+pre.sourceCode {
+    font-size: 15px;
+    margin: 20px 40px;
+}
