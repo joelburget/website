@@ -7,8 +7,6 @@ import System.FilePath ((</>), takeBaseName, takeFileName)
 import Hakyll
 import ParseCode
 
-import Debug.Trace
-
 main :: IO ()
 main = hakyll $ do
     match "templates/*" $ compile templateCompiler
