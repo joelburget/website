@@ -3,88 +3,33 @@ layout: base
 title: Posts
 published: February 26, 2011
 description: all the posts i've written, sorry there aren't more
-script: <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/media/js/isotope/jquery.isotope.min.js"></script>
-        <script type="text/javascript">
-          $('#container').isotope({
-            itemSelector: '.item',
-            layoutMode: 'fitRows',
-            animationEngine: 'best-available',
-            sortBy: 'original-order',
-            getSortData: {
-              name: function($elem) {
-                return $elem.find('a').text().toLowerCase();
-              },
-              published: function($elem) {
-                return $elem.find('span:eq(0)').text();
-              }
-            }
-          });
-          $('#sort a').click(function() {
-            var sortName = $(this).attr('href').slice(1);
-            $('#container').isotope({sortBy: sortName});
-            return false;
-          });
-        </script>
+script: <script></script>
 header: <link href='http://fonts.googleapis.com/css?family=Lato:light,regular' rel='stylesheet' type='text/css'>
         <style>
           body {
-            background-color: white;
+            background-color: #f8f8f8;
             color: #222;
-            font-family: 'Lato', arial, sans-serif;
+            /*font-family: 'Lato', arial, sans-serif;*/
+            font-family: "Input Sans", sans-serif;
             font-size: 13pt;
             font-weight: 300;
           }
           h1, h2, h3, h4 {
-            font-family: 'Lato', arial, sans-serif;
-          }
-          .decorate {
-            border-left: 1px solid #bbb;
-            margin: 15px 10px 15px 0;
-            padding: 0 10px;
+            /*font-family: 'Lato', arial, sans-serif;*/
+            font-family: "Input Sans", sans-serif;
           }
           h3 {
-            margin: 10px;
+            margin-bottom: 30px;
+          }
+          li {
+              margin: 15px 0;
           }
           .item {
             width: 100%;
           }
-          #sort {
-            width: 432px;
-          }
-          .isotope,
-          .isotope .isotope-item {
-            /* change duration value to whatever you like */
-            -webkit-transition-duration: 0.5s;
-            -moz-transition-duration: 0.5s;
-            transition-duration: 0.5s;
-          }
-          .isotope {
-            -webkit-transition-property: height, width;
-            -moz-transition-property: height, width;
-            transition-property: height, width;
-          }
-          .isotope .isotope-item {
-            -webkit-transition-property: -webkit-transform, opacity;
-            -moz-transition-property:    -moz-transform, opacity;
-            transition-property:         transform, opacity;
-          }
-          .isotope-item {
-            z-index: 2;
-          }
-          .isotope-hidden.isotope-item {
-            pointer-events: none;
-            z-index: 1;
-          }
         </style>
 ---
 <div class="content">
-    <h3 style="margin-top: 100px">Posts</h3>
-  <div id='sort' class='decorate'>
-    Sort by:
-    <!-- TODO link to post/ not post/index.html -->
-    <a href='#name'>name</a> &nbsp;
-    <a href='#published'>published</a> &nbsp;
-  </div>
+  <h3 style="margin-top: 100px">Posts</h3>
   <ul id='container'>$posts$</ul>
 </div>

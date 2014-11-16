@@ -27,8 +27,8 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match ("media/img/**" .||. "media/js/**" .||. "favicon.ico" .||.
-           "static/**") $ do
+    match ("media/img/**" .||. "media/js/**" .||. "media/font/**" .||.
+           "favicon.ico" .||.  "static/**") $ do
         route   idRoute
         compile copyFileCompiler
 

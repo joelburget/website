@@ -1,28 +1,31 @@
 ---
 title: Software and Dinosaurs
-header: <link href='http://fonts.googleapis.com/css?family=Lato:light,regular' rel='stylesheet' type='text/css'>
-        <style>
+description: Joel Burget spends far too much time staring at glowing rectangles 6-24 inches from his face.
+header: <style>
+          @font-face {
+            font-family: 'Input-Sans';
+            src: url('/media/font/InputSans-Regular.eot?#iefix') format('embedded-opentype'),  url('/media/font/InputSans-Regular.woff') format('woff'), url('/media/font/InputSans-Regular.ttf')  format('truetype'), url('/media/font/InputSans-Regular.svg#InputSans-Regular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+          }
           body {
-            background-color: white;
+            background-color: #f8f8f8;
             color: #222;
-            font-family: 'Lato', arial, sans-serif;
+            font-family: 'Input-Sans', arial, sans-serif;
             font-size: 13pt;
             font-weight: 300;
           }
           h1, h2, h3, h4 {
-            font-family: 'Lato', arial, sans-serif;
+            font-family: "Input-Sans", sans-serif;
+            text-align: center;
           }
-          .decorate {
-            border-left: 1px solid #bbb;
-            margin: 15px 10px 15px 0;
-            padding: 0 10px;
+          p {
+              margin: 18px 0;
           }
-          h3 {
-            margin-top: 10px;
-          }
-          @media screen and (min-width: 1050px) {
+          @media screen and (min-width: 800px) {
             .content {
               width: 800px;
+              margin-top: 150px;
             }
             .intro-p, .intro-h {
               padding: 10px;
@@ -32,26 +35,54 @@ header: <link href='http://fonts.googleapis.com/css?family=Lato:light,regular' r
               margin: 0px;
             }
           }
-          /*body {
-            background-image: url('/media/texture.jpg');
-            background-attachment: fixed;
-          }*/
+          #hijoel, #khan {
+              margin: 75px 0 50px;
+          }
+          .photo {
+              background-size: 106%;
+              background-position: 50% 50%;
+              background-repeat: no-repeat;
+              border-radius: 50%;
+              margin: 0 auto;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              width: 300px;
+              height: 300px;
+          }
+          #hijoelphoto {
+              background-image: url(/media/img/profile.jpg);
+              border: 1px solid #6f6f6f;
+              position: relative;
+          }
+          #hijoelphoto:before {
+              position: absolute;
+              content: " ";
+              border: 1px solid #6f6f6f;
+              border-radius: 50%;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              width: 308px;
+              height: 308px;
+              top: -5px;
+              left: -5px;
+          }
+          #khanphoto {
+              background-image: url(/media/img/khan-logo.png);
+              background-position: -4px 28px;
+              background-color: white;
+              border: 1px solid #d3d3d3;
+              position: relative;
+          }
         </style>
 ---
 <div class="content">
-  <div class="programs">
-    <h2>Programs</h2>
-    <div class="decorate">
-      <h3><a href="/cologne/">Cologne</a></h3>
-      <p>A ray tracer in Haskell</p>
-    </div>
-    <div class="decorate">
-      <h3><a href="/slimlock/">Slimlock</a></h3>
-      <p>A simple screen locker. I forgot to name it after something that smells good!</p>
-    </div>
-  </div>
-  <div class="posts">
-  <h2>Last 5 posts</h2>
-  $posts$
-  </div>
+  <h2 id="hijoel">Hi, I'm Joel -</h2>
+  <div class="photo" id="hijoelphoto"></div>
+  <h2 id="khan">Khan Academy Developer,</h2>
+  <div class="photo" id="khanphoto"></div>
+  <h2>Learner and Maker.</h2>
+  <br />
+  <p>I care deeply about making wonderful, powerful things and making an impact.</p>
+  <p>Those principles brought me to Khan Academy, where I started working as an intern in 2011. I'm currently on our content tools team, where I work on the exercise experience and tools for question writers. You can see some of that work in the <a href="https://github.com/khan/perseus">Perseus</a> project. I've also spent time recently open-sourcing our <a href="http://khan.github.io/react-components/">React components</a>.</p>
+  <p>I'm fascinated by the idea of making programming better. Programmers jump from technology to technology distressingly fast, all while failing to address fundamental problems. I hope to play a part in improving tools, stabilizing the tech stack, and making programming more accessible. I've been working hard on a not-yet-released programming environment called <a href="https://github.com/joelburget/pigment">Pigment</a>.</p>
 </div>
