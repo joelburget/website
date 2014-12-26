@@ -100,7 +100,8 @@ nav a {
 
 nav a.icon {
     display: block;
-    margin-top: 0.85em;
+    font-size: 150%;
+    margin-top: 0.5em;
 }
 
 .nav1, .nav3 {
