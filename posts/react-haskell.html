@@ -1,0 +1,442 @@
+---
+layout: post
+title: React-Haskell
+category: posts
+published: January 4, 2015
+description: Animating Web UI with React and Haskell
+header: <link rel="stylesheet" type="text/css" href="/media/css/react-haskell.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" href="/media/css/btns.css" media="screen, projection" />
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="/media/js/react-with-addons.js"></script>
+    <script src="/media/js/react-haskell.js"></script>
+---
+
+<h1>Animating Web UI with React and Haskell</h1>
+
+<p>
+The last few weeks I've been working on adding animation support to React-Haskell. I consider animation an unsolved problem in the React world, and Haskell is only just beginning to be used for web UI, so this project is breaking challenging new ground. Here I'll explore what I've learned, give some fun examples, and explore directions for the future.
+</p>
+
+<h2>Tutorial</h2>
+
+<p>
+This tutorial assumes familiarity with the basics of Haskell and web programming. We're going to start by building a basic application in react-haskell without animation, then add the animation on top.
+</p>
+
+<p>
+Let's first build a simple application without animation. This totally contrived example can store the names of two (super smash bros) fighters. Try it in action below.
+</p>
+
+<div id="simple-demo" class="demo"></div>
+
+<p>
+There are three parts to our simple program:
+</p>
+
+<ul>
+    <li>Model</li>
+    <li>Update</li>
+    <li>View</li>
+</ul>
+
+<p>
+This is really the same as the venerable Model-View-Controller, but I want to emphasize the simplicity of the update step. In this formulation it's restricted to updating from the former page state to the current page state. That's really all a controller could do anyway, but I think saying it explicitly in the type (which we'll see in a minute) really clarifies its purpose.
+</p>
+
+<h3>Model</h3>
+
+<p>
+We store the names of both fighters currently in the ring as well as the text currently in the input box.
+</p>
+
+```haskell
+data SimpleState = SimpleState
+    { fighter1 :: JSString
+    , fighter2 :: JSString
+    , typing :: JSString
+    }
+
+initialState = PageState "little mac!" "pit" ""
+```
+
+<h3>Update</h3>
+
+<p>Transitions happen when the user types printable characters in the input box or hits `Enter`.</p>
+
+```haskell
+data Transition
+    = Typing JSString
+    | Enter
+
+transition :: SimpleState -> Transition -> (SimpleState, [AnimConfig Simple])
+
+-- set the input box to the new value
+transition state (Typing str) = (state{typing=str}, [])
+
+-- push our figher into the ring!
+transition SimpleState{fighter1, typing} Enter =
+    (SimpleState typing fighter1 "", [])
+```
+
+<h3>View</h3>
+
+<p>
+Now that we've both modeled our data and shown how it updates, let's say how it goes on the page. This should all look very much like writing a web page, but with sparser syntax.
+</p>
+
+```haskell
+view :: SimpleState -> React Simple ()
+view (SimpleState fighter1 fighter2 typing) = div_ $ do
+    div_ $ do
+        "send a new competitor into the ring: "
+        input_
+            [ value_ typing
+
+            -- send "Just (Typing str)" as an update on every keystroke
+            , onChange (Just . Typing . targetValue)
+
+            -- send "Enter" as an update
+            , onEnter Enter
+            ]
+
+    div_ $ do
+        "fighter 1: "
+        text_ fighter1
+
+    div_ $ do
+        "fighter 2: "
+        text_ fighter2
+```
+
+<h3>running it</h3>
+
+<p>
+Finally, we wrap up by putting it on the page.
+</p>
+
+```haskell
+-- "Simple" is a key identifying our class.
+-- Here we're just defining the class state,
+-- animation state, and signal type for this class.
+data Simple
+instance ReactKey Simple where
+    type ClassState Simple = SimpleState
+    type AnimationState Simple = ()
+    type Signal Simple = Transition
+
+cls :: IO (ReactClass Simple)
+cls = createClass view transition initialState () []
+
+main :: IO ()
+main = withElem "inject" $ \elem ->
+    render elem =<< cls
+```
+
+<h2>Animation</h2>
+
+<p>
+Now that we've built a simple application without animation, let's discuss what it takes to add some dynamism. We'll briefly cover:
+</p>
+
+<ul>
+    <li>Easing functions</li>
+    <li>Interrupting Animations</li>
+    <li>Model State</li>
+    <li>Additive Animations</li>
+</ul>
+
+<div id="simple-anim-demo" class="demo"></div>
+
+<h3>Different Easing Functions</h3>
+
+<p>Here are most of the easing functions built into React-Haskell. Try them out with the buttons at the top and bottom.</p>
+
+<div id="easing-demo" class="demo"></div>
+
+<p>Some notes:</p>
+
+<ul>
+    <li>`Linear`{.haskell} is usually not what you want. It feels artificial. Real objects accelerate. You want some sort of "weight" behind your animations.</li>
+    <li>See `EaseInOutQuad`{.haskell} for contrast. It takes some time to ramp up, then slows down again as it reaches the end. Like a train accelerating out of and into a station</li>
+    <li>The `*Quad`{.haskell}, `*Cubic`{.haskell}, `*Quart`{.haskell}, and `*Quint`{.haskell} easings are related, but increasingly aggressive.</li>
+    <li>The elastic and bouncing animations need some love. <a href="https://github.com/joelburget/react-haskell">Pull requests</a> appreciated!</li>
+    <li>`*Bounce`{.haskell} is fun, but I notice the effect doesn't seem natural with the colored block.</li>
+    <li>`Bezier`{.haskell} is very general. You can create a good approximation of most of the other easings by adjusting its four control points (I'm not going to go into how to do that just now).</li>
+</ul>
+
+<p>
+All of these are implemented in Haskell, except for the bezier and sine easings, which use a JavaScript easing library. I'm really excited that all twenty of these can run simultaneously without slowing down the page too much.
+</p>
+
+<img src="/media/img/profiling.png">
+
+<p>
+I profiled a run of the easing functions by hitting the "record" button in chrome and hitting "start easing". This is not entirely relevant to the animation discussion, but I think the results are interesting.
+</p>
+
+<ul>
+    <li>To achieve 60 fps we need every frame to render in about 16 ms. On average we're achieving low 20s. I'm talking about only those times between 1.3 and 2.3 s where the animations were actually running.</li>
+    <li>Happily, in other frames (without animation) rendering time is negligible.</li>
+    <li>I picked out one of the slowest frames to show in the screenshot. Garbage collection runs for 10 ms and <em>kills</em> performance.</li>
+    <li>The run shown is with the `--debug` &nbsp;compiler option.</li>
+    <li>I'd like to try `hastec`'s `--opt-all` &nbsp;optimization option, but it takes <em>forever</em> to build. I had to kill it after half an hour. I think closure compiler was running - possibly hung.</li>
+    <li>React runs for about 3 ms at the end. This is where all the DOM manipulation happens.</li>
+    <li>`_3q`{.javascript} (pink) is the shortened name for `interpret'`{.haskell} from `React.Interpret`{.haskell}. It goes through the tree built by all those calls to `div_`{.haskell} and `rect_`{.haskell} and so on, then calls their corresponding React functions - `React.DOM.div`{.javascript} and `React.DOM.rect`{.javascript}.</li>
+    <li>`_3u`{.javascript} (purple) is the shortened name for the first case in `interpret'`, which deals with nodes that have children, like `span` &nbsp;and `div`.</li>
+    <li>I suspect those ~20 columns with `_3u`{.javascript} at the head are the different easings running. Why then do the calls to `_3u`{.javascript} nest within each other? Looking at the output javascript I see what looks like continuation passing style, meaning sequencing is transformed into recursion. Compiling functional languages is a fascinating beast.</li>
+    <li>I see a lot of string manipulation at the bottom of the profile. I bet we can at least halve the running time by avoiding `String`{.haskell} (Haskell-native linked list strings), instead using JS native strings.</li>
+</ul>
+
+<h3>Interrupting Animations</h3>
+
+<p>
+The user can continue to interact with our application as animations are
+happening, so we must decide how to respond to their input.
+</p>
+
+<p>
+A lot of this is inspired by iOS and OS X animation. In particular, see
+<a href="http://www.objc.io/issue-12/">objc.io #12 - Animations</a> and the
+WWDC talk <a href="http://andymatuschak.org/talks.html">"Building Interruptible
+and Responsive Interactions"</a>.
+</p>
+
+<p>In particular, here are some useful guiding principles:<p>
+
+<ul>
+    <li>Model state is the single source of truth. It's updated <em>immedately</em> in response to actions. Animations are layered on top.</li>
+    <li>animations are additive (never jump)</li>
+    <li>animations are cancellable</li>
+</ul>
+
+<p>Let's talk about these principles in more detail</p>
+
+<h3>Single Source of Truth</h3>
+
+<p>
+We define a data structure, conventionally called `PageState`{.haskell}, which represents, well, the state of our entire page. This structure holds <em>everything</em> we need to represent the page (normally we'd talk about a class, but our examples are small enough that they're all a single class). By storing our data like this we get several benefits -
+</p>
+
+<ul>
+    <li>You never have to worry about hidden state. <em>Everything</em> is explicitly in `PageState`{.haskell}. Every possible state can be found by enumerating all possible `PageState`{.haskell}s.</li>
+    <li>It's trivially easy to serialize page state. This is useful for resuming the user's session when returning to the page. This also makes debugging much simpler. When users trigger an error simply serialize their page state and send it to the developer, who can load it up in a browser or inspect it by hand.</li>
+    <li>History becomes almost trivial. Make `PageState`{.haskell} (or different parts of it for independent histories) a <a href="http://learnyouahaskell.com/zippers">zipper</a>, then the user can move forwards or backwards in history.</li>
+</ul>
+
+<h3>Model State is Always Up-To-Date</h3>
+
+<div id="slide-demo" class="demo"></div>
+
+<p>
+The state of the world becomes a little fuzzy when we add animation. Say there's a sidebar in our app that can slide in and out. A simple page state looks like `data PageState = Closed | Open`{.haskell}. What should the model state be in the time between an animation starting and finishing? Maybe we should add some more states - `data PageState = Closed | Open | SlidingIn | SlidingOut`{.haskell}. This more precisely enumerates the possible states. We could go even further and keep track of how far along the animation is.
+</p>
+
+<p>
+I'd like to advocate for returning to the simpler state that we started with - `data PageState = Closed | Open`{.haskell}. Update the state immediately in response to actions. The instant the user triggers a close, `PageState`{.haskell} becomes `Closed`{.haskell}. Now if the user toggles again midway through the animation it's trivial to immediately toggle `PageState`{.haskell} back to `Open`{.haskell}.
+</p>
+
+<p>
+We still need a way to manage animation state. We store it in a separate `AnimationState`{.haskell} data structure. This one is also user defined, but managed by the framework. In our case we'll keep track of the width of the pane. It's 0 when completely slid out, 200 when completely slid in, and something in between when animating.
+</p>
+
+```haskell
+type AnimationState = Int
+```
+
+<p>
+The code to toggle the pane state and trigger an animation:
+</p>
+
+```haskell
+paneWidth = 200
+
+slide :: Double -> AnimConfig Slide
+slide from = AnimConfig
+    { duration = 1000
+    , lens = id
+    , endpoints = (from, 0)
+    , easing = EaseInOutQuad
+    , onComplete = const Nothing
+    }
+
+transition :: SlideState -> Toggle -> (SlideState, [AnimConfig Slide])
+transition Open Toggle = (Closed, [ slide paneWidth ])
+transition Closed Toggle = (Open, [ slide (-paneWidth) ])
+```
+
+<div>
+
+<div style="float: right; margin-left: 100px;">
+```
+                   (new state)
+closed                    open
+  x                         x
+
+difference
+  x<------------------------x
+
+animationState (over time)
+   <------------------------
+    <-----------------------
+       <--------------------
+            <---------------
+                <-----------
+                    <-------
+                       <----
+                          <-
+                           <
+
+apparent position (over time)
+   x<-----------------------
+    x<----------------------
+       x<-------------------
+            x<--------------
+                x<----------
+                    x<------
+                       x<---
+                          x<
+                           x
+```
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th class="time">Transition</th>
+        <th>Endpoints</th>
+    </tr>
+    </thead>
+    <tr>
+        <td class="time">Closed -&gt; Open</td>
+        <td>`(-paneWidth, 0)`</td>
+    </tr>
+    <tr>
+        <td class="time">Open -&gt; Closed</td>
+        <td>`(paneWidth, 0)`</td>
+    </tr>
+</table>
+
+<p>
+There's a very important detail here. Notice that our animation always ends at 0. This is <em>almost always</em> the case. 0 means that our presentation is again in sync with our model state. The animation isn't doing anything. It's over.
+</p>
+
+<p>
+So we always transition from `oldState - newState`&nbsp; to 0. We start at the vector pointing from our new position to our old, then tween from that to 0.
+</p>
+
+<p>This is a useful pattern for a remarkably wide set of animations. Anything where an object changes size or position.</p>
+
+<div style="clear: both;"></div>
+</div>
+
+<p>Presentation becomes simply adding the model's width and the animation's
+contribution.</p>
+
+```haskell
+view :: SlideState -> React Slide ()
+view slid = div_ [ class_ "slider-container" ] $ do
+    animWidth <- getAnimationState
+    let inherentWidth = case slid of
+            Open -> paneWidth
+            Closed -> 0
+
+    div_ $ button_ [ onClick (const (Just Toggle)) ] "toggle"
+
+    -- yep, I'm planning to make styles easier to work with
+    div_ [ style_ (Dict [("width", Num (inherentWidth + animWidth))]) ] ""
+```
+
+<h3>Additive Animations</h3>
+
+<p>
+We need to consider what happens when the user modifies an animation mid-flight. Most of the time we <em>don't</em> want to cancel the running animation because the user will see a jump. Rather, our default should be to use <em>additive animations</em>.
+</p>
+
+<p>
+Here's an example to show what I mean. Each time a dot flashes the pointer in the center animates to its position. Problem is, that animation takes 2000 ms, but they fire every 800 ms. There are two or three animations running at any time.
+</p>
+
+<p>
+The system takes the state of all the animations and, yep, <em>adds</em> then together. I'm going to handwave <a href="http://ronnqvi.st/multiple-animations/">the details</a>, but as long as you update your model state immediately, then animate the transition between states, things <em>just kind of work</em>.
+</p>
+
+<p>
+By the magic of additive animation, the cursor smoothly veers to its appointed dot, but never quite gets there.
+</p>
+
+<div id="circles-demo" class="demo"></div>
+
+<p>
+Be sure to click the targets to see where the cursor goes!
+</p>
+
+<h3>Chaining Multiple Animations</h3>
+
+<p>
+Here's a slightly more complicated example built on the same principles. Be sure to toggle mid-animation to see how it responds smoothly.
+</p>
+
+<div id="chain-demo" class="demo"></div>
+
+<table>
+    <thead>
+    <tr>
+        <th class="time">Time</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tr>
+        <td class="time"><pre>[0,       2/3]    </pre></td>
+        <td>width change</td>
+    </tr>
+    <tr>
+        <td class="time"><pre>    [1/3,       1]</pre></td>
+        <td>height changes</td>
+    </tr>
+    <tr>
+        <td class="time"><pre>[0,             1]</pre></td>
+        <td>color changes</td>
+    </tr>
+</table>
+
+<p>
+Note that the model hasn't changed at all form the previous example - `PageState`{.haskell} is still just `Open | Closed`{.haskell}. In my next article I'll go into more detail on how to write chained animations like this.
+</p>
+
+<h2><del>Composing and Cancelling Animations</del></h2>
+
+<p>
+Animations don't live in isolation. We must have a good story for cancelling and altering them mid-flight. For example, what does the animation look like when our user retoggles (triggering an animation in the opposite direction) halfway through a toggle?
+</p>
+
+<p>This article is <em>far</em> too long already, so consider this a teaser for next time.</p>
+
+<p>I'm also interested in talking about:</p>
+
+<ul>
+    <li>Handling interactions between animations</li>
+    <li>Animation groups</li>
+    <li>Animations along paths</li>
+    <li>Keyframes</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>
+Thanks for reading this far! Remember:
+</p>
+
+<ul>
+    <li>Model state is the single source of truth!</li>
+    <li>Layer on animations along the vector `oldState - newState`</li>
+    <li>Use additive animations</li>
+</ul>
+
+<p>
+Please send me any relevant suggestions, experiences, papers, contributions, etc. I'm actively working on this stuff for React-Haskell (<a href="http://hackage.haskell.org/package/react-haskell">hackage</a>, <a href="https://github.com/joelburget/react-haskell">github</a>) and would appreciate any help / wisdom.
+</p>
+
+<p>
+The source for all of the examples is also <a href="https://github.com/joelburget/react-haskell/tree/master/example/src">on github</a>.
+</p>
