@@ -74,7 +74,7 @@ transition :: SimpleState -> Transition -> (SimpleState, [AnimConfig Simple])
 -- set the input box to the new value
 transition state (Typing str) = (state{typing=str}, [])
 
--- push our figher into the ring!
+-- push our fighter into the ring!
 transition SimpleState{fighter1, typing} Enter =
     (SimpleState typing fighter1 "", [])
 ```
@@ -358,7 +358,7 @@ Here's an example to show what I mean. Each time a dot flashes the pointer in th
 </p>
 
 <p>
-The system takes the state of all the animations and, yep, <em>adds</em> then together. I'm going to handwave <a href="http://ronnqvi.st/multiple-animations/">the details</a>, but as long as you update your model state immediately, then animate the transition between states, things <em>just kind of work</em>.
+The system takes the state of all the animations and, yep, <em>adds</em> them together. I'm going to handwave <a href="http://ronnqvi.st/multiple-animations/">the details</a>, but as long as you update your model state immediately, then animate the transition between states, things <em>just kind of work</em>.
 </p>
 
 <p>

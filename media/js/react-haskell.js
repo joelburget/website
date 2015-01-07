@@ -377,23 +377,23 @@ function js_cancelRaf(id) {
     for (var i=0; i<4; ++i) {
       if (typeof arguments[i] !== "number" || isNaN(arguments[i]) || !isFinite(arguments[i])) {
         throw new Error("BezierEasing arguments should be integers.");
-      } 
+      }
     }
     if (mX1 < 0 || mX1 > 1 || mX2 < 0 || mX2 > 1) {
       throw new Error("BezierEasing x values must be in [0, 1] range.");
     }
 
     var mSampleValues = float32ArraySupported ? new Float32Array(kSplineTableSize) : new Array(kSplineTableSize);
-   
+
     function A (aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1; }
     function B (aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
     function C (aA1)      { return 3.0 * aA1; }
-   
+
     // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
     function calcBezier (aT, aA1, aA2) {
       return ((A(aA1, aA2)*aT + B(aA1, aA2))*aT + C(aA1))*aT;
     }
-   
+
     // Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
     function getSlope (aT, aA1, aA2) {
       return 3.0 * A(aA1, aA2)*aT*aT + 2.0 * B(aA1, aA2) * aT + C(aA1);
@@ -3562,7 +3562,7 @@ var _0/* any */ = function(_1, _2){
 }), _9r/* lvl11 */ = new T(function(){
   return [0, "height"];
 }), _9s/* lvl12 */ = new T(function(){
-  return [0, "background-color"];
+  return [0, "backgroundColor"];
 }), _9t/* a6 */ = new T(function(){
   return B(unCStr("toggle"));
 }), _9u/* a7 */ = [2, _9t/* Chain.a6 */], _9v/* a8 */ = [1, _9u/* Chain.a7 */, _b/* GHC.Types.[] */], _9w/* button_1 */ = new T(function(){
@@ -4586,10 +4586,10 @@ var _0/* any */ = function(_1, _2){
   return B(_kE/* Easing.easingClass_$sxs */(_9e/* React.Types.Linear */, _kA/* Easing.easingClass5 */));
 }), _kI/* easingClass3 */ = new T(function(){
   return B(_jQ/* Easing.$sfromList */(_kH/* Easing.easingClass4 */));
-}), _kJ/* easingClass2 */ = [0, _kI/* Easing.easingClass3 */], _kK/* Closed */ = 1, _kL/* easings */ = [1, _9e/* React.Types.Linear */, _kA/* Easing.easingClass5 */], _kM/* easingClass27 */ = [0, _kK/* Easing.Closed */, _kL/* Easing.easings */], _kN/* Open */ = 0, _kO/* lvl23 */ = new T(function(){
+}), _kJ/* easingClass2 */ = [0, _kI/* Easing.easingClass3 */], _kK/* Closed */ = 1, _kL/* easings */ = [1, _9e/* React.Types.Linear */, _kA/* Easing.easingClass5 */], _kM/* easingClass27 */ = [0, _kK/* Easing.Closed */, _kL/* Easing.easings */], _kN/* Open */ = 0, _kO/* lvl26 */ = new T(function(){
   return B(unCStr("Map.!: given key is not an element in the map"));
-}), _kP/* lvl24 */ = new T(function(){
-  return B(err(_kO/* Easing.lvl23 */));
+}), _kP/* lvl27 */ = new T(function(){
+  return B(err(_kO/* Easing.lvl26 */));
 }), _kQ/* $s!1 */ = function(_kR, _kS){
   while(1){
     var _kT = E(_kS);
@@ -4679,7 +4679,7 @@ var _0/* any */ = function(_1, _2){
         }
       }
     }else{
-      return E(_kP/* Easing.lvl24 */);
+      return E(_kP/* Easing.lvl27 */);
     }
   }
 }, _la/* EasingMap */ = function(_lb){
@@ -4788,548 +4788,610 @@ var _0/* any */ = function(_1, _2){
   return B(unCStr("EaseInSine"));
 }), _mh/* $fShowEasing7 */ = new T(function(){
   return B(unCStr("EaseBezier "));
-}), _mi/* $fShowEasing8 */ = [0, 11], _mj/* $fShowDouble3 */ = [0, 45], _mk/* $w$sshowSignedFloat */ = function(_ml, _mm, _mn){
-  var _mo = function(_mp){
-    var _mq = new T(function(){
-      return B(A(_ml,[[0,  -_mn]]));
+}), _mi/* $fShowEasing8 */ = [0, 11], _mj/* lvl6 */ = new T(function(){
+  return [0, "EaseBezier 0.5 0.0 0.8 0.8"];
+}), _mk/* lvl7 */ = new T(function(){
+  return [0, "EaseBezier (--0.5) (-0.0) (--0.8) (--0.8)"];
+}), _ml/* $w$j */ = function(_mm){
+  var _mn = strEq(_mm, E(_mk/* Easing.lvl7 */)[1]), _mo = _mn;
+  if(!E(_mo)){
+    return new F(function(){return fromJSStr(_mm);});
+  }else{
+    return new F(function(){return fromJSStr(E(_mj/* Easing.lvl6 */)[1]);});
+  }
+}, _mp/* $fShowDouble3 */ = [0, 45], _mq/* $w$sshowSignedFloat */ = function(_mr, _ms, _mt){
+  var _mu = function(_mv){
+    var _mw = new T(function(){
+      return B(A(_mr,[[0,  -_mt]]));
 });
-    return E(_mm)[1]<=6 ? function(_mr){
-      return [1, _mj/* GHC.Float.$fShowDouble3 */, new T(function(){
-        return B(A(_mq,[_mr]));
+    return E(_ms)[1]<=6 ? function(_mx){
+      return [1, _mp/* GHC.Float.$fShowDouble3 */, new T(function(){
+        return B(A(_mw,[_mx]));
 })];
-    } : function(_ms){
-      return [1, _8E/* GHC.Show.shows13 */, [1, _mj/* GHC.Float.$fShowDouble3 */, new T(function(){
-        return B(A(_mq,[[1, _8x/* GHC.Show.shows12 */, _ms]]));
+    } : function(_my){
+      return [1, _8E/* GHC.Show.shows13 */, [1, _mp/* GHC.Float.$fShowDouble3 */, new T(function(){
+        return B(A(_mw,[[1, _8x/* GHC.Show.shows12 */, _my]]));
 })]];
     };
   };
-  if(_mn>=0){
-    var _mt = isDoubleNegativeZero(_mn), _mu = _mt;
-    return E(_mu)==0 ? B(A(_ml,[[0, _mn]])) : B(_mo(_));
+  if(_mt>=0){
+    var _mz = isDoubleNegativeZero(_mt), _mA = _mz;
+    return E(_mA)==0 ? B(A(_mr,[[0, _mt]])) : B(_mu(_));
   }else{
-    return new F(function(){return _mo(_);});
+    return new F(function(){return _mu(_);});
   }
-}, _mv/* a13 */ = [0, 0], _mw/* a31 */ = [0, 220], _mx/* a32 */ = [0, 161], _my/* a33 */ = [0, 85], _mz/* a34 */ = [0, 51], _mA/* a35 */ = [0, 175], _mB/* a36 */ = [0, 245], _mC/* a38 */ = [0, _b/* GHC.Types.[] */, _r/* GHC.Tuple.() */], _mD/* a39 */ = function(_mE){
-  return E(_mC/* Easing.a38 */);
-}, _mF/* a5 */ = [0, -20], _mG/* y_3 */ = [0, 121], _mH/* y_2 */ = [1, _mG/* React.Attrs.y_3 */, _b/* GHC.Types.[] */], _mI/* y_1 */ = new T(function(){
-  return [0, toJSStr(_mH/* React.Attrs.y_2 */)];
-}), _mJ/* lvl10 */ = [0, _mI/* React.Attrs.y_1 */, _mF/* Easing.a5 */], _mK/* a6 */ = [0, -7.5], _mL/* x_3 */ = [0, 120], _mM/* x_2 */ = [1, _mL/* React.Attrs.x_3 */, _b/* GHC.Types.[] */], _mN/* x_1 */ = new T(function(){
-  return [0, toJSStr(_mM/* React.Attrs.x_2 */)];
-}), _mO/* lvl11 */ = [0, _mN/* React.Attrs.x_1 */, _mK/* Easing.a6 */], _mP/* a7 */ = [0, 30], _mQ/* lvl12 */ = [0, _em/* React.Attrs.height_1 */, _mP/* Easing.a7 */], _mR/* a3 */ = [0, 40], _mS/* lvl13 */ = [0, _ep/* React.Attrs.width_1 */, _mR/* Easing.a3 */], _mT/* a8 */ = [0, 60], _mU/* lvl14 */ = [0, _mI/* React.Attrs.y_1 */, _mT/* Easing.a8 */], _mV/* a9 */ = [0, 5], _mW/* lvl15 */ = [0, _mN/* React.Attrs.x_1 */, _mV/* Easing.a9 */], _mX/* lvl16 */ = [0, _ep/* React.Attrs.width_1 */, _mP/* Easing.a7 */], _mY/* a10 */ = [0, -10], _mZ/* lvl17 */ = [0, _mI/* React.Attrs.y_1 */, _mY/* Easing.a10 */], _n0/* a11 */ = [0, -15], _n1/* lvl18 */ = [0, _mN/* React.Attrs.x_1 */, _n0/* Easing.a11 */], _n2/* a4 */ = [0, 15], _n3/* lvl19 */ = [0, _mN/* React.Attrs.x_1 */, _n2/* Easing.a4 */], _n4/* lvl21 */ = [0, _mI/* React.Attrs.y_1 */, _mv/* Easing.a13 */], _n5/* lvl22 */ = [0, _mN/* React.Attrs.x_1 */, _mv/* Easing.a13 */], _n6/* a37 */ = new T(function(){
-  return [1, toJSStr(B(_8X/* React.Anim.$w$cshow */(_my/* Easing.a33 */, _mx/* Easing.a32 */, _mw/* Easing.a31 */)))];
-}), _n7/* lvl25 */ = [0, _dK/* React.Attrs.fill_1 */, _n6/* Easing.a37 */], _n8/* a12 */ = [0, 2], _n9/* lvl20 */ = [0, _em/* React.Attrs.height_1 */, _n8/* Easing.a12 */], _na/* lvl26 */ = [1, _n7/* Easing.lvl25 */, _b/* GHC.Types.[] */], _nb/* lvl27 */ = [1, _n9/* Easing.lvl20 */, _na/* Easing.lvl26 */], _nc/* lvl37 */ = new T(function(){
+}, _mB/* drop_drop# */ = function(_mC, _mD){
+  while(1){
+    var _mE = E(_mC);
+    if(!_mE){
+      return E(_mD);
+    }else{
+      var _mF = E(_mD);
+      if(!_mF[0]){
+        return [0];
+      }else{
+        _mC = _mE-1|0;
+        _mD = _mF[2];
+        continue;
+      }
+    }
+  }
+}, _mG/* eqString */ = function(_mH, _mI){
+  while(1){
+    var _mJ = E(_mH);
+    if(!_mJ[0]){
+      return E(_mI)[0]==0 ? true : false;
+    }else{
+      var _mK = E(_mI);
+      if(!_mK[0]){
+        return false;
+      }else{
+        if(E(_mJ[1])[1]!=E(_mK[1])[1]){
+          return false;
+        }else{
+          _mH = _mJ[2];
+          _mI = _mK[2];
+          continue;
+        }
+      }
+    }
+  }
+}, _mL/* lvl25 */ = new T(function(){
+  return B(unCStr("--"));
+}), _mM/* shows24 */ = [0, 0], _mN/* take_unsafe_UInt */ = function(_mO, _mP){
+  var _mQ = E(_mO);
+  if(!_mQ){
+    return [0];
+  }else{
+    var _mR = E(_mP);
+    return _mR[0]==0 ? [0] : [1, _mR[1], new T(function(){
+      return B(_mN/* GHC.List.take_unsafe_UInt */(_mQ-1|0, _mR[2]));
+})];
+  }
+}, _mS/* $w$ssafeShow */ = function(_mT){
+  var _mU = B(A(_mq/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mM/* GHC.Show.shows24 */, _mT, _b/* GHC.Types.[] */]));
+  return !B(_mG/* GHC.Base.eqString */(B(_mN/* GHC.List.take_unsafe_UInt */(2, _mU)), _mL/* Easing.lvl25 */)) ? E(_mU) : B(_mB/* GHC.List.drop_drop# */(2, _mU));
+}, _mV/* a13 */ = [0, 0], _mW/* a31 */ = [0, 220], _mX/* a32 */ = [0, 161], _mY/* a33 */ = [0, 85], _mZ/* a34 */ = [0, 51], _n0/* a35 */ = [0, 175], _n1/* a36 */ = [0, 245], _n2/* a38 */ = [0, _b/* GHC.Types.[] */, _r/* GHC.Tuple.() */], _n3/* a39 */ = function(_n4){
+  return E(_n2/* Easing.a38 */);
+}, _n5/* a3 */ = [0, 40], _n6/* lvl10 */ = [0, _em/* React.Attrs.height_1 */, _n5/* Easing.a3 */], _n7/* a4 */ = [0, 15], _n8/* lvl11 */ = [0, _ep/* React.Attrs.width_1 */, _n7/* Easing.a4 */], _n9/* a5 */ = [0, -20], _na/* y_3 */ = [0, 121], _nb/* y_2 */ = [1, _na/* React.Attrs.y_3 */, _b/* GHC.Types.[] */], _nc/* y_1 */ = new T(function(){
+  return [0, toJSStr(_nb/* React.Attrs.y_2 */)];
+}), _nd/* lvl12 */ = [0, _nc/* React.Attrs.y_1 */, _n9/* Easing.a5 */], _ne/* a6 */ = [0, -7.5], _nf/* x_3 */ = [0, 120], _ng/* x_2 */ = [1, _nf/* React.Attrs.x_3 */, _b/* GHC.Types.[] */], _nh/* x_1 */ = new T(function(){
+  return [0, toJSStr(_ng/* React.Attrs.x_2 */)];
+}), _ni/* lvl13 */ = [0, _nh/* React.Attrs.x_1 */, _ne/* Easing.a6 */], _nj/* a7 */ = [0, 30], _nk/* lvl14 */ = [0, _em/* React.Attrs.height_1 */, _nj/* Easing.a7 */], _nl/* lvl15 */ = [0, _ep/* React.Attrs.width_1 */, _n5/* Easing.a3 */], _nm/* a8 */ = [0, 60], _nn/* lvl16 */ = [0, _nc/* React.Attrs.y_1 */, _nm/* Easing.a8 */], _no/* a9 */ = [0, 5], _np/* lvl17 */ = [0, _nh/* React.Attrs.x_1 */, _no/* Easing.a9 */], _nq/* lvl18 */ = [0, _ep/* React.Attrs.width_1 */, _nj/* Easing.a7 */], _nr/* a10 */ = [0, -10], _ns/* lvl19 */ = [0, _nc/* React.Attrs.y_1 */, _nr/* Easing.a10 */], _nt/* a11 */ = [0, -15], _nu/* lvl20 */ = [0, _nh/* React.Attrs.x_1 */, _nt/* Easing.a11 */], _nv/* lvl21 */ = [0, _nh/* React.Attrs.x_1 */, _n7/* Easing.a4 */], _nw/* lvl23 */ = [0, _nc/* React.Attrs.y_1 */, _mV/* Easing.a13 */], _nx/* lvl24 */ = [0, _nh/* React.Attrs.x_1 */, _mV/* Easing.a13 */], _ny/* a37 */ = new T(function(){
+  return [1, toJSStr(B(_8X/* React.Anim.$w$cshow */(_mY/* Easing.a33 */, _mX/* Easing.a32 */, _mW/* Easing.a31 */)))];
+}), _nz/* lvl28 */ = [0, _dK/* React.Attrs.fill_1 */, _ny/* Easing.a37 */], _nA/* a12 */ = [0, 2], _nB/* lvl22 */ = [0, _em/* React.Attrs.height_1 */, _nA/* Easing.a12 */], _nC/* lvl29 */ = [1, _nz/* Easing.lvl28 */, _b/* GHC.Types.[] */], _nD/* lvl30 */ = [1, _nB/* Easing.lvl22 */, _nC/* Easing.lvl29 */], _nE/* lvl40 */ = new T(function(){
   return [1, "button-box"];
-}), _nd/* lvl38 */ = [0, _9x/* React.Attrs.class_1 */, _nc/* Easing.lvl37 */], _ne/* lvl39 */ = [1, _nd/* Easing.lvl38 */, _b/* GHC.Types.[] */], _nf/* ds1 */ = new T(function(){
-  var _ng = B(_94/* React.Types.$wseparateAttrs */(_ne/* Easing.lvl39 */));
-  return [0, _ng[1], _ng[2]];
-}), _nh/* lvl40 */ = new T(function(){
-  return E(E(_nf/* Easing.ds1 */)[2]);
-}), _ni/* lvl41 */ = new T(function(){
-  return E(E(_nf/* Easing.ds1 */)[1]);
-}), _nj/* a28 */ = new T(function(){
+}), _nF/* lvl41 */ = [0, _9x/* React.Attrs.class_1 */, _nE/* Easing.lvl40 */], _nG/* lvl42 */ = [1, _nF/* Easing.lvl41 */, _b/* GHC.Types.[] */], _nH/* ds1 */ = new T(function(){
+  var _nI = B(_94/* React.Types.$wseparateAttrs */(_nG/* Easing.lvl42 */));
+  return [0, _nI[1], _nI[2]];
+}), _nJ/* lvl43 */ = new T(function(){
+  return E(E(_nH/* Easing.ds1 */)[2]);
+}), _nK/* lvl44 */ = new T(function(){
+  return E(E(_nH/* Easing.ds1 */)[1]);
+}), _nL/* a28 */ = new T(function(){
   return B(unCStr("toggle easing"));
-}), _nk/* a29 */ = [2, _nj/* Easing.a28 */], _nl/* a30 */ = [1, _nk/* Easing.a29 */, _b/* GHC.Types.[] */], _nm/* lvl28 */ = new T(function(){
+}), _nM/* a29 */ = [2, _nL/* Easing.a28 */], _nN/* a30 */ = [1, _nM/* Easing.a29 */, _b/* GHC.Types.[] */], _nO/* lvl31 */ = new T(function(){
   return [1, "btn btn--m btn--gray-border"];
-}), _nn/* lvl29 */ = [0, _9x/* React.Attrs.class_1 */, _nm/* Easing.lvl28 */], _no/* Toggle */ = 0, _np/* x */ = [1, _no/* Easing.Toggle */], _nq/* lvl30 */ = function(_nr){
-  var _ns = js_parseMouseEvent(E(_nr)[1]), _nt = _ns, _nu = E(_nt);
-  return E(_np/* Easing.x */);
-}, _nv/* lvl31 */ = [0, _nq/* Easing.lvl30 */, _9A/* React.Types.ClickEvt */], _nw/* lvl32 */ = [1, _nv/* Easing.lvl31 */], _nx/* lvl33 */ = [1, _nw/* Easing.lvl32 */, _b/* GHC.Types.[] */], _ny/* lvl34 */ = [1, _nn/* Easing.lvl29 */, _nx/* Easing.lvl33 */], _nz/* ds */ = new T(function(){
-  var _nA = B(_94/* React.Types.$wseparateAttrs */(_ny/* Easing.lvl34 */));
-  return [0, _nA[1], _nA[2]];
-}), _nB/* lvl35 */ = new T(function(){
-  return E(E(_nz/* Easing.ds */)[2]);
-}), _nC/* lvl36 */ = new T(function(){
-  return E(E(_nz/* Easing.ds */)[1]);
-}), _nD/* lvl42 */ = [0, _9w/* React.Elements.button_1 */, _nB/* Easing.lvl35 */, _nC/* Easing.lvl36 */, _nl/* Easing.a30 */], _nE/* lvl43 */ = [1, _nD/* Easing.lvl42 */, _b/* GHC.Types.[] */], _nF/* lvl44 */ = [0, _9k/* React.Elements.div_1 */, _nh/* Easing.lvl40 */, _ni/* Easing.lvl41 */, _nE/* Easing.lvl43 */], _nG/* lvl45 */ = [1, _nF/* Easing.lvl44 */, _b/* GHC.Types.[] */], _nH/* a25 */ = new T(function(){
+}), _nP/* lvl32 */ = [0, _9x/* React.Attrs.class_1 */, _nO/* Easing.lvl31 */], _nQ/* Toggle */ = 0, _nR/* x */ = [1, _nQ/* Easing.Toggle */], _nS/* lvl33 */ = function(_nT){
+  var _nU = js_parseMouseEvent(E(_nT)[1]), _nV = _nU, _nW = E(_nV);
+  return E(_nR/* Easing.x */);
+}, _nX/* lvl34 */ = [0, _nS/* Easing.lvl33 */, _9A/* React.Types.ClickEvt */], _nY/* lvl35 */ = [1, _nX/* Easing.lvl34 */], _nZ/* lvl36 */ = [1, _nY/* Easing.lvl35 */, _b/* GHC.Types.[] */], _o0/* lvl37 */ = [1, _nP/* Easing.lvl32 */, _nZ/* Easing.lvl36 */], _o1/* ds */ = new T(function(){
+  var _o2 = B(_94/* React.Types.$wseparateAttrs */(_o0/* Easing.lvl37 */));
+  return [0, _o2[1], _o2[2]];
+}), _o3/* lvl38 */ = new T(function(){
+  return E(E(_o1/* Easing.ds */)[2]);
+}), _o4/* lvl39 */ = new T(function(){
+  return E(E(_o1/* Easing.ds */)[1]);
+}), _o5/* lvl45 */ = [0, _9w/* React.Elements.button_1 */, _o3/* Easing.lvl38 */, _o4/* Easing.lvl39 */, _nN/* Easing.a30 */], _o6/* lvl46 */ = [1, _o5/* Easing.lvl45 */, _b/* GHC.Types.[] */], _o7/* lvl47 */ = [0, _9k/* React.Elements.div_1 */, _nJ/* Easing.lvl43 */, _nK/* Easing.lvl44 */, _o6/* Easing.lvl46 */], _o8/* lvl48 */ = [1, _o7/* Easing.lvl47 */, _b/* GHC.Types.[] */], _o9/* a25 */ = new T(function(){
   return [1, "easings"];
-}), _nI/* a26 */ = [0, _9x/* React.Attrs.class_1 */, _nH/* Easing.a25 */], _nJ/* a27 */ = [1, _nI/* Easing.a26 */, _b/* GHC.Types.[] */], _nK/* ds2 */ = new T(function(){
-  var _nL = B(_94/* React.Types.$wseparateAttrs */(_nJ/* Easing.a27 */));
-  return [0, _nL[1], _nL[2]];
-}), _nM/* lvl46 */ = new T(function(){
-  return E(E(_nK/* Easing.ds2 */)[2]);
-}), _nN/* lvl47 */ = new T(function(){
-  return E(E(_nK/* Easing.ds2 */)[1]);
-}), _nO/* lvl48 */ = [0, 1000], _nP/* a14 */ = [0, 100], _nQ/* a15 */ = [0, _ep/* React.Attrs.width_1 */, _nP/* Easing.a14 */], _nR/* a16 */ = [0, _em/* React.Attrs.height_1 */, _nP/* Easing.a14 */], _nS/* a17 */ = new T(function(){
+}), _oa/* a26 */ = [0, _9x/* React.Attrs.class_1 */, _o9/* Easing.a25 */], _ob/* a27 */ = [1, _oa/* Easing.a26 */, _b/* GHC.Types.[] */], _oc/* ds2 */ = new T(function(){
+  var _od = B(_94/* React.Types.$wseparateAttrs */(_ob/* Easing.a27 */));
+  return [0, _od[1], _od[2]];
+}), _oe/* lvl49 */ = new T(function(){
+  return E(E(_oc/* Easing.ds2 */)[2]);
+}), _of/* lvl50 */ = new T(function(){
+  return E(E(_oc/* Easing.ds2 */)[1]);
+}), _og/* lvl51 */ = [0, 1000], _oh/* a14 */ = [0, 100], _oi/* a15 */ = [0, _ep/* React.Attrs.width_1 */, _oh/* Easing.a14 */], _oj/* a16 */ = [0, _em/* React.Attrs.height_1 */, _oh/* Easing.a14 */], _ok/* a17 */ = new T(function(){
   return [1, "0 0 100 100"];
-}), _nT/* a18 */ = [0, _ei/* React.Attrs.viewBox_1 */, _nS/* Easing.a17 */], _nU/* a19 */ = [1, _nT/* Easing.a18 */, _b/* GHC.Types.[] */], _nV/* a20 */ = [1, _nR/* Easing.a16 */, _nU/* Easing.a19 */], _nW/* a21 */ = [1, _nQ/* Easing.a15 */, _nV/* Easing.a20 */], _nX/* ds3 */ = new T(function(){
-  var _nY = B(_94/* React.Types.$wseparateAttrs */(_nW/* Easing.a21 */));
-  return [0, _nY[1], _nY[2]];
-}), _nZ/* lvl49 */ = new T(function(){
-  return E(E(_nX/* Easing.ds3 */)[2]);
-}), _o0/* lvl50 */ = new T(function(){
-  return E(E(_nX/* Easing.ds3 */)[1]);
-}), _o1/* a */ = new T(function(){
+}), _ol/* a18 */ = [0, _ei/* React.Attrs.viewBox_1 */, _ok/* Easing.a17 */], _om/* a19 */ = [1, _ol/* Easing.a18 */, _b/* GHC.Types.[] */], _on/* a20 */ = [1, _oj/* Easing.a16 */, _om/* Easing.a19 */], _oo/* a21 */ = [1, _oi/* Easing.a15 */, _on/* Easing.a20 */], _op/* ds3 */ = new T(function(){
+  var _oq = B(_94/* React.Types.$wseparateAttrs */(_oo/* Easing.a21 */));
+  return [0, _oq[1], _oq[2]];
+}), _or/* lvl52 */ = new T(function(){
+  return E(E(_op/* Easing.ds3 */)[2]);
+}), _os/* lvl53 */ = new T(function(){
+  return E(E(_op/* Easing.ds3 */)[1]);
+}), _ot/* a */ = new T(function(){
   return [1, "caption"];
-}), _o2/* a1 */ = [0, _9x/* React.Attrs.class_1 */, _o1/* Easing.a */], _o3/* a2 */ = [1, _o2/* Easing.a1 */, _b/* GHC.Types.[] */], _o4/* ds4 */ = new T(function(){
-  var _o5 = B(_94/* React.Types.$wseparateAttrs */(_o3/* Easing.a2 */));
-  return [0, _o5[1], _o5[2]];
-}), _o6/* lvl51 */ = new T(function(){
-  return E(E(_o4/* Easing.ds4 */)[2]);
-}), _o7/* lvl52 */ = new T(function(){
-  return E(E(_o4/* Easing.ds4 */)[1]);
-}), _o8/* a22 */ = new T(function(){
+}), _ou/* a1 */ = [0, _9x/* React.Attrs.class_1 */, _ot/* Easing.a */], _ov/* a2 */ = [1, _ou/* Easing.a1 */, _b/* GHC.Types.[] */], _ow/* ds4 */ = new T(function(){
+  var _ox = B(_94/* React.Types.$wseparateAttrs */(_ov/* Easing.a2 */));
+  return [0, _ox[1], _ox[2]];
+}), _oy/* lvl54 */ = new T(function(){
+  return E(E(_ow/* Easing.ds4 */)[2]);
+}), _oz/* lvl55 */ = new T(function(){
+  return E(E(_ow/* Easing.ds4 */)[1]);
+}), _oA/* a22 */ = new T(function(){
   return [1, "box"];
-}), _o9/* a23 */ = [0, _9x/* React.Attrs.class_1 */, _o8/* Easing.a22 */], _oa/* a24 */ = [1, _o9/* Easing.a23 */, _b/* GHC.Types.[] */], _ob/* ds5 */ = new T(function(){
-  var _oc = B(_94/* React.Types.$wseparateAttrs */(_oa/* Easing.a24 */));
-  return [0, _oc[1], _oc[2]];
-}), _od/* lvl53 */ = new T(function(){
-  return E(E(_ob/* Easing.ds5 */)[2]);
-}), _oe/* lvl54 */ = new T(function(){
-  return E(E(_ob/* Easing.ds5 */)[1]);
-}), _of/* lvl6 */ = [0, 41], _og/* lvl7 */ = [1, _of/* Easing.lvl6 */, _b/* GHC.Types.[] */], _oh/* lvl8 */ = [0, _em/* React.Attrs.height_1 */, _mR/* Easing.a3 */], _oi/* lvl9 */ = [0, _ep/* React.Attrs.width_1 */, _n2/* Easing.a4 */], _oj/* rect_1 */ = new T(function(){
+}), _oB/* a23 */ = [0, _9x/* React.Attrs.class_1 */, _oA/* Easing.a22 */], _oC/* a24 */ = [1, _oB/* Easing.a23 */, _b/* GHC.Types.[] */], _oD/* ds5 */ = new T(function(){
+  var _oE = B(_94/* React.Types.$wseparateAttrs */(_oC/* Easing.a24 */));
+  return [0, _oE[1], _oE[2]];
+}), _oF/* lvl56 */ = new T(function(){
+  return E(E(_oD/* Easing.ds5 */)[2]);
+}), _oG/* lvl57 */ = new T(function(){
+  return E(E(_oD/* Easing.ds5 */)[1]);
+}), _oH/* lvl8 */ = [0, 41], _oI/* lvl9 */ = [1, _oH/* Easing.lvl8 */, _b/* GHC.Types.[] */], _oJ/* rect_1 */ = new T(function(){
   return [0, "rect"];
-}), _ok/* showSpace1 */ = [0, 32], _ol/* shows24 */ = [0, 0], _om/* transform_1 */ = new T(function(){
+}), _oK/* showSpace1 */ = [0, 32], _oL/* transform_1 */ = new T(function(){
   return [0, "transform"];
-}), _on/* easingClass29 */ = function(_oo, _op){
-  var _oq = E(_oo), _or = new T(function(){
-    var _os = E(_op), _ot = _os[1];
+}), _oM/* easingClass29 */ = function(_oN, _oO){
+  var _oP = E(_oN), _oQ = new T(function(){
+    var _oR = E(_oO), _oS = _oR[1];
     return [0, new T(function(){
-      return B(_10/* GHC.Base.++ */(_nG/* Easing.lvl45 */, new T(function(){
-        return B(_10/* GHC.Base.++ */([1, [0, _9k/* React.Elements.div_1 */, _nM/* Easing.lvl46 */, _nN/* Easing.lvl47 */, new T(function(){
-          var _ou = function(_ov){
-            var _ow = E(_ov);
-            if(!_ow[0]){
-              return E(_mD/* Easing.a39 */);
+      return B(_10/* GHC.Base.++ */(_o8/* Easing.lvl48 */, new T(function(){
+        return B(_10/* GHC.Base.++ */([1, [0, _9k/* React.Elements.div_1 */, _oe/* Easing.lvl49 */, _of/* Easing.lvl50 */, new T(function(){
+          var _oT = function(_oU){
+            var _oV = E(_oU);
+            if(!_oV[0]){
+              return E(_n3/* Easing.a39 */);
             }else{
-              var _ox = _ow[1];
-              return function(_oy){
-                var _oz = new T(function(){
+              var _oW = _oV[1];
+              return function(_oX){
+                var _oY = new T(function(){
                   return B(A(new T(function(){
-                    return B(_ou(_ow[2]));
-}),[_oy]));
+                    return B(_oT(_oV[2]));
+}),[_oX]));
 });
                 return [0, new T(function(){
-                  return B(_10/* GHC.Base.++ */([1, [0, _9k/* React.Elements.div_1 */, _od/* Easing.lvl53 */, _oe/* Easing.lvl54 */, new T(function(){
-                    return B(_10/* GHC.Base.++ */([1, [0, _fe/* React.Elements.svg_1 */, _nZ/* Easing.lvl49 */, _o0/* Easing.lvl50 */, new T(function(){
-                      var _oA = new T(function(){
-                        if(!E(_oq[1])){
-                          var _oB = [0, 1+B(_kQ/* Easing.$s!1 */(_ox, _ot))[1]];
+                  return B(_10/* GHC.Base.++ */([1, [0, _9k/* React.Elements.div_1 */, _oF/* Easing.lvl56 */, _oG/* Easing.lvl57 */, new T(function(){
+                    return B(_10/* GHC.Base.++ */([1, [0, _fe/* React.Elements.svg_1 */, _or/* Easing.lvl52 */, _os/* Easing.lvl53 */, new T(function(){
+                      var _oZ = new T(function(){
+                        if(!E(_oP[1])){
+                          var _p0 = [0, 1+B(_kQ/* Easing.$s!1 */(_oW, _oS))[1]];
                         }else{
-                          var _oB = B(_kQ/* Easing.$s!1 */(_ox, _ot));
+                          var _p0 = B(_kQ/* Easing.$s!1 */(_oW, _oS));
                         }
-                        return _oB;
-}), _oC = new T(function(){
-                        var _oD = B(_94/* React.Types.$wseparateAttrs */([1, _n5/* Easing.lvl22 */, [1, _n4/* Easing.lvl21 */, [1, [0, _ep/* React.Attrs.width_1 */, new T(function(){
-                          var _oE = E(_oA)[1]*100;
-                          if(_oE>=0){
-                            var _oF = _oE<=1000 ? [0, _oE] : E(_nO/* Easing.lvl48 */);
+                        return _p0;
+}), _p1 = new T(function(){
+                        var _p2 = B(_94/* React.Types.$wseparateAttrs */([1, _nx/* Easing.lvl24 */, [1, _nw/* Easing.lvl23 */, [1, [0, _ep/* React.Attrs.width_1 */, new T(function(){
+                          var _p3 = E(_oZ)[1]*100;
+                          if(_p3>=0){
+                            var _p4 = _p3<=1000 ? [0, _p3] : E(_og/* Easing.lvl51 */);
                           }else{
-                            var _oF = E(_mv/* Easing.a13 */);
+                            var _p4 = E(_mV/* Easing.a13 */);
                           }
-                          var _oG = _oF, _oH = _oG, _oI = _oH;
-                          return _oI;
-})], _nb/* Easing.lvl27 */]]]));
-                        return [0, _oD[1], _oD[2]];
+                          var _p5 = _p4, _p6 = _p5, _p7 = _p6;
+                          return _p7;
+})], _nD/* Easing.lvl30 */]]]));
+                        return [0, _p2[1], _p2[2]];
 });
-                      return B(_10/* GHC.Base.++ */([1, [1, _oj/* React.Elements.rect_1 */, new T(function(){
-                        return E(E(_oC)[2]);
+                      return B(_10/* GHC.Base.++ */([1, [1, _oJ/* React.Elements.rect_1 */, new T(function(){
+                        return E(E(_p1)[2]);
 }), new T(function(){
-                        return E(E(_oC)[1]);
+                        return E(E(_p1)[1]);
 })], _b/* GHC.Types.[] */], new T(function(){
-                        var _oJ = new T(function(){
-                          var _oK = B(_94/* React.Types.$wseparateAttrs */([1, _n3/* Easing.lvl19 */, [1, [0, _mI/* React.Attrs.y_1 */, new T(function(){
-                            return [0, 5+10*(1-E(_oA)[1])];
-})], [1, _mX/* Easing.lvl16 */, [1, _oh/* Easing.lvl8 */, [1, _n7/* Easing.lvl25 */, [1, [0, _om/* React.Attrs.transform_1 */, new T(function(){
+                        var _p8 = new T(function(){
+                          var _p9 = B(_94/* React.Types.$wseparateAttrs */([1, _nv/* Easing.lvl21 */, [1, [0, _nc/* React.Attrs.y_1 */, new T(function(){
+                            return [0, 5+10*(1-E(_oZ)[1])];
+})], [1, _nq/* Easing.lvl18 */, [1, _n6/* Easing.lvl10 */, [1, _nz/* Easing.lvl28 */, [1, [0, _oL/* React.Attrs.transform_1 */, new T(function(){
                             return [1, toJSStr(B(unAppCStr("translate(0 ", new T(function(){
-                              return B(_10/* GHC.Base.++ */(B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _ol/* GHC.Show.shows24 */, E(_oA)[1], _b/* GHC.Types.[] */])), _og/* Easing.lvl7 */));
+                              return B(_10/* GHC.Base.++ */(B(_mS/* Easing.$w$ssafeShow */(E(_oZ)[1])), _oI/* Easing.lvl9 */));
 }))))];
 })], _b/* GHC.Types.[] */]]]]]]));
-                          return [0, _oK[1], _oK[2]];
+                          return [0, _p9[1], _p9[2]];
 });
-                        return B(_10/* GHC.Base.++ */([1, [1, _oj/* React.Elements.rect_1 */, new T(function(){
-                          return E(E(_oJ)[2]);
+                        return B(_10/* GHC.Base.++ */([1, [1, _oJ/* React.Elements.rect_1 */, new T(function(){
+                          return E(E(_p8)[2]);
 }), new T(function(){
-                          return E(E(_oJ)[1]);
+                          return E(E(_p8)[1]);
 })], _b/* GHC.Types.[] */], new T(function(){
-                          var _oL = new T(function(){
-                            var _oM = B(_94/* React.Types.$wseparateAttrs */([1, _n1/* Easing.lvl18 */, [1, _mZ/* Easing.lvl17 */, [1, _mX/* Easing.lvl16 */, [1, _mQ/* Easing.lvl12 */, [1, _n7/* Easing.lvl25 */, [1, [0, _om/* React.Attrs.transform_1 */, new T(function(){
+                          var _pa = new T(function(){
+                            var _pb = B(_94/* React.Types.$wseparateAttrs */([1, _nu/* Easing.lvl20 */, [1, _ns/* Easing.lvl19 */, [1, _nq/* Easing.lvl18 */, [1, _nk/* Easing.lvl14 */, [1, _nz/* Easing.lvl28 */, [1, [0, _oL/* React.Attrs.transform_1 */, new T(function(){
                               return [1, toJSStr(B(unAppCStr("translate(75 25) scale(", new T(function(){
-                                return B(_10/* GHC.Base.++ */(B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _ol/* GHC.Show.shows24 */, 1+0.5*E(_oA)[1], _b/* GHC.Types.[] */])), _og/* Easing.lvl7 */));
+                                return B(_10/* GHC.Base.++ */(B(_mS/* Easing.$w$ssafeShow */(1+0.5*E(_oZ)[1])), _oI/* Easing.lvl9 */));
 }))))];
 })], _b/* GHC.Types.[] */]]]]]]));
-                            return [0, _oM[1], _oM[2]];
+                            return [0, _pb[1], _pb[2]];
 });
-                          return B(_10/* GHC.Base.++ */([1, [1, _oj/* React.Elements.rect_1 */, new T(function(){
-                            return E(E(_oL)[2]);
+                          return B(_10/* GHC.Base.++ */([1, [1, _oJ/* React.Elements.rect_1 */, new T(function(){
+                            return E(E(_pa)[2]);
 }), new T(function(){
-                            return E(E(_oL)[1]);
+                            return E(E(_pa)[1]);
 })], _b/* GHC.Types.[] */], new T(function(){
-                            var _oN = new T(function(){
-                              var _oO = B(_94/* React.Types.$wseparateAttrs */([1, _mO/* Easing.lvl11 */, [1, _mJ/* Easing.lvl10 */, [1, _oi/* Easing.lvl9 */, [1, _oh/* Easing.lvl8 */, [1, _n7/* Easing.lvl25 */, [1, [0, _om/* React.Attrs.transform_1 */, new T(function(){
+                            var _pc = new T(function(){
+                              var _pd = B(_94/* React.Types.$wseparateAttrs */([1, _ni/* Easing.lvl13 */, [1, _nd/* Easing.lvl12 */, [1, _n8/* Easing.lvl11 */, [1, _n6/* Easing.lvl10 */, [1, _nz/* Easing.lvl28 */, [1, [0, _oL/* React.Attrs.transform_1 */, new T(function(){
                                 return [1, toJSStr(B(unAppCStr("translate(80 75) rotate(", new T(function(){
-                                  return B(_10/* GHC.Base.++ */(B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _ol/* GHC.Show.shows24 */, E(_oA)[1]*90, _b/* GHC.Types.[] */])), _og/* Easing.lvl7 */));
+                                  return B(_10/* GHC.Base.++ */(B(_mS/* Easing.$w$ssafeShow */(E(_oZ)[1]*90)), _oI/* Easing.lvl9 */));
 }))))];
 })], _b/* GHC.Types.[] */]]]]]]));
-                              return [0, _oO[1], _oO[2]];
-}), _oP = new T(function(){
-                              var _oQ = B(_94/* React.Types.$wseparateAttrs */([1, _mW/* Easing.lvl15 */, [1, _mU/* Easing.lvl14 */, [1, _mS/* Easing.lvl13 */, [1, _mQ/* Easing.lvl12 */, [1, [0, _dK/* React.Attrs.fill_1 */, new T(function(){
-                                var _oR = B(_8e/* React.Anim.$w$cinterpolate */(_9e/* React.Types.Linear */, _my/* Easing.a33 */, _mx/* Easing.a32 */, _mw/* Easing.a31 */, _mB/* Easing.a36 */, _mA/* Easing.a35 */, _mz/* Easing.a34 */, _oA));
-                                return [1, toJSStr(B(_8X/* React.Anim.$w$cshow */(_oR[1], _oR[2], _oR[3])))];
+                              return [0, _pd[1], _pd[2]];
+}), _pe = new T(function(){
+                              var _pf = B(_94/* React.Types.$wseparateAttrs */([1, _np/* Easing.lvl17 */, [1, _nn/* Easing.lvl16 */, [1, _nl/* Easing.lvl15 */, [1, _nk/* Easing.lvl14 */, [1, [0, _dK/* React.Attrs.fill_1 */, new T(function(){
+                                var _pg = B(_8e/* React.Anim.$w$cinterpolate */(_9e/* React.Types.Linear */, _mY/* Easing.a33 */, _mX/* Easing.a32 */, _mW/* Easing.a31 */, _n1/* Easing.a36 */, _n0/* Easing.a35 */, _mZ/* Easing.a34 */, _oZ));
+                                return [1, toJSStr(B(_8X/* React.Anim.$w$cshow */(_pg[1], _pg[2], _pg[3])))];
 })], _b/* GHC.Types.[] */]]]]]));
-                              return [0, _oQ[1], _oQ[2]];
+                              return [0, _pf[1], _pf[2]];
 });
-                            return B(_10/* GHC.Base.++ */([1, [1, _oj/* React.Elements.rect_1 */, new T(function(){
-                              return E(E(_oP)[2]);
+                            return B(_10/* GHC.Base.++ */([1, [1, _oJ/* React.Elements.rect_1 */, new T(function(){
+                              return E(E(_pe)[2]);
 }), new T(function(){
-                              return E(E(_oP)[1]);
-})], _b/* GHC.Types.[] */], [1, [1, _oj/* React.Elements.rect_1 */, new T(function(){
-                              return E(E(_oN)[2]);
+                              return E(E(_pe)[1]);
+})], _b/* GHC.Types.[] */], [1, [1, _oJ/* React.Elements.rect_1 */, new T(function(){
+                              return E(E(_pc)[2]);
 }), new T(function(){
-                              return E(E(_oN)[1]);
+                              return E(E(_pc)[1]);
 })], _b/* GHC.Types.[] */]));
 })));
 })));
 })));
-})], _b/* GHC.Types.[] */], [1, [0, _9k/* React.Elements.div_1 */, _o6/* Easing.lvl51 */, _o7/* Easing.lvl52 */, [1, [2, new T(function(){
-                      var _oS = E(_ox);
-                      switch(_oS[0]){
+})], _b/* GHC.Types.[] */], [1, [0, _9k/* React.Elements.div_1 */, _oy/* Easing.lvl54 */, _oz/* Easing.lvl55 */, [1, [2, new T(function(){
+                      var _ph = E(_oW);
+                      switch(_ph[0]){
                         case 0:
-                          var _oT = E(_mf/* React.Types.$fShowEasing46 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_mf/* React.Types.$fShowEasing46 */))));
                           break;
                         case 1:
-                          var _oT = E(_me/* React.Types.$fShowEasing44 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_me/* React.Types.$fShowEasing44 */))));
                           break;
                         case 2:
-                          var _oT = E(_md/* React.Types.$fShowEasing42 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_md/* React.Types.$fShowEasing42 */))));
                           break;
                         case 3:
-                          var _oT = E(_mc/* React.Types.$fShowEasing40 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_mc/* React.Types.$fShowEasing40 */))));
                           break;
                         case 4:
-                          var _oT = E(_ma/* React.Types.$fShowEasing38 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_ma/* React.Types.$fShowEasing38 */))));
                           break;
                         case 5:
-                          var _oT = E(_m9/* React.Types.$fShowEasing36 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m9/* React.Types.$fShowEasing36 */))));
                           break;
                         case 6:
-                          var _oT = E(_m8/* React.Types.$fShowEasing34 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m8/* React.Types.$fShowEasing34 */))));
                           break;
                         case 7:
-                          var _oT = E(_m7/* React.Types.$fShowEasing32 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m7/* React.Types.$fShowEasing32 */))));
                           break;
                         case 8:
-                          var _oT = E(_m6/* React.Types.$fShowEasing30 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m6/* React.Types.$fShowEasing30 */))));
                           break;
                         case 9:
-                          var _oT = E(_m5/* React.Types.$fShowEasing28 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m5/* React.Types.$fShowEasing28 */))));
                           break;
                         case 10:
-                          var _oT = E(_m4/* React.Types.$fShowEasing26 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m4/* React.Types.$fShowEasing26 */))));
                           break;
                         case 11:
-                          var _oT = E(_m3/* React.Types.$fShowEasing24 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m3/* React.Types.$fShowEasing24 */))));
                           break;
                         case 12:
-                          var _oT = E(_m2/* React.Types.$fShowEasing22 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m2/* React.Types.$fShowEasing22 */))));
                           break;
                         case 13:
-                          var _oT = E(_m1/* React.Types.$fShowEasing20 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m1/* React.Types.$fShowEasing20 */))));
                           break;
                         case 14:
-                          var _oT = E(_m0/* React.Types.$fShowEasing18 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_m0/* React.Types.$fShowEasing18 */))));
                           break;
                         case 15:
-                          var _oT = E(_lZ/* React.Types.$fShowEasing16 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_lZ/* React.Types.$fShowEasing16 */))));
                           break;
                         case 16:
-                          var _oT = E(_lY/* React.Types.$fShowEasing14 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_lY/* React.Types.$fShowEasing14 */))));
                           break;
                         case 17:
-                          var _oT = E(_lX/* React.Types.$fShowEasing12 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_lX/* React.Types.$fShowEasing12 */))));
                           break;
                         case 18:
-                          var _oT = E(_lW/* React.Types.$fShowEasing10 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_lW/* React.Types.$fShowEasing10 */))));
                           break;
                         case 19:
-                          var _oT = B(_10/* GHC.Base.++ */(_mh/* React.Types.$fShowEasing7 */, new T(function(){
-                            return B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_oS[1])[1], [1, _ok/* GHC.Show.showSpace1 */, new T(function(){
-                              return B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_oS[2])[1], [1, _ok/* GHC.Show.showSpace1 */, new T(function(){
-                                return B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_oS[3])[1], [1, _ok/* GHC.Show.showSpace1 */, new T(function(){
-                                  return B(A(_mk/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_oS[4])[1], _b/* GHC.Types.[] */]));
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(B(_10/* GHC.Base.++ */(_mh/* React.Types.$fShowEasing7 */, new T(function(){
+                            return B(A(_mq/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_ph[1])[1], [1, _oK/* GHC.Show.showSpace1 */, new T(function(){
+                              return B(A(_mq/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_ph[2])[1], [1, _oK/* GHC.Show.showSpace1 */, new T(function(){
+                                return B(A(_mq/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_ph[3])[1], [1, _oK/* GHC.Show.showSpace1 */, new T(function(){
+                                  return B(A(_mq/* GHC.Float.$w$sshowSignedFloat */,[_lT/* GHC.Float.$fShowDouble2 */, _mi/* React.Types.$fShowEasing8 */, E(_ph[4])[1], _b/* GHC.Types.[] */]));
 })]]));
 })]]));
 })]]));
-})));
+}))))));
                           break;
                         case 20:
-                          var _oT = E(_mg/* React.Types.$fShowEasing6 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_mg/* React.Types.$fShowEasing6 */))));
                           break;
                         default:
-                          var _oT = E(_mb/* React.Types.$fShowEasing4 */);
+                          var _pi = B(_ml/* Easing.$w$j */(toJSStr(E(_mb/* React.Types.$fShowEasing4 */))));
                       }
-                      return _oT;
+                      return _pi;
 })], _b/* GHC.Types.[] */]], _b/* GHC.Types.[] */]));
 })], _b/* GHC.Types.[] */], new T(function(){
-                    return E(E(_oz)[1]);
+                    return E(E(_oY)[1]);
 })));
 }), new T(function(){
-                  return E(E(_oz)[2]);
+                  return E(E(_oY)[2]);
 })];
               };
             }
           };
-          return E(B(A(_ou,[_oq[2], _os]))[1]);
-})], _b/* GHC.Types.[] */], _nG/* Easing.lvl45 */));
+          return E(B(A(_oT,[_oP[2], _oR]))[1]);
+})], _b/* GHC.Types.[] */], _o8/* Easing.lvl48 */));
 })));
 }), _r/* GHC.Tuple.() */];
 });
   return [0, [1, [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, new T(function(){
     return B(_10/* GHC.Base.++ */(_b/* GHC.Types.[] */, new T(function(){
-      return E(E(_or)[1]);
+      return E(E(_oQ)[1]);
 })));
 })], _b/* GHC.Types.[] */], new T(function(){
-    return E(E(_or)[2]);
+    return E(E(_oQ)[2]);
 })];
-}, _oU/* fail */ = function(_oV){
+}, _pj/* fail */ = function(_pk){
   return new F(function(){return _2a/* Control.Exception.Base.patError */("Main.hs:(17,9)-(25,21)|lambda");});
-}, _oW/* lvl */ = new T(function(){
-  return B(_oU/* Main.fail */(_));
-}), _oX/* simpleClass3 */ = new T(function(){
+}, _pl/* lvl */ = new T(function(){
+  return B(_pj/* Main.fail */(_));
+}), _pm/* simpleClass3 */ = new T(function(){
   return [0, toJSStr(_b/* GHC.Types.[] */)];
-}), _oY/* simpleClass4 */ = new T(function(){
+}), _pn/* simpleClass4 */ = new T(function(){
   return [0, "pit"];
-}), _oZ/* simpleClass5 */ = new T(function(){
+}), _po/* simpleClass5 */ = new T(function(){
   return [0, "little mac!"];
-}), _p0/* simpleClass2 */ = [0, _oZ/* Simple.simpleClass5 */, _oY/* Simple.simpleClass4 */, _oX/* Simple.simpleClass3 */], _p1/* simpleClass6 */ = function(_p2, _p3){
-  var _p4 = E(_p3);
-  if(!_p4[0]){
+}), _pp/* simpleClass2 */ = [0, _po/* Simple.simpleClass5 */, _pn/* Simple.simpleClass4 */, _pm/* Simple.simpleClass3 */], _pq/* simpleClass6 */ = function(_pr, _ps){
+  var _pt = E(_ps);
+  if(!_pt[0]){
     return [0, new T(function(){
-      var _p5 = E(_p2);
-      return [0, _p5[1], _p5[2], _p4[1]];
+      var _pu = E(_pr);
+      return [0, _pu[1], _pu[2], _pt[1]];
 }), _b/* GHC.Types.[] */];
   }else{
-    var _p6 = E(_p2);
-    return [0, [0, _p6[3], _p6[1], _oX/* Simple.simpleClass3 */], _b/* GHC.Types.[] */];
+    var _pv = E(_pr);
+    return [0, [0, _pv[3], _pv[1], _pm/* Simple.simpleClass3 */], _b/* GHC.Types.[] */];
   }
-}, _p7/* input_1 */ = new T(function(){
+}, _pw/* input_1 */ = new T(function(){
   return [0, "input"];
-}), _p8/* simpleClass13 */ = new T(function(){
+}), _px/* simpleClass13 */ = new T(function(){
   return B(unCStr("fighter 1: "));
-}), _p9/* simpleClass12 */ = [2, _p8/* Simple.simpleClass13 */], _pa/* simpleClass11 */ = [1, _p9/* Simple.simpleClass12 */, _b/* GHC.Types.[] */], _pb/* simpleClass16 */ = new T(function(){
+}), _py/* simpleClass12 */ = [2, _px/* Simple.simpleClass13 */], _pz/* simpleClass11 */ = [1, _py/* Simple.simpleClass12 */, _b/* GHC.Types.[] */], _pA/* simpleClass16 */ = new T(function(){
   return B(unCStr("send a new competitor into the ring: "));
-}), _pc/* simpleClass15 */ = [2, _pb/* Simple.simpleClass16 */], _pd/* simpleClass14 */ = [1, _pc/* Simple.simpleClass15 */, _b/* GHC.Types.[] */], _pe/* KeyPressEvt */ = 2, _pf/* onEnter1 */ = new T(function(){
+}), _pB/* simpleClass15 */ = [2, _pA/* Simple.simpleClass16 */], _pC/* simpleClass14 */ = [1, _pB/* Simple.simpleClass15 */, _b/* GHC.Types.[] */], _pD/* KeyPressEvt */ = 2, _pE/* onEnter1 */ = new T(function(){
   return [0, "Enter"];
-}), _pg/* $wonEnter */ = function(_ph){
-  return [0, function(_pi){
-    var _pj = js_parseKeyboardEvent(E(_pi)[1]), _pk = _pj, _pl = strEq(E(_pk)[3], E(_pf/* React.Events.onEnter1 */)[1]), _pm = _pl;
-    return E(_pm)==0 ? [0] : E([1, _ph]);
-  }, _pe/* React.Types.KeyPressEvt */];
-}, _pn/* Enter */ = [1], _po/* simpleClass19 */ = new T(function(){
-  return [1, B(_pg/* React.Events.$wonEnter */(_pn/* Simple.Enter */))];
-}), _pp/* simpleClass18 */ = [1, _po/* Simple.simpleClass19 */, _b/* GHC.Types.[] */], _pq/* ChangeEvt */ = 0, _pr/* simpleClass22 */ = function(_ps){
-  var _pt = js_parseChangeEvent(E(_ps)[1]), _pu = _pt;
-  return [1, [0, E(_pu)]];
-}, _pv/* simpleClass21 */ = [0, _pr/* Simple.simpleClass22 */, _pq/* React.Types.ChangeEvt */], _pw/* simpleClass20 */ = [1, _pv/* Simple.simpleClass21 */], _px/* simpleClass17 */ = [1, _pw/* Simple.simpleClass20 */, _pp/* Simple.simpleClass18 */], _py/* simpleClass10 */ = new T(function(){
+}), _pF/* $wonEnter */ = function(_pG){
+  return [0, function(_pH){
+    var _pI = js_parseKeyboardEvent(E(_pH)[1]), _pJ = _pI, _pK = strEq(E(_pJ)[3], E(_pE/* React.Events.onEnter1 */)[1]), _pL = _pK;
+    return E(_pL)==0 ? [0] : E([1, _pG]);
+  }, _pD/* React.Types.KeyPressEvt */];
+}, _pM/* Enter */ = [1], _pN/* simpleClass19 */ = new T(function(){
+  return [1, B(_pF/* React.Events.$wonEnter */(_pM/* Simple.Enter */))];
+}), _pO/* simpleClass18 */ = [1, _pN/* Simple.simpleClass19 */, _b/* GHC.Types.[] */], _pP/* ChangeEvt */ = 0, _pQ/* simpleClass22 */ = function(_pR){
+  var _pS = js_parseChangeEvent(E(_pR)[1]), _pT = _pS;
+  return [1, [0, E(_pT)]];
+}, _pU/* simpleClass21 */ = [0, _pQ/* Simple.simpleClass22 */, _pP/* React.Types.ChangeEvt */], _pV/* simpleClass20 */ = [1, _pU/* Simple.simpleClass21 */], _pW/* simpleClass17 */ = [1, _pV/* Simple.simpleClass20 */, _pO/* Simple.simpleClass18 */], _pX/* simpleClass10 */ = new T(function(){
   return B(unCStr("fighter 2: "));
-}), _pz/* simpleClass9 */ = [2, _py/* Simple.simpleClass10 */], _pA/* simpleClass8 */ = [1, _pz/* Simple.simpleClass9 */, _b/* GHC.Types.[] */], _pB/* $WStr */ = function(_pC){
-  return [1, E(_pC)[1]];
-}, _pD/* value_1 */ = new T(function(){
+}), _pY/* simpleClass9 */ = [2, _pX/* Simple.simpleClass10 */], _pZ/* simpleClass8 */ = [1, _pY/* Simple.simpleClass9 */, _b/* GHC.Types.[] */], _q0/* $WStr */ = function(_q1){
+  return [1, E(_q1)[1]];
+}, _q2/* value_1 */ = new T(function(){
   return [0, "value"];
-}), _pE/* value_ */ = function(_pF){
-  return [0, _pD/* React.Attrs.value_1 */, new T(function(){
-    return B(_pB/* Haste.JSON.$WStr */(_pF));
+}), _q3/* value_ */ = function(_q4){
+  return [0, _q2/* React.Attrs.value_1 */, new T(function(){
+    return B(_q0/* Haste.JSON.$WStr */(_q4));
 })];
-}, _pG/* simpleClass7 */ = function(_pH){
-  var _pI = E(_pH);
-  return function(_pJ){
+}, _q5/* simpleClass7 */ = function(_q6){
+  var _q7 = E(_q6);
+  return function(_q8){
     return E([0, [1, [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, new T(function(){
       return B(_10/* GHC.Base.++ */([1, [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, new T(function(){
-        var _pK = new T(function(){
-          var _pL = B(_94/* React.Types.$wseparateAttrs */([1, new T(function(){
-            return B(_pE/* React.Attrs.value_ */(_pI[3]));
-}), _px/* Simple.simpleClass17 */]));
-          return [0, _pL[1], _pL[2]];
+        var _q9 = new T(function(){
+          var _qa = B(_94/* React.Types.$wseparateAttrs */([1, new T(function(){
+            return B(_q3/* React.Attrs.value_ */(_q7[3]));
+}), _pW/* Simple.simpleClass17 */]));
+          return [0, _qa[1], _qa[2]];
 });
-        return B(_10/* GHC.Base.++ */(_pd/* Simple.simpleClass14 */, [1, [1, _p7/* React.Elements.input_1 */, new T(function(){
-          return E(E(_pK)[2]);
+        return B(_10/* GHC.Base.++ */(_pC/* Simple.simpleClass14 */, [1, [1, _pw/* React.Elements.input_1 */, new T(function(){
+          return E(E(_q9)[2]);
 }), new T(function(){
-          return E(E(_pK)[1]);
+          return E(E(_q9)[1]);
 })], _b/* GHC.Types.[] */]));
 })], _b/* GHC.Types.[] */], new T(function(){
         return B(_10/* GHC.Base.++ */([1, [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, new T(function(){
-          return B(_10/* GHC.Base.++ */(_pa/* Simple.simpleClass11 */, [1, [2, new T(function(){
-            return fromJSStr(E(_pI[1])[1]);
+          return B(_10/* GHC.Base.++ */(_pz/* Simple.simpleClass11 */, [1, [2, new T(function(){
+            return fromJSStr(E(_q7[1])[1]);
 })], _b/* GHC.Types.[] */]));
 })], _b/* GHC.Types.[] */], [1, [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, new T(function(){
-          return B(_10/* GHC.Base.++ */(_pA/* Simple.simpleClass8 */, [1, [2, new T(function(){
-            return fromJSStr(E(_pI[2])[1]);
+          return B(_10/* GHC.Base.++ */(_pZ/* Simple.simpleClass8 */, [1, [2, new T(function(){
+            return fromJSStr(E(_q7[2])[1]);
 })], _b/* GHC.Types.[] */]));
 })], _b/* GHC.Types.[] */]));
 })));
 })], _b/* GHC.Types.[] */], _r/* GHC.Tuple.() */]);
   };
-}, _pM/* slideClass21 */ = [2, _b/* GHC.Types.[] */], _pN/* slideClass20 */ = [1, _pM/* Slide.slideClass21 */, _b/* GHC.Types.[] */], _pO/* slideClass28 */ = new T(function(){
+}, _qb/* slideClass21 */ = [2, _b/* GHC.Types.[] */], _qc/* slideClass20 */ = [1, _qb/* Slide.slideClass21 */, _b/* GHC.Types.[] */], _qd/* slideClass28 */ = new T(function(){
   return B(unCStr("toggle"));
-}), _pP/* slideClass27 */ = [2, _pO/* Slide.slideClass28 */], _pQ/* slideClass26 */ = [1, _pP/* Slide.slideClass27 */, _b/* GHC.Types.[] */], _pR/* Toggle */ = 0, _pS/* slideClass_x */ = [1, _pR/* Slide.Toggle */], _pT/* slideClass33 */ = function(_pU){
-  var _pV = js_parseMouseEvent(E(_pU)[1]), _pW = _pV, _pX = E(_pW);
-  return E(_pS/* Slide.slideClass_x */);
-}, _pY/* slideClass32 */ = [0, _pT/* Slide.slideClass33 */, _9A/* React.Types.ClickEvt */], _pZ/* slideClass31 */ = [1, _pY/* Slide.slideClass32 */], _q0/* slideClass30 */ = [1, _pZ/* Slide.slideClass31 */, _b/* GHC.Types.[] */], _q1/* slideClass35 */ = new T(function(){
+}), _qe/* slideClass27 */ = [2, _qd/* Slide.slideClass28 */], _qf/* slideClass26 */ = [1, _qe/* Slide.slideClass27 */, _b/* GHC.Types.[] */], _qg/* Toggle */ = 0, _qh/* slideClass_x */ = [1, _qg/* Slide.Toggle */], _qi/* slideClass33 */ = function(_qj){
+  var _qk = js_parseMouseEvent(E(_qj)[1]), _ql = _qk, _qm = E(_ql);
+  return E(_qh/* Slide.slideClass_x */);
+}, _qn/* slideClass32 */ = [0, _qi/* Slide.slideClass33 */, _9A/* React.Types.ClickEvt */], _qo/* slideClass31 */ = [1, _qn/* Slide.slideClass32 */], _qp/* slideClass30 */ = [1, _qo/* Slide.slideClass31 */, _b/* GHC.Types.[] */], _qq/* slideClass35 */ = new T(function(){
   return [1, "btn btn--m btn--gray-border"];
-}), _q2/* slideClass34 */ = [0, _9x/* React.Attrs.class_1 */, _q1/* Slide.slideClass35 */], _q3/* slideClass29 */ = [1, _q2/* Slide.slideClass34 */, _q0/* Slide.slideClass30 */], _q4/* slideClass_ds1 */ = new T(function(){
-  var _q5 = B(_94/* React.Types.$wseparateAttrs */(_q3/* Slide.slideClass29 */));
-  return [0, _q5[1], _q5[2]];
-}), _q6/* slideClass_lvl1 */ = new T(function(){
-  return E(E(_q4/* Slide.slideClass_ds1 */)[1]);
-}), _q7/* slideClass_lvl2 */ = new T(function(){
-  return E(E(_q4/* Slide.slideClass_ds1 */)[2]);
-}), _q8/* slideClass25 */ = [0, _9w/* React.Elements.button_1 */, _q7/* Slide.slideClass_lvl2 */, _q6/* Slide.slideClass_lvl1 */, _pQ/* Slide.slideClass26 */], _q9/* slideClass24 */ = [1, _q8/* Slide.slideClass25 */, _b/* GHC.Types.[] */], _qa/* slideClass23 */ = [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, _q9/* Slide.slideClass24 */], _qb/* slideClass22 */ = [1, _qa/* Slide.slideClass23 */, _b/* GHC.Types.[] */], _qc/* slideClass36 */ = new T(function(){
+}), _qr/* slideClass34 */ = [0, _9x/* React.Attrs.class_1 */, _qq/* Slide.slideClass35 */], _qs/* slideClass29 */ = [1, _qr/* Slide.slideClass34 */, _qp/* Slide.slideClass30 */], _qt/* slideClass_ds1 */ = new T(function(){
+  var _qu = B(_94/* React.Types.$wseparateAttrs */(_qs/* Slide.slideClass29 */));
+  return [0, _qu[1], _qu[2]];
+}), _qv/* slideClass_lvl1 */ = new T(function(){
+  return E(E(_qt/* Slide.slideClass_ds1 */)[1]);
+}), _qw/* slideClass_lvl2 */ = new T(function(){
+  return E(E(_qt/* Slide.slideClass_ds1 */)[2]);
+}), _qx/* slideClass25 */ = [0, _9w/* React.Elements.button_1 */, _qw/* Slide.slideClass_lvl2 */, _qv/* Slide.slideClass_lvl1 */, _qf/* Slide.slideClass26 */], _qy/* slideClass24 */ = [1, _qx/* Slide.slideClass25 */, _b/* GHC.Types.[] */], _qz/* slideClass23 */ = [0, _9k/* React.Elements.div_1 */, _b/* GHC.Types.[] */, _b/* GHC.Types.[] */, _qy/* Slide.slideClass24 */], _qA/* slideClass22 */ = [1, _qz/* Slide.slideClass23 */, _b/* GHC.Types.[] */], _qB/* slideClass36 */ = new T(function(){
   return [0, "width"];
-}), _qd/* slideClass38 */ = new T(function(){
+}), _qC/* slideClass38 */ = new T(function(){
   return [1, "slider"];
-}), _qe/* slideClass37 */ = [0, _9x/* React.Attrs.class_1 */, _qd/* Slide.slideClass38 */], _qf/* slideClass19 */ = new T(function(){
+}), _qD/* slideClass37 */ = [0, _9x/* React.Attrs.class_1 */, _qC/* Slide.slideClass38 */], _qE/* slideClass19 */ = new T(function(){
   return [1, "slider-container"];
-}), _qg/* slideClass18 */ = [0, _9x/* React.Attrs.class_1 */, _qf/* Slide.slideClass19 */], _qh/* slideClass17 */ = [1, _qg/* Slide.slideClass18 */, _b/* GHC.Types.[] */], _qi/* slideClass_ds */ = new T(function(){
-  var _qj = B(_94/* React.Types.$wseparateAttrs */(_qh/* Slide.slideClass17 */));
-  return [0, _qj[1], _qj[2]];
-}), _qk/* slideClass_lvl19 */ = new T(function(){
-  return E(E(_qi/* Slide.slideClass_ds */)[2]);
-}), _ql/* slideClass_lvl20 */ = new T(function(){
-  return E(E(_qi/* Slide.slideClass_ds */)[1]);
-}), _qm/* slideClass16 */ = function(_qn, _qo){
-  var _qp = new T(function(){
-    return B(A(function(_qq){
-      var _qr = new T(function(){
-        var _qs = B(_94/* React.Types.$wseparateAttrs */([1, _qe/* Slide.slideClass37 */, [1, [0, _a3/* React.Attrs.style_1 */, [4, E([1, [0, _qc/* Slide.slideClass36 */, new T(function(){
-          if(!E(_qn)){
-            var _qt = [0, 200+E(_qq)[1]];
+}), _qF/* slideClass18 */ = [0, _9x/* React.Attrs.class_1 */, _qE/* Slide.slideClass19 */], _qG/* slideClass17 */ = [1, _qF/* Slide.slideClass18 */, _b/* GHC.Types.[] */], _qH/* slideClass_ds */ = new T(function(){
+  var _qI = B(_94/* React.Types.$wseparateAttrs */(_qG/* Slide.slideClass17 */));
+  return [0, _qI[1], _qI[2]];
+}), _qJ/* slideClass_lvl19 */ = new T(function(){
+  return E(E(_qH/* Slide.slideClass_ds */)[2]);
+}), _qK/* slideClass_lvl20 */ = new T(function(){
+  return E(E(_qH/* Slide.slideClass_ds */)[1]);
+}), _qL/* slideClass16 */ = function(_qM, _qN){
+  var _qO = new T(function(){
+    return B(A(function(_qP){
+      var _qQ = new T(function(){
+        var _qR = B(_94/* React.Types.$wseparateAttrs */([1, _qD/* Slide.slideClass37 */, [1, [0, _a3/* React.Attrs.style_1 */, [4, E([1, [0, _qB/* Slide.slideClass36 */, new T(function(){
+          if(!E(_qM)){
+            var _qS = [0, 200+E(_qP)[1]];
           }else{
-            var _qt = [0, E(_qq)[1]];
+            var _qS = [0, E(_qP)[1]];
           }
-          return _qt;
+          return _qS;
 })], _b/* GHC.Types.[] */])]], _b/* GHC.Types.[] */]]));
-        return [0, _qs[1], _qs[2]];
+        return [0, _qR[1], _qR[2]];
 });
-      return function(_qu){
+      return function(_qT){
         return [0, new T(function(){
-          return B(_10/* GHC.Base.++ */(_qb/* Slide.slideClass22 */, [1, [0, _9k/* React.Elements.div_1 */, new T(function(){
-            return E(E(_qr)[2]);
+          return B(_10/* GHC.Base.++ */(_qA/* Slide.slideClass22 */, [1, [0, _9k/* React.Elements.div_1 */, new T(function(){
+            return E(E(_qQ)[2]);
 }), new T(function(){
-            return E(E(_qr)[1]);
-}), _pN/* Slide.slideClass20 */], _b/* GHC.Types.[] */]));
+            return E(E(_qQ)[1]);
+}), _qc/* Slide.slideClass20 */], _b/* GHC.Types.[] */]));
 }), _r/* GHC.Tuple.() */];
       };
-    },[_qo, _qo]));
+    },[_qN, _qN]));
 });
-  return [0, [1, [0, _9k/* React.Elements.div_1 */, _qk/* Slide.slideClass_lvl19 */, _ql/* Slide.slideClass_lvl20 */, new T(function(){
+  return [0, [1, [0, _9k/* React.Elements.div_1 */, _qJ/* Slide.slideClass_lvl19 */, _qK/* Slide.slideClass_lvl20 */, new T(function(){
     return B(_10/* GHC.Base.++ */(_b/* GHC.Types.[] */, new T(function(){
-      return E(E(_qp)[1]);
+      return E(E(_qO)[1]);
 })));
 })], _b/* GHC.Types.[] */], new T(function(){
-    return E(E(_qp)[2]);
+    return E(E(_qO)[2]);
 })];
-}, _qv/* slideClass2 */ = [0, 0], _qw/* slideClass11 */ = [0, 1000], _qx/* paneWidth */ = [0, 200], _qy/* slideClass15 */ = [0, _qx/* Slide.paneWidth */, _qv/* Slide.slideClass2 */], _qz/* slideClass7 */ = function(_qA){
+}, _qU/* slideClass2 */ = [0, 0], _qV/* slideClass11 */ = [0, 1000], _qW/* paneWidth */ = [0, 200], _qX/* slideClass15 */ = [0, _qW/* Slide.paneWidth */, _qU/* Slide.slideClass2 */], _qY/* slideClass7 */ = function(_qZ){
   return [0];
-}, _qB/* slideClass8 */ = function(_qC, _qD){
-  return E(_qD);
-}, _qE/* slideClass14 */ = [0, _b1/* React.Anim.$fAnimatableDouble */, _qw/* Slide.slideClass11 */, _qy/* Slide.slideClass15 */, _qB/* Slide.slideClass8 */, _9d/* React.Types.EaseInOutQuad */, _qz/* Slide.slideClass7 */], _qF/* slideClass13 */ = [1, _qE/* Slide.slideClass14 */, _b/* GHC.Types.[] */], _qG/* slideClass12 */ = [0, _78/* Slide.Closed */, _qF/* Slide.slideClass13 */], _qH/* Open */ = 0, _qI/* slideClass10 */ = [0, -200], _qJ/* slideClass9 */ = [0, _qI/* Slide.slideClass10 */, _qv/* Slide.slideClass2 */], _qK/* slideClass6 */ = [0, _b1/* React.Anim.$fAnimatableDouble */, _qw/* Slide.slideClass11 */, _qJ/* Slide.slideClass9 */, _qB/* Slide.slideClass8 */, _9d/* React.Types.EaseInOutQuad */, _qz/* Slide.slideClass7 */], _qL/* slideClass5 */ = [1, _qK/* Slide.slideClass6 */, _b/* GHC.Types.[] */], _qM/* slideClass4 */ = [0, _qH/* Slide.Open */, _qL/* Slide.slideClass5 */], _qN/* slideClass3 */ = function(_qO, _qP){
-  if(!E(_qO)){
-    var _qQ = E(_qP);
-    return E(_qG/* Slide.slideClass12 */);
+}, _r0/* slideClass8 */ = function(_r1, _r2){
+  return E(_r2);
+}, _r3/* slideClass14 */ = [0, _b1/* React.Anim.$fAnimatableDouble */, _qV/* Slide.slideClass11 */, _qX/* Slide.slideClass15 */, _r0/* Slide.slideClass8 */, _9d/* React.Types.EaseInOutQuad */, _qY/* Slide.slideClass7 */], _r4/* slideClass13 */ = [1, _r3/* Slide.slideClass14 */, _b/* GHC.Types.[] */], _r5/* slideClass12 */ = [0, _78/* Slide.Closed */, _r4/* Slide.slideClass13 */], _r6/* Open */ = 0, _r7/* slideClass10 */ = [0, -200], _r8/* slideClass9 */ = [0, _r7/* Slide.slideClass10 */, _qU/* Slide.slideClass2 */], _r9/* slideClass6 */ = [0, _b1/* React.Anim.$fAnimatableDouble */, _qV/* Slide.slideClass11 */, _r8/* Slide.slideClass9 */, _r0/* Slide.slideClass8 */, _9d/* React.Types.EaseInOutQuad */, _qY/* Slide.slideClass7 */], _ra/* slideClass5 */ = [1, _r9/* Slide.slideClass6 */, _b/* GHC.Types.[] */], _rb/* slideClass4 */ = [0, _r6/* Slide.Open */, _ra/* Slide.slideClass5 */], _rc/* slideClass3 */ = function(_rd, _re){
+  if(!E(_rd)){
+    var _rf = E(_re);
+    return E(_r5/* Slide.slideClass12 */);
   }else{
-    var _qR = E(_qP);
-    return E(_qM/* Slide.slideClass4 */);
+    var _rg = E(_re);
+    return E(_rb/* Slide.slideClass4 */);
   }
-}, _qS/* main2 */ = function(_qT, _){
-  var _qU = E(_qT);
-  if(!_qU[0]){
-    return E(_oW/* Main.lvl */);
+}, _rh/* main2 */ = function(_ri, _){
+  var _rj = E(_ri);
+  if(!_rj[0]){
+    return E(_pl/* Main.lvl */);
   }else{
-    var _qV = E(_qU[2]);
-    if(!_qV[0]){
-      return E(_oW/* Main.lvl */);
+    var _rk = E(_rj[2]);
+    if(!_rk[0]){
+      return E(_pl/* Main.lvl */);
     }else{
-      var _qW = E(_qV[2]);
-      if(!_qW[0]){
-        return E(_oW/* Main.lvl */);
+      var _rl = E(_rk[2]);
+      if(!_rl[0]){
+        return E(_pl/* Main.lvl */);
       }else{
-        var _qX = E(_qW[2]);
-        if(!_qX[0]){
-          return E(_oW/* Main.lvl */);
+        var _rm = E(_rl[2]);
+        if(!_rm[0]){
+          return E(_pl/* Main.lvl */);
         }else{
-          var _qY = E(_qX[2]);
-          if(!_qY[0]){
-            return E(_oW/* Main.lvl */);
+          var _rn = E(_rm[2]);
+          if(!_rn[0]){
+            return E(_pl/* Main.lvl */);
           }else{
-            if(!E(_qY[2])[0]){
-              var _qZ = js_createClass(_pG/* Simple.simpleClass7 */), _r0 = _qZ, _r1 = nMV(_p0/* Simple.simpleClass2 */), _r2 = _r1, _r3 = nMV(_r/* GHC.Tuple.() */), _r4 = _r3, _r5 = nMV(_b/* GHC.Types.[] */), _r6 = _r5, _r7 = nMV(_b/* GHC.Types.[] */), _r8 = _r7, _r9 = B(_6I/* React.Render.$wa */(_qU[1], _pG/* Simple.simpleClass7 */, _p1/* Simple.simpleClass6 */, [0, _r2], [0, _r4], [0, _r6], _r8, _)), _ra = _r9, _rb = js_createClass(_ff/* Circles.circlesClass9 */), _rc = _rb, _rd = nMV(_bI/* Circles.circlesClass6 */), _re = _rd, _rf = nMV(_bu/* Circles.circlesClass3 */), _rg = _rf, _rh = nMV(_b/* GHC.Types.[] */), _ri = _rh, _rj = nMV(_bp/* Circles.circlesClass2 */), _rk = _rj, _rl = B(_6I/* React.Render.$wa */(_qV[1], _ff/* Circles.circlesClass9 */, _df/* Circles.circlesClass8 */, [0, _re], [0, _rg], [0, _ri], _rk, _)), _rm = _rl, _rn = js_createClass(_on/* Easing.easingClass29 */), _ro = _rn, _rp = nMV(_kM/* Easing.easingClass27 */), _rq = _rp, _rr = nMV(_kJ/* Easing.easingClass2 */), _rs = _rr, _rt = nMV(_b/* GHC.Types.[] */), _ru = _rt, _rv = nMV(_b/* GHC.Types.[] */), _rw = _rv, _rx = B(_6I/* React.Render.$wa */(_qW[1], _on/* Easing.easingClass29 */, _lI/* Easing.easingClass28 */, [0, _rq], [0, _rs], [0, _ru], _rw, _)), _ry = _rx, _rz = js_createClass(_qm/* Slide.slideClass16 */), _rA = _rz, _rB = nMV(_78/* Slide.Closed */), _rC = _rB, _rD = nMV(_qv/* Slide.slideClass2 */), _rE = _rD, _rF = nMV(_b/* GHC.Types.[] */), _rG = _rF, _rH = nMV(_b/* GHC.Types.[] */), _rI = _rH, _rJ = B(_6I/* React.Render.$wa */(_qX[1], _qm/* Slide.slideClass16 */, _qN/* Slide.slideClass3 */, [0, _rC], [0, _rE], [0, _rG], _rI, _)), _rK = _rJ, _rL = js_createClass(_a4/* Chain.chainClass17 */), _rM = _rL, _rN = nMV(_77/* Chain.Closed */), _rO = _rN, _rP = nMV(_aP/* Chain.chainClass2 */), _rQ = _rP, _rR = nMV(_b/* GHC.Types.[] */), _rS = _rR, _rT = nMV(_b/* GHC.Types.[] */), _rU = _rT, _rV = B(_6I/* React.Render.$wa */(_qY[1], _a4/* Chain.chainClass17 */, _bj/* Chain.chainClass3 */, [0, _rO], [0, _rQ], [0, _rS], _rU, _)), _rW = _rV;
+            if(!E(_rn[2])[0]){
+              var _ro = js_createClass(_q5/* Simple.simpleClass7 */), _rp = _ro, _rq = nMV(_pp/* Simple.simpleClass2 */), _rr = _rq, _rs = nMV(_r/* GHC.Tuple.() */), _rt = _rs, _ru = nMV(_b/* GHC.Types.[] */), _rv = _ru, _rw = nMV(_b/* GHC.Types.[] */), _rx = _rw, _ry = B(_6I/* React.Render.$wa */(_rj[1], _q5/* Simple.simpleClass7 */, _pq/* Simple.simpleClass6 */, [0, _rr], [0, _rt], [0, _rv], _rx, _)), _rz = _ry, _rA = js_createClass(_ff/* Circles.circlesClass9 */), _rB = _rA, _rC = nMV(_bI/* Circles.circlesClass6 */), _rD = _rC, _rE = nMV(_bu/* Circles.circlesClass3 */), _rF = _rE, _rG = nMV(_b/* GHC.Types.[] */), _rH = _rG, _rI = nMV(_bp/* Circles.circlesClass2 */), _rJ = _rI, _rK = B(_6I/* React.Render.$wa */(_rk[1], _ff/* Circles.circlesClass9 */, _df/* Circles.circlesClass8 */, [0, _rD], [0, _rF], [0, _rH], _rJ, _)), _rL = _rK, _rM = js_createClass(_oM/* Easing.easingClass29 */), _rN = _rM, _rO = nMV(_kM/* Easing.easingClass27 */), _rP = _rO, _rQ = nMV(_kJ/* Easing.easingClass2 */), _rR = _rQ, _rS = nMV(_b/* GHC.Types.[] */), _rT = _rS, _rU = nMV(_b/* GHC.Types.[] */), _rV = _rU, _rW = B(_6I/* React.Render.$wa */(_rl[1], _oM/* Easing.easingClass29 */, _lI/* Easing.easingClass28 */, [0, _rP], [0, _rR], [0, _rT], _rV, _)), _rX = _rW, _rY = js_createClass(_qL/* Slide.slideClass16 */), _rZ = _rY, _s0 = nMV(_78/* Slide.Closed */), _s1 = _s0, _s2 = nMV(_qU/* Slide.slideClass2 */), _s3 = _s2, _s4 = nMV(_b/* GHC.Types.[] */), _s5 = _s4, _s6 = nMV(_b/* GHC.Types.[] */), _s7 = _s6, _s8 = B(_6I/* React.Render.$wa */(_rm[1], _qL/* Slide.slideClass16 */, _rc/* Slide.slideClass3 */, [0, _s1], [0, _s3], [0, _s5], _s7, _)), _s9 = _s8, _sa = js_createClass(_a4/* Chain.chainClass17 */), _sb = _sa, _sc = nMV(_77/* Chain.Closed */), _sd = _sc, _se = nMV(_aP/* Chain.chainClass2 */), _sf = _se, _sg = nMV(_b/* GHC.Types.[] */), _sh = _sg, _si = nMV(_b/* GHC.Types.[] */), _sj = _si, _sk = B(_6I/* React.Render.$wa */(_rn[1], _a4/* Chain.chainClass17 */, _bj/* Chain.chainClass3 */, [0, _sd], [0, _sf], [0, _sh], _sj, _)), _sl = _sk;
               return _r/* GHC.Tuple.() */;
             }else{
-              return E(_oW/* Main.lvl */);
+              return E(_pl/* Main.lvl */);
             }
           }
         }
       }
     }
   }
-}, _rX/* main12 */ = new T(function(){
+}, _sm/* main12 */ = new T(function(){
   return B(unCStr("simple-demo"));
-}), _rY/* main11 */ = new T(function(){
+}), _sn/* main11 */ = new T(function(){
   return B(unCStr("circles-demo"));
-}), _rZ/* main10 */ = new T(function(){
+}), _so/* main10 */ = new T(function(){
   return B(unCStr("easing-demo"));
-}), _s0/* main8 */ = new T(function(){
+}), _sp/* main8 */ = new T(function(){
   return B(unCStr("chain-demo"));
-}), _s1/* main7 */ = [1, _s0/* Main.main8 */, _b/* GHC.Types.[] */], _s2/* main9 */ = new T(function(){
+}), _sq/* main7 */ = [1, _sp/* Main.main8 */, _b/* GHC.Types.[] */], _sr/* main9 */ = new T(function(){
   return B(unCStr("slide-demo"));
-}), _s3/* main6 */ = [1, _s2/* Main.main9 */, _s1/* Main.main7 */], _s4/* main5 */ = [1, _rZ/* Main.main10 */, _s3/* Main.main6 */], _s5/* main4 */ = [1, _rY/* Main.main11 */, _s4/* Main.main5 */], _s6/* main3 */ = [1, _rX/* Main.main12 */, _s5/* Main.main4 */], _s7/* toJSStr1 */ = function(_s8){
-  return [0, toJSStr(E(_s8))];
-}, _s9/* main_w2 */ = new T(function(){
-  return B(_3g/* GHC.Base.map */(_s7/* GHC.HastePrim.toJSStr1 */, _s6/* Main.main3 */));
-}), _sa/* findElems */ = function(_sb, _sc){
+}), _ss/* main6 */ = [1, _sr/* Main.main9 */, _sq/* Main.main7 */], _st/* main5 */ = [1, _so/* Main.main10 */, _ss/* Main.main6 */], _su/* main4 */ = [1, _sn/* Main.main11 */, _st/* Main.main5 */], _sv/* main3 */ = [1, _sm/* Main.main12 */, _su/* Main.main4 */], _sw/* toJSStr1 */ = function(_sx){
+  return [0, toJSStr(E(_sx))];
+}, _sy/* main_w2 */ = new T(function(){
+  return B(_3g/* GHC.Base.map */(_sw/* GHC.HastePrim.toJSStr1 */, _sv/* Main.main3 */));
+}), _sz/* findElems */ = function(_sA, _sB){
   while(1){
-    var _sd = (function(_se, _sf){
-      var _sg = E(_se);
-      if(!_sg[0]){
+    var _sC = (function(_sD, _sE){
+      var _sF = E(_sD);
+      if(!_sF[0]){
         return [0];
       }else{
-        var _sh = _sg[2], _si = E(_sf);
-        if(!_si[0]){
+        var _sG = _sF[2], _sH = E(_sE);
+        if(!_sH[0]){
           return [0];
         }else{
-          var _sj = _si[2];
-          if(!E(_si[1])[0]){
-            return [1, _sg[1], new T(function(){
-              return B(_sa/* Haste.DOM.JSString.findElems */(_sh, _sj));
+          var _sI = _sH[2];
+          if(!E(_sH[1])[0]){
+            return [1, _sF[1], new T(function(){
+              return B(_sz/* Haste.DOM.JSString.findElems */(_sG, _sI));
 })];
           }else{
-            _sb = _sh;
-            _sc = _sj;
+            _sA = _sG;
+            _sB = _sI;
             return null;
           }
         }
       }
-    })(_sb, _sc);
-    if(_sd!=null){
-      return _sd;
+    })(_sA, _sB);
+    if(_sC!=null){
+      return _sC;
     }
   }
-}, _sk/* lvl */ = new T(function(){
+}, _sJ/* lvl */ = new T(function(){
   return B(unAppCStr("[]", _b/* GHC.Types.[] */));
-}), _sl/* lvl17 */ = [1, _18/* GHC.Show.showList__2 */, _b/* GHC.Types.[] */], _sm/* showl */ = function(_sn){
-  var _so = E(_sn);
-  return _so[0]==0 ? E(_sl/* Haste.DOM.JSString.lvl17 */) : [1, _17/* GHC.Show.showList__1 */, new T(function(){
-    return B(_10/* GHC.Base.++ */(fromJSStr(E(_so[1])[1]), new T(function(){
-      return B(_sm/* Haste.DOM.JSString.showl */(_so[2]));
+}), _sK/* lvl17 */ = [1, _18/* GHC.Show.showList__2 */, _b/* GHC.Types.[] */], _sL/* showl */ = function(_sM){
+  var _sN = E(_sM);
+  return _sN[0]==0 ? E(_sK/* Haste.DOM.JSString.lvl17 */) : [1, _17/* GHC.Show.showList__1 */, new T(function(){
+    return B(_10/* GHC.Base.++ */(fromJSStr(E(_sN[1])[1]), new T(function(){
+      return B(_sL/* Haste.DOM.JSString.showl */(_sN[2]));
 })));
 })];
-}, _sp/* withElems1 */ = function(_sq, _sr){
+}, _sO/* withElems1 */ = function(_sP, _sQ){
   return new F(function(){return err(B(unAppCStr("Elements with the following IDs could not be found: ", new T(function(){
-    var _ss = B(_sa/* Haste.DOM.JSString.findElems */(_sr, _sq));
-    return _ss[0]==0 ? E(_sk/* Haste.DOM.JSString.lvl */) : [1, _19/* GHC.Show.showList__3 */, new T(function(){
-      return B(_10/* GHC.Base.++ */(fromJSStr(E(_ss[1])[1]), new T(function(){
-        return B(_sm/* Haste.DOM.JSString.showl */(_ss[2]));
+    var _sR = B(_sz/* Haste.DOM.JSString.findElems */(_sQ, _sP));
+    return _sR[0]==0 ? E(_sJ/* Haste.DOM.JSString.lvl */) : [1, _19/* GHC.Show.showList__3 */, new T(function(){
+      return B(_10/* GHC.Base.++ */(fromJSStr(E(_sR[1])[1]), new T(function(){
+        return B(_sL/* Haste.DOM.JSString.showl */(_sR[2]));
 })));
 })];
 }))));});
-}, _st/* main1 */ = function(_){
-  var _su = B(_c/* Main.main13 */(_s9/* Main.main_w2 */, _)), _sv = _su;
-  if(!B(_0/* GHC.List.any */(_9/* Data.Maybe.isNothing */, _sv))){
-    return new F(function(){return _qS/* Main.main2 */(B(_3g/* GHC.Base.map */(_6/* Data.Maybe.fromJust */, _sv)), _);});
+}, _sS/* main1 */ = function(_){
+  var _sT = B(_c/* Main.main13 */(_sy/* Main.main_w2 */, _)), _sU = _sT;
+  if(!B(_0/* GHC.List.any */(_9/* Data.Maybe.isNothing */, _sU))){
+    return new F(function(){return _rh/* Main.main2 */(B(_3g/* GHC.Base.map */(_6/* Data.Maybe.fromJust */, _sU)), _);});
   }else{
-    return new F(function(){return _sp/* Haste.DOM.JSString.withElems1 */(_sv, _s9/* Main.main_w2 */);});
+    return new F(function(){return _sO/* Haste.DOM.JSString.withElems1 */(_sU, _sy/* Main.main_w2 */);});
   }
-}, _sw/* main */ = function(_){
-  return new F(function(){return _st/* Main.main1 */(_);});
+}, _sV/* main */ = function(_){
+  return new F(function(){return _sS/* Main.main1 */(_);});
 };
 
-var hasteMain = function() {B(A(_sw, [0]));};window.onload = hasteMain;
+var hasteMain = function() {B(A(_sV, [0]));};window.onload = hasteMain;
