@@ -21,11 +21,15 @@ The last few weeks I've been working on adding animation support to <a href="htt
 <h2>Tutorial</h2>
 
 <p>
-This tutorial assumes familiarity with the basics of Haskell and web programming. We're going to start by building a basic application in react-haskell without animation, then add the animation on top.
+This tutorial assumes familiarity with the basics of Haskell and web programming, but not React-Haskell.
 </p>
 
 <p>
-Let's first build a simple application without animation. This totally contrived example can store the names of two (super smash bros) fighters. Try it in action below.
+I'll introduce React-Haskell by building a simple application without animation. Then we'll go through some animation basics and see how they scale up to more complex animations.
+</p>
+
+<p>
+First, let's make our simple application. This totally contrived example can store the names of two (super smash bros) fighters. Try it in action below.
 </p>
 
 <div id="simple-demo" class="demo"></div>
@@ -57,7 +61,7 @@ data SimpleState = SimpleState
     , typing :: JSString
     }
 
-initialState = PageState "little mac!" "pit" ""
+initialState = SimpleState "little mac!" "pit" ""
 ```
 
 <h3>Update</h3>
@@ -169,6 +173,8 @@ Now that we've built a simple application without animation, let's discuss what 
 All of these are implemented in Haskell, except for the bezier and sine easings, which use a JavaScript easing library. I'm really excited that all twenty of these can run simultaneously without slowing down the page too much.
 </p>
 
+<h3 style="margin-bottom: 30px;">Intermission: Profiling</h3>
+
 <img src="/media/img/profiling.png">
 
 <p>
@@ -182,7 +188,7 @@ I profiled a run of the easing functions by hitting the "record" button in chrom
     <li>The run shown is with the `--debug` &nbsp;compiler option.</li>
     <li>I'd like to try `hastec`'s `--opt-all` &nbsp;optimization option, but it takes <em>forever</em> to build. I had to kill it after half an hour. I think closure compiler was running - possibly hung.</li>
     <li>React runs for about 3 ms at the end. This is where all the DOM manipulation happens.</li>
-    <li>`_3q`{.javascript} (pink) is the shortened name for `interpret'`{.haskell} from `React.Interpret`{.haskell}. It goes through the tree built by all those calls to `div_`{.haskell} and `rect_`{.haskell} and so on, then calls their corresponding React functions - `React.DOM.div`{.javascript} and `React.DOM.rect`{.javascript}.</li>
+    <li>`_3q`{.javascript} (pink) is the shortened name for `interpret'`{.haskell} from <a href="https://github.com/joelburget/react-haskell/blob/master/src/React/Interpret.hs#L69-80">`React.Interpret`</a>. It goes through the tree built by all those calls to `div_`{.haskell} and `rect_`{.haskell} and so on, then calls their corresponding React functions - `React.DOM.div`{.javascript} and `React.DOM.rect`{.javascript}.</li>
     <li>`_3u`{.javascript} (purple) is the shortened name for the first case in `interpret'`, which deals with nodes that have children, like `span` &nbsp;and `div`.</li>
     <li>I suspect those ~20 columns with `_3u`{.javascript} at the head are the different easings running. Why then do the calls to `_3u`{.javascript} nest within each other? Looking at the output javascript I see what looks like continuation passing style, meaning sequencing is transformed into recursion. Compiling functional languages is a fascinating beast.</li>
     <li>I see a lot of string manipulation at the bottom of the profile. I bet we can at least halve the running time by avoiding `String`{.haskell} (Haskell-native linked list strings), instead using JS native strings.</li>
@@ -229,7 +235,7 @@ We define a data structure, conventionally called `PageState`{.haskell}, which r
 <div id="slide-demo" class="demo"></div>
 
 <p>
-The state of the world becomes a little fuzzy when we add animation. Say there's a sidebar in our app that can slide in and out. A simple page state looks like `data PageState = Closed | Open`{.haskell}. What should the model state be in the time between an animation starting and finishing? Maybe we should add some more states - `data PageState = Closed | Open | SlidingIn | SlidingOut`{.haskell}. This more precisely enumerates the possible states. We could go even further and keep track of how far along the animation is.
+The state of the world becomes a little fuzzy when we add animation. Say there's a sidebar in our app that can slide in and out. A simple page state looks like `data PageState = Closed | Open`{.haskell}. What should the model state be in the time between an animation starting and finishing? Maybe we should add some more states - `data PageState = Closed | Open | SlidingIn | SlidingOut`{.haskell}. This more precisely enumerates the possible states. We could go even further and keep track of how far along the animation is - `type PageState = Double`{.haskell} - and now there are essentially infinite states.
 </p>
 
 <p>
@@ -358,7 +364,7 @@ Here's an example to show what I mean. Each time a dot flashes the pointer in th
 </p>
 
 <p>
-The system takes the state of all the animations and, yep, <em>adds</em> them together. I'm going to handwave <a href="http://ronnqvi.st/multiple-animations/">the details</a>, but as long as you update your model state immediately, then animate the transition between states, things <em>just kind of work</em>.
+The system takes the state of all the animations and, yep, <em>adds</em> them together. I'm going to handwave <a href="http://ronnqvi.st/multiple-animations/">the details</a>, but as long as you update your model state immediately, then animate the transition between states, things <em>just kind of work</em>. Even when we start animating things more complex than floating point numbers - like positions in 2d or 3d space or colors.
 </p>
 
 <p>
@@ -439,4 +445,8 @@ Please send me any relevant suggestions, experiences, papers, contributions, etc
 
 <p>
 The source for all of the examples is also <a href="https://github.com/joelburget/react-haskell/tree/master/example/src">on github</a>.
+</p>
+
+<p>
+Update: I gave <a href="http://begriffs.com/posts/2015-01-12-reactjs-in-haskell.html">a talk</a> on this stuff to some bay area Haskell users.
 </p>
