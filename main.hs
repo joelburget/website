@@ -84,10 +84,11 @@ main = hakyll $ do
     create ["rss.xml"] $ feedRules renderRss
     create ["atom.xml"] $ feedRules renderAtom
 
+
 feedRules :: (FeedConfiguration
-              -> Context String
-              -> [Item String]
-              -> Compiler (Item String))
+          -> Context String
+          -> [Item String]
+          -> Compiler (Item String))
           -> Rules ()
 feedRules renderer = do
     route idRoute
@@ -96,8 +97,10 @@ feedRules renderer = do
         >>= fmap (take 10) . recentFirst
         >>= renderer feedConfiguration feedCtx
 
+
 directoryRoute :: Routes
 directoryRoute = customRoute $ (</> "index.html") . takeBaseName . toFilePath
+
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
@@ -108,6 +111,7 @@ feedConfiguration = FeedConfiguration
     , feedRoot        = "http://joelburget.com"
     }
 
+
 postCtx :: Context String
 postCtx = mconcat [
     dateField "date" "%B %e, %Y",
@@ -116,6 +120,7 @@ postCtx = mconcat [
     defaultContext
     ]
 
+
 journalCtx :: Context String
 journalCtx = mconcat [
       constField "script" ""
@@ -123,21 +128,25 @@ journalCtx = mconcat [
     , defaultContext
     ]
 
+
 postList :: Pattern -> Identifier -> ([Item String] -> Compiler [Item String])
     -> Compiler String
-postList pattern template preprocess' = do
+postList pat template preprocess' = do
     postItemTmpl <- loadBody template
-    posts <- preprocess' =<< loadAll pattern
+    posts <- preprocess' =<< loadAll pat
     applyTemplateList postItemTmpl postCtx posts
+
 
 scriptContext, headerContext :: Context a
 scriptContext = metaContext "script"
 headerContext = metaContext "header"
 
+
 metaContext :: String -> Context a
 metaContext str = field str $ \item -> do
     metadata <- getMetadata (itemIdentifier item)
     return $ fromMaybe "" $ M.lookup str metadata
+
 
 selectCompiler :: Compiler (Item String)
 selectCompiler = do
