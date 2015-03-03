@@ -2,7 +2,7 @@
 layout: post
 title: The Expression Problem and Tables
 category: posts
-published: February 21, 2015
+published: March 2, 2015
 description: The Expression Problem and Tables
 header: <link rel="stylesheet" type="text/css" href="/media/css/pigment.css" media="screen, projection" />
 ---
