@@ -1,0 +1,77 @@
+==================================================================
+https://keybase.io/joelb
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://joelburget.com
+  * I am joelb (https://keybase.io/joelb) on keybase.
+  * I have a public key with fingerprint D13C 898E FCCD 6148 3204  86B8 19F0 8797 075F 8C88
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.7"
+        },
+        "key": {
+            "fingerprint": "d13c898efccd6148320486b819f08797075f8c88",
+            "host": "keybase.io",
+            "key_id": "19F08797075F8C88",
+            "uid": "8e53de22241ced2245b4895488e33100",
+            "username": "joelb"
+        },
+        "merkle_root": {
+            "ctime": 1425394255,
+            "hash": "d7004c587f5eb63cc7103be91c5b05abf50dcbb9d75f5a0d46a228a35aa373041568d1c2b1ba1513bd5a95a5b6a066172d662172525bab1178de1392ed8c147e",
+            "seqno": 170163
+        },
+        "service": {
+            "hostname": "joelburget.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1425394270,
+    "expire_in": 157680000,
+    "prev": "060066e4d5287331951b7ee8fac150c147481ad2e8d06ffba2d8113962172e21",
+    "seqno": 18,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owFdkl9sFEUcx68HtVBDREMITXho9gH/HZeZ3Z2d2dZGBdMQg4mxxje6mT+/7S29
+uz13t6cFipoYryWoDU2gMVbTByFNaBMISV+UIBQOJBJjgvHBkPBSFKlWmlrlQZ09
+IanOw87s/L7zm+/nN7/RDWsy2aa2xdqxFu/wcNPVn0Tm1eWvevcbIlSDRsd+QxYD
+KCfpqsxLYHQY/TAoeAz5IGwvhwrye+P2+5qcUYUoDsKyVqE8zVNjKJfK08N+UO6D
+qBIFaS5DYUsyl4EvpXKwzSwT2cwRDLs+YtSliBKfScZ0ykIYJ/+51Wjk9AKld7Hb
+/UDfzXY29AONAANiKTBN08YSlJ6IsJlLbMbAsjBCqTCG6D7S3hCKIjVbgqi/CF4U
+hg1imQRpHNsmsVz9IdoOjwspAEXIloRRn4BwLCkpRpYAF0siEOHCJ0hJIVylQQhH
+yna4aTJuEc4taiEbE4cpLE2BBccEW0IR7hJOhMOR42BqKscx9URMIrjAmDIF2HJN
+UExim4L2H8Pr5VCbowg71lD6H1UDCanvtGar0QaiPkjyMizpY5UoTEIZFnWskCSV
+jhQ7Gayk2jdAePH0v2k8EZSVfrPVj4q19H8loShnwJuVIAIvSBWEOgzpkd4D1bQP
+HKSBwFbEZFSX3iVYUADmc4kJSllshrkygSnk+L7gpmJYkzbowcSrQJk2yvt0zjjo
+K/NkIAJjaKRp69pMUzbzUHM2bdtM6/qND3p5fKLl71feOVO7MTrjVrObDh6RF/zu
+2tzw0pNrW/etzHsLT3+/NLJ1PX5hKl98b2xmoLqt927PX6NHHt6RsE1v48sLhdyP
+pU9efubc7a7rW84cPb1roueX32ZGZj+sJ4/dKbFnPyg81bzQes/rfu7UVHN9bvvG
+Y/hgPnfIaq1/hlt+P7nn1oHO83d6nv/j2njnzfMb3r02feXu0etnfz408Z2sTZ/d
+cnzHDy8Z7ct09s/x7RevXvp823xX8lr+srVrbnl2ct+9wx/XvM6lj07svvLius0r
+8Gtb7+49wztvz0fZ9ye/7f+itPjI1OOLua/bzhk3v6zjyuQ3604ZJ1Y6Hj15vGvs
+rbGFS/VP51ueOPAP
+=kHzB
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/joelb
+
+==================================================================
+

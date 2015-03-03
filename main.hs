@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Map as M
 import Data.Maybe (fromMaybe)
-import Data.Monoid (mconcat, mappend)
-import System.FilePath ((</>), takeBaseName, takeFileName)
+import Data.Monoid (mconcat, (<>))
+import System.FilePath ((</>), takeBaseName)
 
 import Hakyll
 import ParseCode
@@ -11,24 +11,22 @@ main :: IO ()
 main = hakyll $ do
     match "templates/*" $ compile templateCompiler
 
-    match "journal/files/*" $ do
-        route   idRoute
-        compile copyFileCompiler
-
-    match "journal/journal/*" $ do
-        route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate
-                "templates/journal_entry.html"
-                defaultContext
-            >>= loadAndApplyTemplate "templates/base.html" journalCtx
-
     match "media/css/*" $ do
         route   idRoute
         compile compressCssCompiler
 
-    match ("media/img/**" .||. "media/js/**" .||. "media/font/**" .||.
-           "media/video/**" .||. "favicon.ico" .||.  "static/**") $ do
+    let staticFiles =
+            [ "media/img/**"
+            , "media/js/**"
+            , "media/font/**"
+            , "media/video/**"
+            , "favicon.ico"
+            , "static/**"
+            , "404.html"
+            , "keybase.txt"
+            ]
+
+    match (foldl1 (.||.) staticFiles) $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -63,12 +61,6 @@ main = hakyll $ do
                 >>= applyAsTemplate idxCtx
                 >>= loadAndApplyTemplate "templates/base.html" idxCtx
 
-    -- For some reason it fails to get 404.html from templates. It's fine
-    -- toplevel
-    match "404.html" $ do
-        route $ idRoute
-        compile copyFileCompiler
-
     -- /posts/
     match "posts.html" $ do
         route   directoryRoute
@@ -78,7 +70,7 @@ main = hakyll $ do
                                recentFirst
             getResourceBody
                 >>= applyAsTemplate (constField "posts" public
-                           `mappend` defaultContext)
+                           <> defaultContext)
                 >>= loadAndApplyTemplate "templates/base.html" defaultContext
 
     create ["rss.xml"] $ feedRules renderRss
@@ -92,7 +84,7 @@ feedRules :: (FeedConfiguration
           -> Rules ()
 feedRules renderer = do
     route idRoute
-    compile $ let feedCtx = postCtx `mappend` bodyField "description" in
+    compile $ let feedCtx = postCtx <> bodyField "description" in
         loadAllSnapshots "posts/*" "content"
         >>= fmap (take 10) . recentFirst
         >>= renderer feedConfiguration feedCtx
@@ -118,14 +110,6 @@ postCtx = mconcat [
     scriptContext,
     headerContext,
     defaultContext
-    ]
-
-
-journalCtx :: Context String
-journalCtx = mconcat [
-      constField "script" ""
-    , constField "header" ""
-    , defaultContext
     ]
 
 
