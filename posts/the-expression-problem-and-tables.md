@@ -644,6 +644,6 @@ Viewing a column I can see code and test together. Viewing a row I can see all c
 ## Conclusion
 
 
-The expression problem is really a layout problem. It's impossible to write a on-dimensional (plaintext) file such that data and actions are both immediate. Inheritance and typeclasses are useful, but they're really rules for building an implicit table.
+The expression problem is really a layout problem. It's impossible to write a one-dimensional (plaintext) file such that data and actions are both immediate. Inheritance and typeclasses are useful, but they're really rules for building an implicit table.
 
 My proposed solution is to change the constraints of the problem. By considering a richer representation of our program we gain the power to view it from multiple directions.
