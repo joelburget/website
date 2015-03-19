@@ -2,7 +2,8 @@
 import Data.Map as M
 import Data.Maybe (fromMaybe)
 import Data.Monoid (mconcat, (<>))
-import System.FilePath ((</>), takeBaseName)
+import System.FilePath ((</>), takeBaseName, addTrailingPathSeparator,
+    isAbsolute)
 
 import Hakyll
 import ParseCode
@@ -94,6 +95,13 @@ directoryRoute :: Routes
 directoryRoute = customRoute $ (</> "index.html") . takeBaseName . toFilePath
 
 
+directoryUrlCtx :: Context a
+directoryUrlCtx = field "url" $
+    let makeAbsolute path = if isAbsolute path then path else "/" </> path
+    in return . makeAbsolute . addTrailingPathSeparator .
+       takeBaseName . toFilePath . itemIdentifier
+
+
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
     { feedTitle       = "Software and Dinosaurs"
@@ -109,6 +117,7 @@ postCtx = mconcat [
     dateField "date" "%B %e, %Y",
     scriptContext,
     headerContext,
+    directoryUrlCtx,
     defaultContext
     ]
 
