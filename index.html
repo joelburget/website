@@ -66,6 +66,14 @@ header: <style>
               height: 300px;
               width: 300px;
           }
+          #pigmentphoto {
+              background-image: url(/media/img/pigment.png);
+              position: relative;
+              background-position: 50% 50%;
+              background-repeat: no-repeat;
+              margin: 0 auto;
+              height: 300px;
+          }
           #khanphoto {
               background-image: url(/media/img/khan-logo.png);
               background-position: -4px 28px;
@@ -103,16 +111,24 @@ header: <style>
 ---
 <div class="content">
   <h2 id="hijoel">Hi, I'm Joel -</h2>
-  <div class="photo" id="hijoelphoto">
-  </div>
-  <h2 id="khan">Khan Academy Developer,</h2>
-  <div class="photo" id="khanphoto"></div>
+
+  <div class="photo" id="hijoelphoto"></div>
+
+  <h2 id="khan">Developer, Aspiring Designer,</h2>
+
   <h2>Learner and Maker.</h2>
   <br />
 
-  <p>I care deeply about making wonderful, powerful things and making an impact.</p>
+  <p>I care deeply about making wonderful, powerful things and making a positive impact.</p>
 
-  <p>Those principles brought me to Khan Academy, where I started working as an intern in 2011. I'm currently on our content tools team, where I work on the exercise experience and tools for question writers. You can see some of that work in the <a href="https://github.com/khan/perseus">Perseus</a> project. I've also spent time recently open-sourcing our <a href="http://khan.github.io/react-components/">React components</a>.</p>
+  <p>I'm fascinated by the idea of making programming better. Programmers jump from technology to technology distressingly fast, while failing to address fundamental problems. I hope to play a part in improving tools, stabilizing the tech stack, and making programming more accessible. I've been working hard on a not-yet-released programming environment called <a href="https://github.com/joelburget/pigment">Pigment</a>.</p>
 
-  <p>I'm fascinated by the idea of making programming better. Programmers jump from technology to technology distressingly fast, all while failing to address fundamental problems. I hope to play a part in improving tools, stabilizing the tech stack, and making programming more accessible. I've been working hard on a not-yet-released programming environment called <a href="https://github.com/joelburget/pigment">Pigment</a>.</p>
+  <div id="pigmentphoto"></div>
+
+  <p>
+  Previously I worked for <a href="http://www.khanacademy.org">Khan Academy</a> from 2011 to 2015, where I learned how to make good software from a very talented team. You can see some of my work in the open source <a href="https://github.com/khan/perseus">Perseus</a> and <a href="http://khan.github.io/react-components/">React components</a> projects.
+  </p>
+
+  <div class="photo" id="khanphoto"></div>
+
 </div>
