@@ -50,13 +50,7 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- postList "posts/*" "templates/postitem.html" $
-                fmap (take 5) . recentFirst
-            let idxCtx = mconcat [
-                    constField "posts" posts,
-                    constField "script" "",
-                    defaultContext
-                    ]
+            let idxCtx = constField "script" "" <> defaultContext
 
             getResourceBody
                 >>= applyAsTemplate idxCtx
