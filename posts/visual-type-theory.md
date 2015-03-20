@@ -4,6 +4,7 @@ title: Visual Type Theory, Part 1
 category: posts
 published: September 8, 2013
 description: Constraint propagation and unification of `fib = 0:1:zipWith (+) fib (tail fib)`
+authorName: Joel Burget
 header: <link rel="stylesheet" type="text/css" href="/media/css/how-series-pygments_scr_pro.css" media="screen, projection" />
         <link rel='stylesheet' type='text/css' href='/media/css/data-type-newtype-instance-class.css'>
         <link rel='stylesheet' type='text/css' href='/media/css/syntax.css'>

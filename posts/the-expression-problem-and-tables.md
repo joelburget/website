@@ -4,6 +4,7 @@ title: The Expression Problem and Tables
 category: posts
 published: March 2, 2015
 description: The Expression Problem and Tables
+authorName: Joel Burget
 header: <link rel="stylesheet" type="text/css" href="/media/css/pigment.css" media="screen, projection" />
 ---
 

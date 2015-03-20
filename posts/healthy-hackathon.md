@@ -4,6 +4,7 @@ title: KhanQuest and the Healthy Hackathon
 category: posts
 published: July 21, 2014
 description: KhanQuest and the Healthy Hackathon
+authorName: Joel Burget
 header: <link rel="stylesheet" type="text/css" href="/media/css/healthy-hackathon.css" media="screen, projection" />
 ---
 # KhanQuest and the Healthy Hackathon

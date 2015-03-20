@@ -4,6 +4,7 @@ title: Backbone to React
 category: posts
 published: October 28, 2013
 description: My talk at Hack Reactor about Khan Academy's transition from Backbone to React
+authorName: Joel Burget
 header: <link rel="stylesheet" type="text/css" href="/media/css/react2.css" media="screen, projection" />
 ---
 

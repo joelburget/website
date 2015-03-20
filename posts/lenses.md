@@ -4,6 +4,7 @@ title: Hubble
 category: posts
 published: July 29, 2014
 description: A Javascript Lens Library
+authorName: Joel Burget
 header: <link rel="stylesheet" type="text/css" href="/media/css/healthy-hackathon.css" media="screen, projection">
         <link rel="stylesheet" type="text/css" href="/media/css/syntax.css" media="screen, projection">
 ---
