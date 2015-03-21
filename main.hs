@@ -23,7 +23,6 @@ main = hakyll $ do
             , "media/video/**"
             , "favicon.ico"
             , "static/**"
-            , "404.html"
             , "keybase.txt"
             ]
 
@@ -67,6 +66,15 @@ main = hakyll $ do
                 >>= applyAsTemplate (constField "posts" public
                            <> defaultContext)
                 >>= loadAndApplyTemplate "templates/base.html" defaultContext
+
+    match "error.html" $ do
+        route idRoute
+        compile $ do
+            let idxCtx = constField "script" "" <> defaultContext
+
+            getResourceBody
+                >>= applyAsTemplate idxCtx
+                >>= loadAndApplyTemplate "templates/base.html" idxCtx
 
     create ["rss.xml"] $ feedRules renderRss
     create ["atom.xml"] $ feedRules renderAtom
