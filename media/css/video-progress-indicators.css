@@ -3,6 +3,11 @@
     width: 1100px;
   }
 }
+@media screen and (max-width: 500px) {
+    img {
+        width: 100%;
+    }
+}
 body {
   color: #444;
 }
@@ -29,6 +34,7 @@ h3 {
   font-size: 1.25em;
 }
 #all-but-nav {
+  margin-top: 100px;
   margin-bottom: 125px;
 }
 .highlight {
@@ -37,19 +43,23 @@ h3 {
 code, pre {
   font-size: 12px;
   line-height: 1em;
-} 
+}
 #comparison {
   margin: 20px 0;
   position: relative;
 }
-#comparison img.arrow {
-  position: absolute;
-  left: 350px;
+
+@media screen and (min-width: 825px) {
+    #comparison img.arrow {
+      position: absolute;
+      left: 350px;
+    }
+    #comparison img.after {
+      position: absolute;
+      left: 470px;
+    }
 }
-#comparison img.after {
-  position: absolute;
-  left: 470px;
-}
+
 ::selection {
     background: #d9e2c1;
 }
@@ -90,7 +100,7 @@ p code {
 figcaption {
   font-size: 80%;
   font-family: Verdana, Arial, sans-serif;
-  text-align: center; 
+  text-align: center;
 }
 .lineno {
   color: #005987;

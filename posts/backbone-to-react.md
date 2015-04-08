@@ -40,7 +40,7 @@ names are). We both started working in React independently. I don't know how
 Alpert felt but I was certainly encouraged by knowing that he found React
 valuable.
 
-<img src="/media/img/monkeys.gif" style="float: right; margin: 5px 10px;" />
+<img src="/media/img/monkeys.gif" id="monkeys">
 
 Here's a demo Alpert threw together while working on Perseus.  Notice how the
 left side is smooth, while the right side jumps?

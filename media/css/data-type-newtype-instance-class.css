@@ -1,5 +1,12 @@
+#all-but-nav {
+    margin-top: 100px;
+    padding: 20px;
+}
 .linenodiv {margin-right: 1em;}
-h1, h2 {color: #F2583E;}
+h1, h2 {
+    color: #F2583E;
+    line-height: 1.1em;
+}
 h2 {font-size: 2em;}
 p {color: #2B3E42; margin: 1em 0;}
 code, pre {font-size: 13px;}
@@ -11,3 +18,9 @@ body {background-color: #F7F3E8; color: #2B3E42; margin-bottom: 100px; margin-ri
 .kt {color: #747E80;}/*names*/
 .kr {color: #2B3E42;}/*newtype, data*/
 .haskell, .ghci {margin-top: 0.5em; margin-bottom: 1em;}
+
+@media screen and (max-width: 600px) {
+    #constraints {
+        width: 100%;
+    }
+}

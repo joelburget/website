@@ -3,8 +3,25 @@
 /* nav: 200px
  * 1000px for rest
  */
-#all-but-nav {
-    width: 1000px;
+@media (min-width: 1000px) {
+    #all-but-nav {
+        width: 1000px;
+    }
+    .half_col {
+        width: 500px;
+    }
+    .in_code_half_col {
+        width: 490px;
+    }
+    #monkeys {
+        float: right;
+        margin: 5px 10px;
+    }
+}
+@media (max-width: 999px) {
+    #monkeys {
+        width: 100%;
+    }
 }
 /* TODO change to ids? */
 .problem__left_col {

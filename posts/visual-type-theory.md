@@ -18,7 +18,7 @@ the type system in a visual way. Here's an example of constraint propagation
 and unification of the expression
 `fib = 0:1:zipWith (+) fib (tail fib)`{.haskell}.
 
-![Constraint Propagation Diagram](/media/img/constraints.jpg)
+<img id="constraints" src="/media/img/constraints.jpg" alt="Constraint Propagation Diagram">
 
 For reference:
 

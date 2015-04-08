@@ -22,7 +22,7 @@ h3 {
 }
 
 #all-but-nav li {
-    list-style-type: circle;
+    list-style-type: disc;
 }
 
 #all-but-nav ol, #all-but-nav ul {
@@ -190,6 +190,10 @@ pre.query {
     padding: 10px;
 }
 
+.aside h3 {
+    margin: 0.5em 10px;
+}
+
 .headed-table {
     margin: 20px;
     float: left;
@@ -200,7 +204,7 @@ blockquote {
     border-left: 5px solid rgb(177, 220, 217);
     background-color: rgba(177, 220, 217, 0.15);
     padding: 1.9em 0.5em 0.5em 20px;
-    quotes: "\201C""\201D""\2018""\2019";
+    quotes: "\201C""\201D";
 }
 
 blockquote:before {
@@ -214,4 +218,43 @@ blockquote:before {
 
 blockquote p {
     display: inline;
+}
+
+.assoc {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-left-width: 4px;
+    border-right-width: 4px;
+}
+
+.assoc.hl {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+#assoc div {
+    padding: 4px 5px;
+    box-sizing: border-box;
+    display: inline;
+}
+
+#assoc div.hard {
+    display: block;
+}
+
+#assoc {
+    cursor: default;
+}
+
+.sourceCode.diff .ot {
+    background-color: rgb(220, 252, 220);
+    color: #586e75;
+    padding: 4px 0;
+}
+
+.sourceCode.diff .st {
+    background-color: rgb(255, 228, 228);
+    color: #586e75;
+    padding: 4px 0;
 }

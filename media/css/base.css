@@ -52,6 +52,9 @@ table {
 
 /*end reset*/
 
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1em;
+}
 
 nav h1, nav h4 {
   font-family: 'Input Sans', sans-serif !important;
@@ -117,11 +120,20 @@ nav a.icon {
 }
 
 #all-but-nav {
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
-  max-width: 800px;
   margin-bottom: 100px;
+}
+@media (min-width: 800px) {
+    #all-but-nav {
+      max-width: 800px;
+    }
+}
+@media (max-width: 799px) {
+    #all-but-nav {
+        padding: 0 10px;
+    }
 }
 
 #title, #published, #last_edited {

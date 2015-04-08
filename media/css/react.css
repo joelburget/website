@@ -1,8 +1,19 @@
-/* nav: 200px
- * 1000px for rest
- */
+@media (min-width: 1000px) {
+    /* nav: 200px
+     * 1000px for rest
+     */
+    #all-but-nav {
+        width: 1000px;
+    }
+    .half_col {
+        width: 500px;
+    }
+    .in_code_half_col {
+        width: 490px;
+    }
+}
 #all-but-nav {
-    width: 1000px;
+    margin-top: 100px;
 }
 /* TODO change to ids? */
 .problem__left_col {
@@ -20,7 +31,6 @@
 /* TODO padding issues in first paragraph */
 .half_col {
     float: left;
-    width: 500px;
     box-sizing: border-box;
 }
 .half_col:first-child {
@@ -31,7 +41,6 @@
 }
 .in_code_half_col {
     float: left;
-    width: 490px;
     box-sizing: border-box;
     padding-left: 5px;
 }

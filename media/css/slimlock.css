@@ -4,10 +4,14 @@ img {
 h1 {
   color: #ff9800;
   font-family: 'Orbitron';
+  margin-top: 100px;
 }
 h2, h3, h4 {
   color: #7e8aa2;
   font-family: 'Orbitron';
+}
+h1, h2, h3, h4 {
+  line-height: 1.1em;
 }
 a {
   color: #b1d631;
@@ -20,8 +24,10 @@ body {
 p {
   font-size: 14px;
 }
-#all-but-nav {
-  width: 800px;
+@media (min-width: 800px) {
+    #all-but-nav {
+      width: 800px;
+    }
 }
 img {
   display: block;

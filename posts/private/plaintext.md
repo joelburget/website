@@ -18,6 +18,9 @@ This is a companion to my last post on the expression problem and tables. In thi
 
 In Haskell we often use ASCII symbols as analogs to concepts.
 
+<blockquote class="twitter-tweet" lang="en"><p>The lamest bottle-neck in language design is running out of ASCII punctuation for built-in syntax</p>&mdash; Gabriel Gonzalez (@GabrielG439) <a href="https://twitter.com/GabrielG439/status/582682741973512192">March 30, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ```haskell
 -- if `a` is a Num, go from `a` to `a` to `a`
 (+) :: Num a => a -> a -> a

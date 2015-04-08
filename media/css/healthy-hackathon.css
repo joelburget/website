@@ -2,6 +2,11 @@ h1, h2, h3, h4, h5 {
     color: #111;
     font-family: 'Helvetica Neue',sans-serif;
     font-weight: 100;
+    line-height: 1.2em;
+}
+
+h1 {
+    margin-top: 100px !important;
 }
 
 h2 {
@@ -25,17 +30,25 @@ main li ul li {
     margin: 5px 0 5px 20px;
 }
 
-img {
-    margin-left: 50px;
+@media (min-width: 900px) {
+    #all-but-nav {
+        width: 900px;
+        margin-top: 100px !important;
+        border: none !important;
+        font-family: Merriweather, sans-serif;
+        font-size: 16px;
+        line-height: 1.7em;
+    }
+
+    img {
+        margin-left: 50px;
+    }
 }
 
-#all-but-nav {
-    width: 900px;
-    margin-top: 100px !important;
-    border: none !important;
-    font-family: Merriweather, sans-serif;
-    font-size: 16px;
-    line-height: 1.7em;
+@media (max-width: 899px) {
+    img {
+        width: 100%;
+    }
 }
 
 pre.sourceCode {
