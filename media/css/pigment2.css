@@ -1,0 +1,290 @@
+main {
+    color: #323232;
+    width: 960px;
+}
+
+main p, main li {
+    font-family: "Cardo", serif;
+    line-height: 1.5;
+    font-size: 22px;
+}
+
+main p, main ul {
+    margin: 1.5rem 0;
+}
+
+main a:not(.footnoteRef),
+main a.footnoteRef sup {
+    border-bottom: 1px solid rgba(31, 50, 84, 0.35);
+    color: #323232;
+    text-decoration: none;
+}
+
+main a:not(.footnoteRef):hover,
+main a.footnoteRef sup:hover {
+    border-bottom: 2px solid rgb(31, 50, 84);
+}
+
+sup {
+    margin-left: 0.3em;
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
+h1, h2, h3 {
+    font-family: "Cardo", serif;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 5em 0 3em;
+}
+
+h2 {
+    font-size: 1.7em;
+    margin: 2em 0 1.5em;
+}
+
+h3 {
+    font-size: 1.75em;
+    margin: 1.5em 0px 1em;
+}
+
+#all-but-nav li {
+    list-style-type: disc;
+}
+
+#all-but-nav ol, #all-but-nav ul {
+    padding-left: 28px;
+}
+
+#all-but-nav {
+    margin-top: 150px;
+}
+
+pre, code {
+    font-family: "Inconsolata", monospace;
+}
+
+/* demo stuff */
+.demo {
+    border-left: 5px solid rgb(252, 110, 110);
+    margin: 20px 0;
+    overflow: hidden;
+    padding-left: 20px;
+}
+.demo, .demo input {
+    font-family: "Inconsolata", monospace;
+    font-size: 16px;
+}
+.box {
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    border: 1px dashed rgb(155, 155, 155);
+}
+.caption span {
+    display: flex;
+    justify-content: center;
+}
+.table {
+    display: table;
+}
+.row {
+    display: table-row;
+}
+.cell {
+    display: table-cell;
+}
+.relative-cell {
+    padding-left: 4px;
+    display: table-cell;
+    position: relative;
+}
+.slider {
+    background-color: rgb(230, 230, 239);
+    border-right: 10px solid rgb(113, 106, 210);
+    height: 200px;
+}
+.chain-container {
+    width: 500px;
+    height: 250px;
+}
+.button-box {
+    margin-left: 10px;
+}
+.hover-circ {
+    cursor: pointer;
+}
+
+pre.sourceCode {
+    border-left: 5px solid #278BCC;
+    color: #586e75;
+    margin: 30px 0;
+    padding: 10px 20px;
+}
+td {
+    padding: 1px 10px 0;
+}
+thead {
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+th.time {
+    border-right: 1px solid rgb(218, 218, 218);
+}
+td.time {
+    border-right: 1px solid rgb(218, 218, 218);
+    font-family: "Inconsolata", monospace;
+}
+
+.easings {
+    overflow: hidden;
+}
+
+/* KeyWordTok */
+.sourceCode .kw { color: #2ba198; }
+/* DataTypeTok */
+.sourceCode .dt { color: #278bcc; }
+
+/* DecValTok (decimal value), BaseNTok, FloatTok */
+.sourceCode .dv, .sourceCode .bn, .sourceCode .fl { color: #2ba198; }
+/* CharTok */
+.sourceCode .ch { color: #DC322F; }
+/* StringTok */
+.sourceCode .st { color: #2ba198; }
+/* CommentTok */
+.sourceCode .co { color: #839496; }
+/* OtherTok */
+.sourceCode .ot { color: #b58906; }
+/* AlertTok */
+.sourceCode .al { color: #ae3583; font-weight: bold; }
+/* FunctionTok */
+.sourceCode .fu { color: #2ba198; }
+/* RegionMarkerTok */
+.sourceCode .re { }
+/* ErrorTok */
+.sourceCode .er { color: #ae3583; font-weight: bold; }
+
+.table-holder {
+    border-left: 5px solid gray;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+table {
+    text-align: left;
+}
+
+th {
+    padding-left: 10px;
+}
+
+.oo-table td, .oo-table th {
+    border-left: 2px solid rgb(139, 139, 139);;
+    border-right: 2px solid rgb(139, 139, 139);;
+}
+
+.fp-table tr {
+    border-top: 2px solid rgb(139, 139, 139);;
+    border-bottom: 2px solid rgb(139, 139, 139);;
+}
+
+table .modified {
+    background-color: rgb(255, 228, 228);
+}
+
+table .existing {
+    background-color: rgb(220, 252, 220);
+}
+
+table .hl {
+    background-color: rgb(224, 238, 255);
+}
+
+table .no-hl {
+    color: rgb(171, 171, 171);
+}
+
+.table-table td:first-child, .table-table th:first-child {
+    border-right: 1px solid rgb(218, 218, 218);
+}
+
+pre.query {
+    margin: 2.5rem 0 0.5rem;
+}
+
+.aside {
+    border: 3px dashed gold;
+    background-color: rgb(255, 250, 223);
+    padding: 10px;
+}
+
+.aside h3 {
+    margin: 0.5em 10px;
+}
+
+.headed-table {
+    margin: 20px;
+    float: left;
+    overflow: hidden;
+}
+
+blockquote {
+    border-left: 5px solid rgb(177, 220, 217);
+    background-color: rgba(177, 220, 217, 0.15);
+    padding: 1.9em 0.5em 0.5em 20px;
+    quotes: "\201C""\201D";
+}
+
+blockquote:before {
+    color: rgb(177, 220, 217);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.3em;
+}
+
+blockquote p {
+    display: inline;
+}
+
+.assoc {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-left-width: 4px;
+    border-right-width: 4px;
+}
+
+.assoc.hl {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+#assoc div {
+    padding: 4px 5px;
+    box-sizing: border-box;
+    display: inline;
+}
+
+#assoc div.hard {
+    display: block;
+}
+
+#assoc {
+    cursor: default;
+}
+
+.sourceCode.diff .ot {
+    background-color: rgb(220, 252, 220);
+    color: #586e75;
+    padding: 4px 0;
+}
+
+.sourceCode.diff .st {
+    background-color: rgb(255, 228, 228);
+    color: #586e75;
+    padding: 4px 0;
+}

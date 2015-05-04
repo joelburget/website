@@ -5,119 +5,20 @@ category: posts
 published: March 7, 2015
 description: Programmer Tooling Beyond Plain Text
 authorName: Joel Burget
-header: <link rel="stylesheet" type="text/css" href="/media/css/pigment.css" media="screen, projection" />
+header: <link rel="stylesheet" type="text/css" href="/media/css/pigment2.css" media="screen, projection" />
+        <link rel="stylesheet" type="text/css" href="/media/css/960.css" media="screen, projection" />
+        <link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
 ---
 
 # Programmer Tooling Beyond Plain Text
 
-This is a companion to my last post on the expression problem and tables. In this post I explore other ways we can benefit by adding new display types to our programming environment, beyond plain text.
-
-### Haskell Operators
-
-In Haskell we often use ASCII symbols as analogs to concepts.
-
-<blockquote class="twitter-tweet" lang="en"><p>The lamest bottle-neck in language design is running out of ASCII punctuation for built-in syntax</p>&mdash; Gabriel Gonzalez (@GabrielG439) <a href="https://twitter.com/GabrielG439/status/582682741973512192">March 30, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-```haskell
--- if `a` is a Num, go from `a` to `a` to `a`
-(+) :: Num a => a -> a -> a
-
--- pull `x` out of `getChar`
-do x <- getChar
-   putChar x
-
--- pull `x` and `y` out of those lists
-[ (x,y) | x <- [1..10], y <- ['a'..'z'], x > 42 ]
-
--- push the result of x into y
-x >>= y
-```
-
-Those worked pretty well! But applicative syntax suffers. These two expressions are equivalent parsing code. The first uses [idiom brackets](https://personal.cis.strath.ac.uk/conor.mcbride/pub/she/idiom.html) to make the code slightly easier to read and write.
-
-```haskell
-pExp :: P Char Exp
-pExp =
-  (| Neg    (%teq '-'%) pExp
-   | (:+:)  (%teq '('%) pExp (%teq '+'%) pExp (%teq ')'%)
-   | V      (tok isAlpha)
-   |)
-
-pExp = Neg <$> teq '-' *> pExp
-   <|> (:+:) teq '(' <$> pExp <* teq '+' <*> pExp <* teq ')'
-   <|> V <$> tok isAlpha
-```
-
-In the second expression implicit associativity makes it a nightmare to read (and write). There are nine operators and no parentheses, so in order to reason about what this code does you must understand how to group them. You need to be an expert in the associativity rules of your chosen language or just wrap everything in parens.
-
-Let's see the exact same code again, but this time with a subtle indication of associativity.
-
-<div id="assoc"></div>
-
-### Argument Order
-
-Choosing an argument ordering is usually rather arbitrary
-
-```haskell
-mapM_ :: (a -> m b) -> [a] -> m ()
-forM_ :: [a] -> (a -> m b) -> m ()
-forM_ = flip mapM_
-
-cmp x y = compare (f x) (f y)
--- alternatively
-cmp = ((. f) . compare .)
-```
-
-Javascript copes with argument ordering through the option object pattern (example: [`jQuery.ajax`](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings) and lambdas (arrow functions make this lighter-weight).
-
-```javascript
-// call $.ajax with any set of options, in any order
-$.ajax({
-  url: "http://fiddle.jshell.net/favicon.png",
-  beforeSend: function( xhr ) {
-    xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-  }
-})
-
-$.ajax({
-  method: "POST",
-  url: "some.php",
-  data: { name: "John", location: "Boston" }
-})
-```
-
-```javascript
-// we can use arrow functions to adapt the parameters
-> [1,2,3].forEach(console.log.bind(console));
-1 0 [1, 2, 3]
-2 1 [1, 2, 3]
-3 2 [1, 2, 3]
-
-> [1,2,3].forEach(x => console.log(x));
-1
-2
-3
-
-> [1,2,3].forEach((x, ix) => console.log(ix));
-0
-1
-2
-```
-
-There's an art to adapting functions in this way:
-
-* In [javascript](https://leanpub.com/javascript-allonge/read#leanpub-auto-unary)
-* In [haskell](https://wiki.haskell.org/Pointfree)
-* Heck, even in the [lambda calculus](http://en.wikipedia.org/wiki/Combinatory_logic)
-
-But a more elegant solution is to forgo argument ordering.
+This is a companion to my post on the [expression problem and tables](/the-expression-problem-and-tables/). In this post I explore ways we can benefit from manipulating rich represenations of programs (structural editing).
 
 ### Math Notation
 
-These express the same thing. I'd *really* prefer to deal with the latter.
+These express the same thing. The latter is vastly easier to read.
 
 ```python
 x = symbol('x')
@@ -130,21 +31,23 @@ Integral((x**4 + x**2*exp(x) - x**2 - 2*x*exp(x) - 2*x -
 
 ### Tables
 
-Tables are the best way to represent some types of data. In my [last post](/the-expression-problem-and-tables/) I talked about some ways they'd be useful additions to the programming language itself.
+Tables are the best way to represent some (most?) types of data. Spreadsheets are ubiquitous and used by millions of people who wouldn't consider themselves programmers.
 
-TODO
+In [*the expression problem and tables*](/the-expression-problem-and-tables/) I talked about some ways they'd be useful additions to the programming language itself.
 
-### Etc
+### Images, Colors, Numbers, Etc
 
 One more example. Khan Academy's Programming platform shows off what can be done with very concrete data types like images, colors, and numbers. Try changing the color, position, or image in the sample below.
 
-<script src="http://www.khanacademy.org/computer-programming/image-color-demo/6690729609658368/embed.js?editor=yes&amp;buttons=yes&amp;author=yes&amp;embed=yes"></script>
+script src="http://www.khanacademy.org/computer-programming/image-color-demo/6690729609658368/embed.js?editor=yes&amp;buttons=yes&amp;author=yes&amp;embed=yes"></script>
+
+This kind of direct manipulation / immediate feedback is invaluable for color selection and positioning (see also [Chrome Devtools](https://developer.chrome.com/devtools/docs/tips-and-tricks#elements)).
 
 ## Source Control
 
-Let's look at a couple examples of source control handling plain text in a disappointing way. We'll use Python in these examples (this does not highlight any deficiency in Python, a language I like).
+Let's look at a couple examples of source control handling plain text in a disappointing way. We'll use Python in these examples, though they apply to nearly every language.
 
-Our code deals with billing a customer.
+We start with code to bill a customer.
 
 ```python
 def calculateBill():
@@ -179,7 +82,7 @@ But Bob simultaneously adds `calculateTip`.
 +     return calculateBill() * 0.2
 ```
 
-The merge succeeds, producing broken code on the last line.
+Now Bob merges Alices changes. The merge succeeds, producing broken code on the last line.
 
 ```python
 def billTotal():
@@ -189,10 +92,11 @@ def calculateTax():
     return billTotal() * taxRate
 
 def calculateTip():
-    return calculateBill() * 0.2 # this should say "billTotal"
+    # this should say "billTotal" instead of "calculateBill"
+    return calculateBill() * 0.2
 ```
 
-Why did the merge break? Because the merge tool has no way of knowing what the changes *mean*. It only sees intra-line changes on the one hand and added lines on the other.
+Why did the merge break? Because the merge tool has no way of knowing what the changes *mean*. It only sees Alice's intra-line changes and Bob's added lines. Since they don't touch the same code it's assumed they're safe.
 
 <!--
 * Alice changed line 1 from `def calculateBill():` to `def billTotal():` and line 5 from `    return calculateBill() * taxRate` to `	return billTotal() * taxRate`.
@@ -203,14 +107,16 @@ Why did the merge break? Because the merge tool has no way of knowing what the c
       ```
 -->
 
-However, in the structured editing case, the job of the merge is to resolve two actions:
+On the other hand, when editing code structurally, the two changes can be expressed as:
 
-* rename `calculateBill` to `billTotal`
-* add `calculateTip`
+* Alice: rename `calculateBill` to `billTotal`
+* Bob: add `calculateTip`
 
-The merge tool *knows all of this*. Don't quote me on this, but I'm hopeful we can use a language aware [patch theory](http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory) to find a sequence of patches (if this sequence exists) that can be safely applied to yield a working program.
+The merge tool *knows all of this* and can be made smart enough to apply the rename operation *after* adding `calculateTip` (which references the old name).
 
-In the move from text munging to structure manipulations, our actions gain *intention* with the language / environment.
+I'm hopeful we can use a language aware [patch theory](http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory) to find a sequence of patches (if this sequence exists) that can be safely applied to yield a working program.
+
+In the move from text munging to structure manipulations, our actions become transparent to the the language / environment.
 
 Another example:
 
@@ -220,42 +126,52 @@ We start with
 import X
 ```
 
-Alice decides to import `Y`.
+Alice adds an import of `Y`.
 
 ```diff
   import X
 + import Y
 ```
 
-Bill decides to import `Z`.
+Bob adds an import of `Z`.
 
 ```diff
   import X
 + import Z
 ```
 
-Git can't handle this. It only knows that both Alice and Bob are modifying the same line.
+Git can't handle this. It only knows that both Alice and Bob are modifying the same line. Because our hypothetical environment knows of the changes as "add import Y, add import Z" rather than "add second line, add second line", it can resolve them safely.
 
 ### Editor Integrations are Flaky
 
-TODO
+I love text editor integrations. They're [awesome](http://vimawesome.com/). But they seem to break all the time. Why? Because they try to make sense of your code *as you're writing it*.
+
+Take this code for example:
+
+```javascript
+// working code
+
+function foo() {
+    foo("
+
+// working code
+```
+
+With previously working code above and below, I start to declare `foo`. In the process I introduced unmatched '`{`'; `'('`; and `'"'`, and am referencing the not yet (fully) declared `foo`. This is routine editing, but it causes huge problems to tools like:
+
 * typechecking
 * go to source
-* folding
+* code folding
 * autocomplete
 * etc
 
-All require parsing (potentially incomplete) code.
-
-### Types (and Metadata in General) become Convenient
-
-TODO
-
-Types become much more convenient when you no longer have to write them yourself, when you're no longer submitting programs to the compiler to have them rejected. Rather, your terms always match their type, in fact, construction of terms is guided by the type. (link to Epigram paper)
+Any of which require parsing (potentially incomplete) code.
 
 ## Forget Parsing
 
-Quoting someone much smarter than me, djb, on [avoiding parsing](http://cr.yp.to/qmail/qmailsec-20071101.pdf).
+While we're at it, let's entirely avoid parsing.
+
+Quoting someone much smarter than me, djb, on the [perils of parsing](http://cr.yp.to/qmail/qmailsec-20071101.pdf).
 
 > I have discovered that there are two types of command
 > interfaces in the world of computing: good interfaces and
@@ -278,17 +194,27 @@ Quoting someone much smarter than me, djb, on [avoiding parsing](http://cr.yp.to
 > rare joyous occasions does it happen that the parser and the
 > quoter both misinterpret the interface in the same way.
 
-TODO
+By structurally editing programs, we entirely avoid parsing. This prevents two different classes of parse errors.
 
-By directly manipulating data we can avoid two types of parse errors.
+#### User Errors
 
-User parse errors are obvious but ultimately unimportant errors to avoid.
+For example,
 
-Less obvious, but arguably as important, is avoiding parser implementation errors.
+```javascript
+functoin() {} // I've probably done this 100 times
+```
 
-As a language implementor I'm particularly interested in the time saved from not having to implement a parser in the first place.
+These aren't annoying but not especially important.
+
+#### Implementation Errors
+
+Less common, but arguably more important, are parser implementation errors. These are demoralizing and lead to distrust of the language itself.
+
+There's one other benefit to structural editing I'd like to mention - the time saved from not writing and maintaining a parser at all.
 
 ## Sacrifices
+
+As I'm trying to present an unbiased account of the benefits of structural editing, it's time to consider the downsides.
 
 <div class="aside" markdown="1">
 
@@ -296,18 +222,18 @@ As a language implementor I'm particularly interested in the time saved from not
 
 * Making your system better in one way *almost always* make it worse in another.
     - Examples:
-        + performance usually comes at the cost of simplicity (and therefore developer time and correctness)
-        + You can have consistency, availability, or partition tolerance, but [not all three](http://en.wikipedia.org/wiki/CAP_theorem)
+        + Performance usually comes at the cost of simplicity (and therefore developer time and correctness).
+        + You can have consistency, availability, or partition tolerance, but [not all three](http://en.wikipedia.org/wiki/CAP_theorem).
         + Immutable data structures have simpler semantics and can go back in time, but there are fundamental performance limitations.
         + etc.
     - The exceptions are exceedingly rare.
 * When designing any system, take care to consider not only what you've won, but also what you've given up.
 * Also: Make the same considerations for any system you're considering using.
   - Corollary: Be suspicious of any system claiming to be strictly better than what currently exists.
-  - Second corollary: Be doubly suspicious if the creators of the system actually believe it's strictly better (ie. disregarding marketing, the engineers better understand the tradeoffs they've made)
-* Savor hard choices. Be decisive. A handful of small decisions constrains the direction of your project.
-    - Want a distributed database with consistent transactions? You need to grapple with the complexity of PAXOS, GPS, and atomic clocks.
-    - An [append-only database](http://blog.confluent.io/2015/03/04/turning-the-database-inside-out-with-apache-samza/) with streaming materialized views never loses data. You no longer have to worry corrupting data or migrating it, a huge win. But Postgres has been around for 20 years, is stable, performant, and is well understood.
+  - Second corollary: Be doubly suspicious if the creators of the system actually believe it's strictly better (ie. disregarding marketing, the engineers need to understand the tradeoffs they've made).
+* Savor hard choices. Be decisive. A handful of small decisions guides the direction of your project.
+    - Want a distributed database with consistent transactions? You need to grapple with the complexity of [PAXOS, GPS, and atomic clocks](http://research.google.com/archive/spanner.html)(!).
+    - An [append-only database](http://blog.confluent.io/2015/03/04/turning-the-database-inside-out-with-apache-samza/) with streaming materialized views never loses data. You no longer have to worry corrupting data or migrating it, a huge win. But Postgres has been around for 20 years, and is stable, performant, and well understood.
 
 </div>
 
@@ -316,6 +242,8 @@ So, what have we given up by moving away from plain text?
 Graydon Hoare has some [thoughts on the matter](http://graydon2.dreamwidth.org/193447.html):
 
 > text is the most powerful, useful, effective communication technology ever, period
+
+Also,
 
 > Text is the most socially useful communication technology. It works well in 1:1, 1:N, and M:N modes. It can be indexed and searched efficiently, even by hand. It can be translated. It can be produced and consumed at variable speeds. It is asynchronous. It can be compared, diffed, clustered, corrected, summarized and filtered algorithmically. It permits multiparty editing. It permits branching conversations, lurking, annotation, quoting, reviewing, summarizing, structured responses, exegesis, even fan fic. The breadth, scale and depth of ways people use text is unmatched by anything. There is no equivalent in any other communication technology for the social, communicative, cognitive and reflective complexity of a library full of books or an internet full of postings. Nothing else comes close.
 
