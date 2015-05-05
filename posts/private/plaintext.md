@@ -43,7 +43,7 @@ In [*the expression problem and tables*](/the-expression-problem-and-tables/) I 
 
 One more example. Khan Academy's Programming platform shows off what can be done with very concrete data types like images, colors, and numbers. Try changing the color, position, or image in the sample below.
 
-script src="http://www.khanacademy.org/computer-programming/image-color-demo/6690729609658368/embed.js?editor=yes&amp;buttons=yes&amp;author=yes&amp;embed=yes"></script>
+<script src="http://www.khanacademy.org/computer-programming/image-color-demo/6690729609658368/embed.js?editor=yes&amp;buttons=yes&amp;author=yes&amp;embed=yes"></script>
 
 This kind of direct manipulation / immediate feedback is invaluable for color selection and positioning (see also [Chrome Devtools](https://developer.chrome.com/devtools/docs/tips-and-tricks#elements)).
 
@@ -208,7 +208,7 @@ For example,
 functoin() {} // I've probably done this 100 times
 ```
 
-These aren't annoying but not especially important.
+These are annoying but not especially important.
 
 #### Implementation Errors
 
