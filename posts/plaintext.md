@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Plain Text is not Expressive Enough
+title: Programmer Tooling Beyond Plain Text
 category: posts
-published: March 7, 2015
+published: May 5, 2015
 description: Programmer Tooling Beyond Plain Text
 authorName: Joel Burget
 header: <link rel="stylesheet" type="text/css" href="/media/css/pigment2.css" media="screen, projection" />
