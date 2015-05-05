@@ -14,7 +14,7 @@ header: <link rel="stylesheet" type="text/css" href="/media/css/pigment2.css" me
 
 # Programmer Tooling Beyond Plain Text
 
-This is a companion to my post on the [expression problem and tables](/the-expression-problem-and-tables/). In this post I explore ways we can benefit from manipulating rich represenations of programs (structural editing).
+This is a companion to my post on the [expression problem and tables](/the-expression-problem-and-tables/). In this post I explore ways we can benefit from manipulating rich representations of programs (structural editing).
 
 ## Reading and Writing
 
@@ -22,7 +22,7 @@ Let's go through a few examples of constructs our hypothetical language could in
 
 ### Math Notation
 
-Mathematical notation has evolved over *centuries*. It's the best way to read and write mathematical concepts, so even though these both express the same thing, the second is *vastly* more readable.
+Mathematical notation has evolved over centuries. It's the best way to read and write mathematical concepts, so even though these both express the same thing, the second is *vastly* more readable.
 
 ```python
 x = symbol('x')
@@ -86,7 +86,7 @@ But Bob simultaneously adds `calculateTip`.
 +     return calculateBill() * 0.2
 ```
 
-Now Bob merges Alices changes. The merge succeeds, producing broken code on the last line.
+Now Bob merges Alice's changes. The merge succeeds, producing broken code on the last line.
 
 ```python
 def billTotal():
@@ -256,6 +256,8 @@ Go read the [original](http://graydon2.dreamwidth.org/193447.html), it's short a
 From a developer point of view, the biggest thing I can see that we're giving up is well-known, finely tuned tools (vim, grep, etc). These tools have had man-years of work put in, by *really* good developers.[^grep]
 
 So, is giving up plain text worth it? Maybe not initially. We'll have to give up tools we've been using for years. They're comfortable and familiar, but they haven't changed much in years. It feels like we're approaching the limit of what can be done with the current generation of tooling. I can't see programmers 30 years from now programming in fundamentally the same way as we program today. The benefits of a richer representation are overwhelming.
+
+[Darius Bacon](https://github.com/darius) also points out that there's a 50+ year history of structure editors. Why haven't they spread more and why would that change now? There is some folklore that in projects like the [Cornell Program Synthesizer](http://core.ac.uk/download/pdf/21750999.pdf), allowing programs to pass through illegal states makes editing much easier.
 
 ## Conclusion
 

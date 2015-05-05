@@ -240,7 +240,8 @@ blockquote {
 blockquote:before {
     color: rgb(177, 220, 217);
     content: open-quote;
-    font-size: 4em;
+    font-family: 'Cardo', serif;
+    font-size: 3em;
     line-height: 0.1em;
     margin-right: 0.25em;
     vertical-align: -0.3em;
