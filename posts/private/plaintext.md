@@ -16,9 +16,13 @@ header: <link rel="stylesheet" type="text/css" href="/media/css/pigment2.css" me
 
 This is a companion to my post on the [expression problem and tables](/the-expression-problem-and-tables/). In this post I explore ways we can benefit from manipulating rich represenations of programs (structural editing).
 
+## Reading and Writing
+
+Let's go through a few examples of constructs our hypothetical language could include to make reading and writing easier.
+
 ### Math Notation
 
-These express the same thing. The latter is vastly easier to read.
+Mathematical notation has evolved over *centuries*. It's the best way to read and write mathematical concepts, so even though these both express the same thing, the second is *vastly* more readable.
 
 ```python
 x = symbol('x')
@@ -116,7 +120,7 @@ The merge tool *knows all of this* and can be made smart enough to apply the ren
 
 I'm hopeful we can use a language aware [patch theory](http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory) to find a sequence of patches (if this sequence exists) that can be safely applied to yield a working program.
 
-In the move from text munging to structure manipulations, our actions become transparent to the the language / environment.
+In the move from text munging to structure manipulations, the intention in our actions becomes transparent to the the language / environment.
 
 Another example:
 
@@ -144,7 +148,7 @@ Git can't handle this. It only knows that both Alice and Bob are modifying the s
 
 ### Editor Integrations are Flaky
 
-I love text editor integrations. They're [awesome](http://vimawesome.com/). But they seem to break all the time. Why? Because they try to make sense of your code *as you're writing it*.
+I love text editor integrations. They're [awesome](http://vimawesome.com/). But they seem to break all the time. Why? Because trying to make sense of your code *as you're writing it* is really, really hard.
 
 Take this code for example:
 
@@ -214,7 +218,7 @@ There's one other benefit to structural editing I'd like to mention - the time s
 
 ## Sacrifices
 
-As I'm trying to present an unbiased account of the benefits of structural editing, it's time to consider the downsides.
+As I'm trying to present an unbiased account of the benefits of structural editing, it's time to consider the downsides. Let's talk in generalities for a moment.
 
 <div class="aside" markdown="1">
 
@@ -255,7 +259,23 @@ So, is giving up plain text worth it? Maybe not initially. We'll have to give up
 
 ## Conclusion
 
-Structured editing can remove an entire class of errors - syntax errors.
+Structured editing allows one to directly edit natural, intuitive representations of data. For example:
+
+* Math
+* Tables
+* Images
+* Colors
+* Numbers
+
+At the same time, editing *structures* rather than text makes the language environment more powerful. It makes the intention of our edits transparent, enabling more robust and composable changesets. We also avoid the need for parsing, which makes editor integrations simpler, removes an entire class of errors - syntax errors, and makes the language implementation simpler.
+
+However, we need to give up the benefits of plain text files:
+
+* Powerful, mature tools.
+* Familiarity.
+* etc.
+
+## Next Time
 
 Conspicuously missing from this post is discussion of how to *actually* edit structurally. I.E. how keypresses translate to editing actions. I have some ideas about this which I'll go over in a later post, along with we can avoid type errors at the same time.
 
