@@ -1,6 +1,5 @@
-main {
+main, footer {
     color: #323232;
-    width: 960px;
 }
 
 main p, main li {

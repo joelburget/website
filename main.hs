@@ -1,5 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
-import Data.Map as M
+
+module Main where
+
+import Control.Applicative
+import qualified Data.Map as M
 import Data.Maybe (fromMaybe)
 import Data.Monoid (mconcat, (<>))
 import System.FilePath ((</>), takeBaseName, addTrailingPathSeparator,
@@ -116,12 +120,29 @@ feedConfiguration = FeedConfiguration
 
 postCtx :: Context String
 postCtx = mconcat [
+    -- field "nextPost" (getPostUrl After),
+    -- field "prevPost" (getPostUrl Before),
     dateField "date" "%B %e, %Y",
     scriptContext,
     headerContext,
     directoryUrlCtx,
     defaultContext
     ]
+
+
+data Position = Before | After
+
+
+getPostUrl :: Position -> Item String -> Compiler String
+getPostUrl position post = do
+    posts <- getMatches "posts/*"
+    let postIdent = itemIdentifier post
+        ident = case position of
+            Before -> lookup postIdent $ zip (tail posts) posts
+            After -> lookup postIdent $ zip posts (tail posts)
+    case ident of
+        Just i -> (fmap (maybe empty $ toUrl) . getRoute) i
+        Nothing -> empty
 
 
 postList :: Pattern -> Identifier -> ([Item String] -> Compiler [Item String])

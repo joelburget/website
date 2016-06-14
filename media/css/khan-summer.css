@@ -7,6 +7,9 @@ body {
   font-family: 'Lato', arial, sans-serif;
   font-weight: 300;
 }
+main {
+    margin-top: 130px !important;
+}
 h1, h2, h3, h4 {
   font-family: 'Lato', arial, sans-serif;
 }
@@ -18,24 +21,24 @@ h1, h2, h3, h4 {
 ::selection {
   background-color: pink;
 }
-figure.polaroid { 
-  width: 368px; 
-  height: 376px; 
-  background-image: url(/media/img/polaroid-bg.png); 
+figure.polaroid {
+  width: 368px;
+  height: 376px;
+  background-image: url(/media/img/polaroid-bg.png);
   float: left;
   margin: 20px;
 }
-figure.polaroid img { 
-  width: 335px; 
-  height: 275px; 
-  margin: 25px 0 0 15px; 
+figure.polaroid img {
+  width: 335px;
+  height: 275px;
+  margin: 25px 0 0 15px;
 }
 figure.polaroid figcaption {
   text-align: center;
-  font-family: Miniver,arial,sans-serif; 
-  font-size: 20px; 
-  color: #2E2E2E; 
-  margin-top: 25px; 
+  font-family: Miniver,arial,sans-serif;
+  font-size: 20px;
+  color: #2E2E2E;
+  margin-top: 25px;
 }
 h2 {
   font-size: 2.25em;

@@ -119,19 +119,20 @@ nav a.icon {
     float: right;
 }
 
-#all-but-nav {
+main, footer {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 100px;
 }
+
 @media (min-width: 800px) {
-    #all-but-nav {
+    main, footer {
       max-width: 800px;
     }
 }
 @media (max-width: 799px) {
-    #all-but-nav {
+    main, footer {
         padding: 0 10px;
     }
 }

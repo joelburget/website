@@ -18,17 +18,23 @@
 <body>
   <nav>
     <ul>
-      <li class="nav1"><h4><a href="/">Joel Burget</a></h4></li>
-      <li class="nav3"><h4><a href="/posts/">Posts</a></h4></li>
+      <li class="nav1"><h4><a href="/"><span class=colored>JOEL BURGET</span></a></h4></li>
+      <li class="nav3"><h4><a href="/posts/"><span class=colored>POSTS</span></a></h4></li>
       <li class="nav4"><a class="icon" href="http://twitter.com/dino_joel"><i class="fa fa-twitter"></i></a></li>
       <li class="nav5"><a class="icon" href="https://github.com/joelburget"><i class="fa fa-github"></i></a></li>
       <!--<div id="search_results"></div>-->
     </ul>
   </nav>
+  <div id="inject"</div>
 	<main id="all-but-nav">
   $body$
 	</main>
 $script$
+<script src="https://carnivalapp.io/sites/418/init.js"></script>
+<script>
+  // TODO only add this to posts, configure https://carnivalapp.io/docs
+  document.addEventListener("DOMContentLoaded", Carnival.init);
+</script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -22,15 +22,23 @@ highlightHtmlCompiler :: Compiler (Item String)
 highlightHtmlCompiler = do
     body <- fmap itemBody getResourceBody
     let maybeChunks = parse toplevel "" body
+        chunks :: [Token]
         chunks = case maybeChunks of
             Left err -> error $ show err
             Right xs -> xs
-        pandoc' chunk = itemBody $ renderPandoc $ Item "highlighthtml.md" (show chunk)
-        result = foldMap (\chunk -> case chunk of
-            Prose str -> str
-            InlineCode{} -> stripPrefix' "<p>" $ stripSuffix' "</p>" $ pandoc' chunk
+        pandoc' :: Token -> Compiler String
+        pandoc' chunk = itemBody <$> (renderPandoc $ Item "highlighthtml.md" $ show chunk)
+
+        chunkCompiler :: Compiler [String]
+        chunkCompiler = mapM (\chunk -> case chunk of
+            Prose str -> pure str
+            InlineCode{} -> (stripPrefix' "<p>" . stripSuffix' "</p>") <$> pandoc' chunk
             _ -> pandoc' chunk) chunks
-    makeItem result
+
+        result :: Compiler String
+        result = mconcat <$> chunkCompiler
+
+    makeItem =<< result
 
 data Token
     = Prose String

@@ -23,55 +23,72 @@ script: <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs
 header: <link rel="stylesheet" type="text/css" href="/media/css/khan-summer.css" />
         <link rel="stylesheet" type="text/css" href="/media/css/jquery.lightbox-0.5.css" />
 ---
-<div>
-  <p>I spent the summer in California, at the <a href="http://www.khanacademy.org">Khan Academy</a>. This is some of what I did there.</p>
-  <h2>Projects</h2>
-  <h3>Accurate Video Log Recording</h3>
-  <p>I spent my first day improving the way we record how much of a video users have watched. We used to poll every ten seconds to see where in the video the user was and report back to the server if they had watched a certain amount. I changed the code to use the YouTube api, which allows us to record every time the user pauses or skips in the video. The idea is to have the exact segments of video that were watched so we can analyze that data and see if people are getting bored or going back to review certain parts of videos. This was a great project to spend my first day on.</p>
-  <h3>Phantom Users</h3>
-  <p>Next I teamed up with another intern, <a href="http://parkerkuivila.com/">Parker</a>, on the phantom users project, which was not as mysterious or scary as it sounds. Before we added our magic, users had to create an account on the site to use exercises. People have always been able to access the videos and we wanted them to be able to try out the exercises as well, so we could prove to them that it's worth it to create an account. So unfortunately "phantom users" has nothing to do with the physical manifestation of the soul or spirit of a deceased person, it could just have easily been called "unregistered users" (if we were lame). This project went well and gave us the opportunity to dig into the guts of the site.</p>
-  <h3>Video Progress Indicators</h3>
-  <p>I wrote about this in more detail <a href="/video-progress-indicators/">last time</a>. Briefly, I added icons to video links around the site to indicate if the video has been started or finished.</p>
-  <h3>Deploy Script Improvements</h3>
-  <p>In the middle of the summer we were going through a bit of a performance crisis. Every day we would see latency spikes where users would have to wait far too long for pages to load. The big fix was some work done by <a href="http://desmondbrand.com/">Desmond</a> to switch to the <a href="http://code.google.com/appengine/docs/python/datastore/hr/overview.html">High Replication Datastore</a> but in the meantime I wanted to do something to help. The idea, suggested by <a href="https://twitter.com/#!/soprano">Ben Alpert</a>, was to automatically include images in our stylesheets using <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data-uris</a>. This reduces the number of requests the browser must make, hopefully speeding up the page. I knew my idea probably wouldn't get approved if I asked permission to do it, so I did it first. If you're using a browser better than IE 7, you see this system in work any time you visit the site (it looks exactly the same, which is good).</p>
-  <p>To update the live version of the site you must run a deploy script that used to take about ten minutes, which is annoying and unproductive to wait for. So, at the same time as the data-uri project I was working on a system to speed up the deploy script. The cause of the slowness was a horrible css compressor that will not be named, which could take several minutes to compress a large stylesheet. What I did was cache the stylesheets on the deployer's computer so they don't need to be run through the compressor again if they haven't changed since the last time. I consider this project a bit of a failure, since we recently replaced the css compressor which sped things up enough that this work is not necessary anymore and should probably be removed from the code. Lessons learned: challenge assumptions and be lazy.</p>
-  <h3>Exercise Timeline</h3>
-  <p>To finish out the summer I spent about a month working on a system for teachers and students to view completed problems as a timeline showing when the student asked for hints and submitted answers, as well as showing what the exercises looked like to the student at that point. Below you can see one of my timelines from the exercise "Graphs of sine and cosine".</p>
-  <img src="/media/img/summer/timeline.jpg" alt="Example Timeline" width=600px height=406px>
-  <p>And that's mostly it. I did some other minor things like a <a href="http://code.google.com/appengine/articles/sharding_counters.html">sharded counter</a> implementation, but nothing worth sharing.</p>
-  <h2>People & Places</h2>
-  <p>I got to meet some amazing people</p>
-  <div id=gallery1>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/zachweiner_full.jpg"><img src="/media/img/summer/zachweiner_thumb.jpg"></a>
-      <figcaption><a href="http://smbc-comics.com">Zack Weiner!</a></figcaption>
-    </figure>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/gore-2_full.jpg"><img src="/media/img/summer/gore-2_thumb.jpg"></a>
-      <figcaption>Al Gore!</figcaption>
-    </figure>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/hagrid_full.jpg"><img src="/media/img/summer/hagrid_thumb.jpg"></a>
-      <figcaption>Hagrid?</figcaption>
-    </figure>
-  </div>
-  <p style="clear: both; padding-top: 35px;">And go cool places</p>
-  <div id=gallery2>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/sf_full.jpg"><img src="/media/img/summer/sf_thumb.jpg"></a>
-      <figcaption>San Francisco!</figcaption>
-    </figure>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/google_full.jpg"><img src="/media/img/summer/google_thumb.jpg"></a>
-      <figcaption>Google! (we're geeks)</figcaption>
-    </figure>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/near-death_full.jpg"><img src="/media/img/summer/near-death_thumb.jpg"></a>
-      <figcaption>Near Death at Yosemite!</figcaption>
-    </figure>
-    <figure class=polaroid>
-    <a class=lightbox href="/media/img/summer/aquarium_full.jpg"><img src="/media/img/summer/aquarium_thumb.jpg"></a>
-      <figcaption>Monterey Bay Aquarium!</figcaption>
-    </figure>
-  </div>
+
+I spent the summer in California, at the <a href="http://www.khanacademy.org">Khan Academy</a>. This is some of what I did there.
+
+## Projects
+
+### Accurate Video Log Recording
+
+I spent my first day improving the way we record how much of a video users have watched. We used to poll every ten seconds to see where in the video the user was and report back to the server if they had watched a certain amount. I changed the code to use the YouTube api, which allows us to record every time the user pauses or skips in the video. The idea is to have the exact segments of video that were watched so we can analyze that data and see if people are getting bored or going back to review certain parts of videos. This was a great project to spend my first day on.
+
+### Phantom Users
+
+Next I teamed up with another intern, <a href="http://parkerkuivila.com/">Parker</a>, on the phantom users project, which was not as mysterious or scary as it sounds. Before we added our magic, users had to create an account on the site to use exercises. People have always been able to access the videos and we wanted them to be able to try out the exercises as well, so we could prove to them that it's worth it to create an account. So unfortunately "phantom users" has nothing to do with the physical manifestation of the soul or spirit of a deceased person, it could just have easily been called "unregistered users" (if we were lame). This project went well and gave us the opportunity to dig into the guts of the site.
+
+### Video Progress Indicators
+
+I wrote about this in more detail <a href="/video-progress-indicators/">last time</a>. Briefly, I added icons to video links around the site to indicate if the video has been started or finished.
+
+### Deploy Script Improvements
+
+In the middle of the summer we were going through a bit of a performance crisis. Every day we would see latency spikes where users would have to wait far too long for pages to load. The big fix was some work done by <a href="http://desmondbrand.com/">Desmond</a> to switch to the <a href="http://code.google.com/appengine/docs/python/datastore/hr/overview.html">High Replication Datastore</a> but in the meantime I wanted to do something to help. The idea, suggested by <a href="https://twitter.com/#!/soprano">Ben Alpert</a>, was to automatically include images in our stylesheets using <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data-uris</a>. This reduces the number of requests the browser must make, hopefully speeding up the page. I knew my idea probably wouldn't get approved if I asked permission to do it, so I did it first. If you're using a browser better than IE 7, you see this system in work any time you visit the site (it looks exactly the same, which is good).
+
+To update the live version of the site you must run a deploy script that used to take about ten minutes, which is annoying and unproductive to wait for. So, at the same time as the data-uri project I was working on a system to speed up the deploy script. The cause of the slowness was a horrible css compressor that will not be named, which could take several minutes to compress a large stylesheet. What I did was cache the stylesheets on the deployer's computer so they don't need to be run through the compressor again if they haven't changed since the last time. I consider this project a bit of a failure, since we recently replaced the css compressor which sped things up enough that this work is not necessary anymore and should probably be removed from the code. Lessons learned: challenge assumptions and be lazy.
+
+### Exercise Timeline
+
+To finish out the summer I spent about a month working on a system for teachers and students to view completed problems as a timeline showing when the student asked for hints and submitted answers, as well as showing what the exercises looked like to the student at that point. Below you can see one of my timelines from the exercise "Graphs of sine and cosine".
+
+<img src="/media/img/summer/timeline.jpg" alt="Example Timeline" width=600px height=406px>
+
+And that's mostly it. I did some other minor things like a <a href="http://code.google.com/appengine/articles/sharding_counters.html">sharded counter</a> implementation, but nothing worth sharing.
+
+## People & Places
+
+I got to meet some amazing people
+
+<div id=gallery1>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/zachweiner_full.jpg"><img src="/media/img/summer/zachweiner_thumb.jpg"></a>
+  <figcaption><a href="http://smbc-comics.com">Zack Weiner!</a></figcaption>
+</figure>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/gore-2_full.jpg"><img src="/media/img/summer/gore-2_thumb.jpg"></a>
+  <figcaption>Al Gore!</figcaption>
+</figure>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/hagrid_full.jpg"><img src="/media/img/summer/hagrid_thumb.jpg"></a>
+  <figcaption>Hagrid?</figcaption>
+</figure>
 </div>
+<p style="clear: both; padding-top: 35px;">And go cool places</p>
+<div id=gallery2>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/sf_full.jpg"><img src="/media/img/summer/sf_thumb.jpg"></a>
+  <figcaption>San Francisco!</figcaption>
+</figure>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/google_full.jpg"><img src="/media/img/summer/google_thumb.jpg"></a>
+  <figcaption>Google! (we're geeks)</figcaption>
+</figure>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/near-death_full.jpg"><img src="/media/img/summer/near-death_thumb.jpg"></a>
+  <figcaption>Near Death at Yosemite!</figcaption>
+</figure>
+<figure class=polaroid>
+<a class=lightbox href="/media/img/summer/aquarium_full.jpg"><img src="/media/img/summer/aquarium_thumb.jpg"></a>
+  <figcaption>Monterey Bay Aquarium!</figcaption>
+</figure>
+</div>
+
